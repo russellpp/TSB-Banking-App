@@ -195,18 +195,28 @@ form .form-inner input[type="submit"]:hover {
   box-sizing: border-box;
   margin-left: 10px;
   margin-top: 10px;
-  
+  align-items: center;
 }
 
 .dashboardNav h1{
   font-size: 40px;
   color:white;
+  padding-left: 10px;
 }
 
-.logo{
+.dashboardNav .logo{
   width:45px;
   height:55px; 
 }
+
+.dashboardNav .logoutButton{
+position: relative;
+left:230px
+}
+.dashboardNav .logoutButton:hover{
+  cursor: pointer;
+}
+
 
 .transactionContainer{
   display: flex;

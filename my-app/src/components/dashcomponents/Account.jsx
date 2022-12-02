@@ -22,7 +22,6 @@ if(!currentUser){
     return (
       <div className='accountContainer'>
         <div className="accountBox">
-        {/*   <h1>Welcome, {currentUser.name}</h1> */}
           <div className="cardContainer">
             <div className="balanceContainer">
               <span>₱</span>{currentUser.balance}

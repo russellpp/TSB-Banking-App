@@ -1,7 +1,7 @@
 import React from 'react'
 import Account from './dashcomponents/Account'
 import logo from './assets/logo.png'
-import waveBackground from './assets/wave.svg'
+import logout from './assets/logout.png'
 /* import Transactions from './dashcomponents/Transactions' */
 import Deposit from './dashcomponents/Deposit'
 import Withdraw from './dashcomponents/Withdraw'
@@ -10,12 +10,14 @@ import Send from './dashcomponents/Send'
 import Expenses from './dashcomponents/Expenses'
 import {useState} from 'react'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 /* import LoginForm from './LoginForm'
  */
 function Dashboard() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [accounts, setAccounts] =useState([]);
+  const navigate = useNavigate();
 
 
 
@@ -38,12 +40,15 @@ function Dashboard() {
 
     }, [accounts, currentUser]);
 
+   
+
 
   return (
       <div className="dashboardBox">
         <nav className="dashboardNav">
             <img src ={logo} alt="logo" className="logo"></img>
             <h1>Bank</h1>
+            <div className='logoutButton'><img src = {logout} alt="logout" onClick={() => navigate(-1)} /></div>
         </nav>
         <div className="main">
             <div className='account'>

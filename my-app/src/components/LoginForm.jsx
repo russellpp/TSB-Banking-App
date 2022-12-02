@@ -66,14 +66,6 @@ function LoginForm() {
           setError("Invalid email/password")
         }
       }
-    
-      
-    
-      
-     /*  const Logout = () =>{
-        console.log("Logout")
-        setUser({ name:"", email:""});
-      } */
 
     const submitHandler = e =>{
         e.preventDefault();
