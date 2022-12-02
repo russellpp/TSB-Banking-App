@@ -17,14 +17,14 @@ function Transactions(props) {
         setIsTransactionsOpen(true);
       }
 
-      const listTransactions = currentUser.transactions;
+/*       const listTransactions = currentUser.transactions; */
   return (
     <div>
         <div className="transactionsBox" onClick ={OpenTransactionsModal}>
           <nav className='transactionsNav'>
             <h2>Transactions</h2>
           </nav>
-          <div className='transactionsBody'>
+{/*           <div className='transactionsBody'>
           {listTransactions.map((list) =>
             (
               <>  
@@ -40,7 +40,7 @@ function Transactions(props) {
               </div>
               </>
               ))} 
-          </div>
+          </div> */}
           <footer className='transactionsFooter'>
             <span className='clickHere'>Click here for more transactions</span>
           </footer>
