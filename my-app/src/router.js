@@ -4,6 +4,7 @@ import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
 import Transactions from "./components/dashcomponents/Transactions";
 import Account from "./components/dashcomponents/Account";
+import ExpensesDashboard from "./components/ExpensesDashboard";
 
 
 const router  = createBrowserRouter(
@@ -20,6 +21,10 @@ const router  = createBrowserRouter(
             path:"/Dashboard",
             element:<Dashboard />
         },
+        {
+            path:"/ExpensesDashboard",
+            element: <ExpensesDashboard />
+        }
     ]
 )
 
