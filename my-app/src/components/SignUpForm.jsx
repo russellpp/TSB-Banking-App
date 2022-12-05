@@ -75,7 +75,8 @@ function SignUpForm() {
           balance:"0",
           expiration:"12/26",
           isLoggedIn:false,
-          transactions:[]
+          transactions:[],
+          wallets:[]
         }
 
         if(passwordValue === confirmPasswordValue){
