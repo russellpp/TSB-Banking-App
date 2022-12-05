@@ -437,7 +437,7 @@ left:230px
 
 /* Modals */
 
-.depositModal, .withdrawModal, .sendModal, .expensesModal{
+.depositModal, .withdrawModal, .sendModal, .expensesModal, .BudgetModal{
   display: block;
   position: absolute;
   box-sizing: border-box;
@@ -452,6 +452,7 @@ left:230px
   padding:5px;
   background-color: var(--grey);
   animation: appear 150ms ease-in;
+  z-index: 3;
 }
 @keyframes appear {
   0%{
@@ -570,18 +571,18 @@ padding-right:7px;
 
 
 /* MODAL HEADER */
-.depositModalHeader, .withdrawModalHeader, .sendModalHeader, .transactionsModalHeader, .expensesModalHeader{
+.BudgetModalHeader, .depositModalHeader, .withdrawModalHeader, .sendModalHeader, .transactionsModalHeader, .expensesModalHeader{
   padding:5px;
   border-bottom: 1px solid var(--darkBlue);
   width:100%
 }
 /* MODAL TITLE */
-.depositModalTitle, .withdrawModalTitle, .sendModalTitle, .transactionsModalTitle, .expensesModalTitle{
+.BudgetModalTittle, .depositModalTitle, .withdrawModalTitle, .sendModalTitle, .transactionsModalTitle, .expensesModalTitle{
   font-size:20px
 }
 
 /* MODAL BODY */
-.depositModalBody, .withdrawModalBody, .sendModalBody ,.expensesModalBody{
+.BudgetModalBody, .depositModalBody, .withdrawModalBody, .sendModalBody ,.expensesModalBody{
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -591,12 +592,12 @@ padding-right:7px;
 }
 
 /* MODAL BODY LABEL */
-.depositModalBody label, .withdrawModal label, .sendModal label{
+.BudgetModalBody label, .depositModalBody label, .withdrawModal label, .sendModal label{
   font-size:17px;
 }
 
 /* MODAL BODY INPUT */
-.depositModalBody input, .withdrawModalBody input, .sendModalBody input{
+.BudgetModalBody input, .depositModalBody input, .withdrawModalBody input, .sendModalBody input{
   display: block;
   width: 100%;
   padding: 5px;
@@ -611,7 +612,7 @@ padding-right:7px;
 
 }
 /* MODAL FOOTER */
-.depositModalFooter, .withdrawModalFooter, .sendModalFooter{
+.BudgetModalFooter, .depositModalFooter, .withdrawModalFooter, .sendModalFooter{
   display: block;
   position: absolute;
   bottom:5px;
@@ -629,34 +630,34 @@ padding-right:7px;
 }
 
 /* MODAL FOOTER BUTTON */
-.depositModalFooter button, .withdrawModalFooter button, .sendModalFooter button, .transactionsModalFooter button, .expensesModalFooter button{
+.BudgetModalFooter button, .depositModalFooter button, .withdrawModalFooter button, .sendModalFooter button, .transactionsModalFooter button, .expensesModalFooter button{
   bottom:5px;
   padding:5px;
   outline: 1px solid var(--darkBlue) !important;
   margin:5px;
   border-radius: 2px;
 }
-.depositModalFooter button:hover, .withdrawModalFooter button:hover, .sendModalFooter button:hover, .transactionsModalFooter button:hover, .expensesModalFooter button:hover{
+.BudgetModalFooter button, .depositModalFooter button:hover, .withdrawModalFooter button:hover, .sendModalFooter button:hover, .transactionsModalFooter button:hover, .expensesModalFooter button:hover{
   cursor:pointer;
 }
-.depositDepositButton, .withdrawDepositButton, .sendDepositButton{
+.NewBudgetAccountButton, .depositDepositButton, .withdrawDepositButton, .sendDepositButton{
   background-color: var(--darkBlue);
   color:white;
   font-weight: 700;
 }
-.depositCancelButton, .withdrawCancelButton, .sendCancelButton, .transactionsCancelButton ,.expensesCancelButton{
+.BudgetcancelButton, .depositCancelButton, .withdrawCancelButton, .sendCancelButton, .transactionsCancelButton ,.expensesCancelButton{
   background-color: var(--darkRed);
   color: white;
   font-weight: 700;
 }
-.depositDepositButton:hover, .withdrawDepositButton:hover, .sendDepositButton:hover{
+.NewBudgetAccountButton:hover, .depositDepositButton:hover, .withdrawDepositButton:hover, .sendDepositButton:hover{
   transition:0.2s;
   background:linear-gradient(to left, white 50%, var(--darkBlue) 50%)right;
   background-size: 200% 100%;
   color:var(--darkBlue);
   font-weight: 700;
 }
-.depositCancelButton:hover, .withdrawCancelButton:hover, .sendCancelButton:hover, .transactionsCancelButton:hover, .expensesCancelButton:hover   {
+.BudgetcancelButton:hover, .depositCancelButton:hover, .withdrawCancelButton:hover, .sendCancelButton:hover, .transactionsCancelButton:hover, .expensesCancelButton:hover   {
   transition:0.2s;
   background:linear-gradient(to left, white 50%, var(--darkRed) 50%)right;
   background-size: 200% 100%;

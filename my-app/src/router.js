@@ -4,29 +4,30 @@ import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
 import Transactions from "./components/dashcomponents/Transactions";
 import Account from "./components/dashcomponents/Account";
-import ErrorPage from "./components/ErrorPage"
+import ErrorPage from "./components/ErrorPage";
 import App from "./App";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoginForm />,
+  },
+  {
+    path: "/SignUpForm",
+    element: <SignUpForm />,
+  },
+  {
+    path: "/Dashboard",
+    element: <Dashboard />,
+  },
+  {
+    path: "/Expenses",
+    element: <ExpensesDashboard />,
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
+  },
+]);
 
-const router  = createBrowserRouter(
-    [
-        {
-            path:"/",
-            element:<LoginForm />
-        },
-        {
-            path:"/SignUpForm",
-            element:<SignUpForm />
-        },
-        {
-            path:"/Dashboard",
-            element:<Dashboard />,
-        },
-        {
-            path:'*',
-            element:<ErrorPage />
-        }
-    ]
-)
-
-export default router
+export default router;
