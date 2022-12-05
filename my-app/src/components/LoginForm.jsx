@@ -35,25 +35,19 @@ function LoginForm() {
       }, [accounts]
       )
 
+      
+
+
+    
+
       const login = details =>{
         let hasLoggedIn = false;
-
-        const updatedAccounts = accounts.filter((account) => {
-
-        if(details.email === account.email && details.password === account.password){
-          hasLoggedIn = true
-          const loggedInAccount = {
-            updatedAccounts,
-            isLoggedIn: true
-          }
-          
-          return loggedInAccount
-        }
-        else{
-          return account
-        });
-        /* const updatedAccounts = accounts.map((account)=>{
-          
+        
+        
+        
+        
+        const updatedAccounts = accounts.map((account)=>{
+          console.log(accounts)
           if(details.email === account.email && details.password === account.password){
             hasLoggedIn = true
             const loggedInAccount = {
@@ -65,7 +59,7 @@ function LoginForm() {
           else{
             return account
           }
-        }) */
+        })
         console.log(hasLoggedIn)
 
         if(hasLoggedIn){
