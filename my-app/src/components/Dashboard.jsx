@@ -40,7 +40,6 @@ function Dashboard() {
 
     }, [accounts, currentUser]);
 
-   
 
 
   return (
