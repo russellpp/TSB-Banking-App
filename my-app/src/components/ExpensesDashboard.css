@@ -160,6 +160,13 @@
 }
 
 /* RecordList */
+.ListWrapper {
+  height: 500px;
+  max-height: 470px;
+  width: 430px;
+  padding: 0;
+  overflow-y: hidden;
+}
 
 .RecordList {
   color: var(--darkBlue);
@@ -289,4 +296,27 @@
   color: #ff3b30;
   font-size: 25px;
   justify-self: right;
+}
+
+
+/* New account modal */
+
+
+
+.BudgetModal {
+  position: absolute;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 260px;
+  top: 100px;
+  
+}
+
+.BudgetModalHeader{
+  color: var(--darkBlue);
+}
+
+.BudgetModalBody label{
+  color: var(--darkBlue);
+  margin-top: 20px;
 }

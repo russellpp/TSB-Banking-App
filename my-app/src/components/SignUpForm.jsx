@@ -18,9 +18,6 @@ function SignUpForm() {
     },[navigate]);
 
 
-        
-    
-
     useEffect(()=>{
         const localAccounts = localStorage.getItem('accounts')
         if(localAccounts){

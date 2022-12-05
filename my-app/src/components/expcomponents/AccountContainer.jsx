@@ -1,13 +1,23 @@
 import React from "react";
+import { useState } from "react";
 import imgAdd from '../assets/add-icon.svg';
+import BudgetModal from "./BudgetModal";
 
 function AccountContainer() {
+    const [isBudgetOpen, setIsBudgetOpen] = useState(false);
+
+    function OpenBudgetModal(){
+        setIsBudgetOpen(true);
+        console.log('isBudgetOpen is open')
+    }
+
     return(
         <div className="AccountContainer">
-            <button className="AddAccountButton">
+            <button className="AddAccountButton" onClick={OpenBudgetModal}>
                     <img src={imgAdd}/>
                  Account
             </button>
+            {isBudgetOpen && <BudgetModal setIsBudgetOpen={setIsBudgetOpen} />}
             <ul className="AccountList">
                 
                 <li className="AccountRecord">
