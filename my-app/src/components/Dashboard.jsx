@@ -11,15 +11,17 @@ import Expenses from './dashcomponents/Expenses'
 import {useState} from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-/* import LoginForm from './LoginForm'
- */
+import  {useRef} from 'react'
+import { useIdleTimer } from 'react-idle-timer'
+
+
 function Dashboard() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [accounts, setAccounts] =useState([]);
   const navigate = useNavigate();
 
-
+  
 
   useEffect(()=>{
     const localAccounts = localStorage.getItem('accounts')
@@ -41,9 +43,27 @@ function Dashboard() {
     }, [accounts, currentUser]);
 
 
+       /* Idle Timer Function */
+       const onIdle = () =>{
+        console.log("Inactive")
+      }
+
+      const onActive = () =>{
+        console.log('active')
+      }
+
+      const {isIdle} = useIdleTimer({
+        onIdle,onActive,timeout:5 * 1000
+      })
+
+
+
+
+ 
 
   return (
-      <div className="dashboardBox">
+      <div className="dashboardBox" onIdle={isIdle}>
+
         <nav className="dashboardNav">
             <img src ={logo} alt="logo" className="logo"></img>
             <h1>Bank</h1>
