@@ -79,7 +79,12 @@ function Dashboard() {
             setAccounts={setAccounts}
           />
           <Send />
-          <Expenses />
+          <Expenses 
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+            accounts={accounts}
+            setAccounts={setAccounts}
+          />
         </div>
         <div className="transaction">
           <Transactions currentUser={currentUser} />
