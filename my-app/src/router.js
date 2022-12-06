@@ -7,7 +7,7 @@ import Account from "./components/dashcomponents/Account";
 import ExpensesDashboard from "./components/ExpensesDashboard";
 import ErrorPage from "./components/ErrorPage";
 import App from "./App";
-import ExpensesDashboard from "./components/dashcomponents/Expenses";
+
 
 const router = createBrowserRouter([
   {

@@ -40,10 +40,26 @@ function Dashboard() {
 
     }, [accounts, currentUser]);
 
+    function logOut() {
+      const updatedAccount = {
+        ...currentUser,
+        isLoggedIn: false,
+      };
+  
+      const updatedAccounts = accounts.map((account) => {
+        if (account.email === currentUser.email) {
+          return updatedAccount;
+        } else {
+          return account;
+        }
+      });
+      setAccounts(updatedAccounts);
+      navigate(-1);
+    }
+
 
 
   return (
-<<<<<<< HEAD
     <div className="dashboardBox">
       <nav className="dashboardNav">
         <img src={logo} alt="logo" className="logo"></img>
@@ -83,32 +99,7 @@ function Dashboard() {
         </div>
       </div>
     </div>
-  );
-=======
-      <div className="dashboardBox">
-        <nav className="dashboardNav">
-            <img src ={logo} alt="logo" className="logo"></img>
-            <h1>Bank</h1>
-            <div className='logoutButton'><img src = {logout} alt="logout" onClick={() => navigate(-1)} /></div>
-        </nav>
-        <div className="main">
-            <div className='account'>
-              <Account currentUser = {currentUser} accounts = {accounts} />
-            </div>
-            
-            <div className='buttonContainer'>
-              <Deposit setCurrentUser = {setCurrentUser} currentUser = {currentUser} accounts = {accounts} setAccounts = {setAccounts}/>
-              <Withdraw setCurrentUser = {setCurrentUser} currentUser = {currentUser} accounts = {accounts} setAccounts = {setAccounts}/>
-              <Send />
-              <Expenses/>
-            </div>
-            <div className='transaction'>
-               <Transactions currentUser = {currentUser}/> 
-            </div>
-         </div>
-      </div> 
   )
->>>>>>> main
 }
 
 export default Dashboard
