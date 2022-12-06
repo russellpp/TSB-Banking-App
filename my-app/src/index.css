@@ -437,7 +437,7 @@ left:230px
 
 /* Modals */
 
-.depositModal, .withdrawModal, .sendModal, .expensesModal, .BudgetModal{
+.depositModal, .withdrawModal, .sendModal, .expensesModal, .BudgetModal, .ItemModal{
   display: block;
   position: absolute;
   box-sizing: border-box;

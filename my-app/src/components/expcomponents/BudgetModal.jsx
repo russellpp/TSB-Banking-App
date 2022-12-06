@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
-function BudgetModal({setIsBudgetOpen, currentUser, setCurrentUser, accounts, setAccounts}) {
+function BudgetModal({walletList, setWalletList, setIsBudgetOpen, currentUser, accounts, setAccounts}) {
     
+
+
     let [budgetValue, setBudgetValue] = useState();
     let [budgetAccount, setBudgetAccount] = useState();
     
@@ -21,33 +23,40 @@ function BudgetModal({setIsBudgetOpen, currentUser, setCurrentUser, accounts, se
         budgetAccount = budgetAcct.target.value;
     }
 
+    
+
     function createNewBudget () {
-        
-        if (budgetAccount == "") {
-            alert('Enter name for thsi wallet')
-        } else {
-            currentUser.wallets.push({
-                name: budgetAccount,
-                isCurrentAccount: true,
-                records: {}
+        const wallets = currentUser.wallets
+        if (wallets.length > 0){
+            wallets.map((wallet) => {
+                wallet.isCurrentAccount = false
             })
-            const updatedAccount = {
-                ...currentUser,
-                wallets: currentUser.wallets
-            }
-            const updatedAccounts = accounts.map((account)=>{
-                if(account.email === currentUser.email){
-                  return updatedAccount 
-                }
-                else{
-                  return account
-                }
-              
-              })
-              setAccounts(updatedAccounts)
-          
-          CloseBudgetModal()
         }
+        const newWallet = {
+            name: budgetAccount,
+            balance: budgetValue,
+            isCurrentAccount: true,
+            records: []
+            } 
+        wallets.push(newWallet)
+        const updatedAccount = {
+            ...currentUser,
+            wallets: wallets
+        
+            }
+        const updatedAccounts = accounts.map((account)=>{
+            if(account.email === currentUser.email){
+                return updatedAccount 
+            }
+            else{
+                return account
+            }
+            
+        })
+        setWalletList(wallets)
+        setAccounts(updatedAccounts)
+        CloseBudgetModal()
+        
     }
 
     return(

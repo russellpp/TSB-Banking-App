@@ -43,6 +43,48 @@ function Dashboard() {
 
 
   return (
+<<<<<<< HEAD
+    <div className="dashboardBox">
+      <nav className="dashboardNav">
+        <img src={logo} alt="logo" className="logo"></img>
+        <h1>Bank</h1>
+        <div className="logoutButton">
+          <img src={logout} alt="logout" onClick={logOut} />
+        </div>
+      </nav>
+      <div className="main">
+        <div className="account">
+          <Account currentUser={currentUser} accounts={accounts} />
+        </div>
+
+        <div className="buttonContainer">
+          <Deposit
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+            accounts={accounts}
+            setAccounts={setAccounts}
+          />
+          <Withdraw
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+            accounts={accounts}
+            setAccounts={setAccounts}
+          />
+          <Send />
+          <Expenses 
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+            accounts={accounts}
+            setAccounts={setAccounts}
+          />
+        </div>
+        <div className="transaction">
+          <Transactions currentUser={currentUser} />
+        </div>
+      </div>
+    </div>
+  );
+=======
       <div className="dashboardBox">
         <nav className="dashboardNav">
             <img src ={logo} alt="logo" className="logo"></img>
@@ -66,6 +108,7 @@ function Dashboard() {
          </div>
       </div> 
   )
+>>>>>>> main
 }
 
 export default Dashboard
