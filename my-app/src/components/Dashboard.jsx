@@ -43,27 +43,9 @@ function Dashboard() {
     }, [accounts, currentUser]);
 
 
-       /* Idle Timer Function */
-       const onIdle = () =>{
-        console.log("Inactive")
-      }
-
-      const onActive = () =>{
-        console.log('active')
-      }
-
-      const {isIdle} = useIdleTimer({
-        onIdle,onActive,timeout:5 * 1000
-      })
-
-
-
-
- 
 
   return (
-      <div className="dashboardBox" onIdle={isIdle}>
-
+      <div className="dashboardBox">
         <nav className="dashboardNav">
             <img src ={logo} alt="logo" className="logo"></img>
             <h1>Bank</h1>
