@@ -3,26 +3,42 @@ import { useState } from "react";
 import imgAdd from "../assets/add-icon.svg";
 import NewItemModal from "./NewItemModal";
 
-function AddItemButton(){
+function AddItemButton({
+  recordList,
+  setRecordList,
+  accounts,
+  setAccounts,
+  currentUser,
+  setCurrentUser,
+  currentWallet
+}) {
+  const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
 
-    const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false)
+  function OpenModal() {
+    setIsAddItemModalOpen(true);
+  }
 
-    function OpenModal(){
-        setIsAddItemModalOpen(true)
-    }
-
-    
-return(
+  return (
     <div className="AddItemButtonContainer">
-        <button className="AddItemButton" onClick={OpenModal}>
-                <img src={imgAdd} />
-                New Item
-        </button>
-        {isAddItemModalOpen && <NewItemModal isAddItemModalOpen={isAddItemModalOpen} setIsAddItemModalOpen={setIsAddItemModalOpen} />}
+      <button className="AddItemButton" onClick={OpenModal}>
+        <img src={imgAdd} />
+        New Item
+      </button>
+      {isAddItemModalOpen && (
+        <NewItemModal
+          recordList={recordList}
+          setRecordList={setRecordList}
+          isAddItemModalOpen={isAddItemModalOpen}
+          setIsAddItemModalOpen={setIsAddItemModalOpen}
+          setCurrentUser={setCurrentUser}
+          currentUser={currentUser}
+          accounts={accounts}
+          setAccounts={setAccounts}
+          currentWallet={currentWallet}
+        />
+      )}
     </div>
-    
-)
-
+  )
 }
 
 export default AddItemButton;

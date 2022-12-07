@@ -20,9 +20,8 @@ function WalletList(props) {
         wallet.isCurrentAccount = false;
       }
     });
-
+    
     //update accounts
-
     const updatedAccount = {
       ...currentUser,
       wallets: listWallets,
@@ -35,8 +34,11 @@ function WalletList(props) {
         return account;
       }
     });
-
     setAccounts(updatedAccounts);
+
+    // update selected wallet to current wallet
+    const selectedWallet = listWallets.find((wallet) => wallet.isCurrentAccount)
+    setCurrentWallet(selectedWallet)
   }
 
   return (

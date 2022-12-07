@@ -1,23 +1,34 @@
 import React from "react";
 import "./ExpensesDashboard.css";
-import RecordList from "./expcomponents/RecordList";
 import AccountContainer from "./expcomponents/AccountContainer";
-import RecordSummary from "./expcomponents/RecordSummary";
+import Records from "./expcomponents/Records";
+import { useState, useEffect } from "react";
 
-import {useState, useEffect} from "react";
-import AddItemButton from "./expcomponents/AddItemButton";
-
-function ExpensesDashboard() {
+function ExpensesDashboard(props) {
   const [currentUser, setCurrentUser] = useState(null);
   const [accounts, setAccounts] = useState([]);
+  const [currentWallet, setCurrentWallet] = useState()
+  const {isExpensesOpen, setIsExpensesOpen} = props;
+  
 
+  let WalletsNow = currentUser?.wallets || [];
+  
+  /* useEffect(() => {
+    if (WalletsNow.length > 0){
+      WalletsNow.map((wallet) => wallet.isCurrentAccount = false);
+      WalletsNow[WalletsNow.length - 1].isCurrentAccount = true
+    }
+  }, [isExpensesOpen]) */
+
+  
+  
   useEffect(() => {
     const localAccounts = localStorage.getItem("accounts");
     if (localAccounts) {
       setAccounts(JSON.parse(localAccounts));
     }
   }, []);
-
+  
   useEffect(() => {
     if (accounts.length > 0) {
       const loggedInAccount = accounts.find((account) => account.isLoggedIn);
@@ -25,19 +36,30 @@ function ExpensesDashboard() {
       localStorage.setItem("accounts", JSON.stringify(accounts));
     }
   }, [accounts, currentUser]);
-
+ 
+  
   return (
     <div className="BudgetAppContainer">
-      <AccountContainer setCurrentUser={setCurrentUser} currentUser={currentUser} accounts={accounts} setAccounts={setAccounts} />
+      <AccountContainer
+        setCurrentUser={setCurrentUser}
+        currentUser={currentUser}
+        accounts={accounts}
+        setAccounts={setAccounts}
+        currentWallet = {currentWallet}
+        setCurrentWallet = {setCurrentWallet}
+      />
       <div className="SummaryContainer">
-        <div className="Records">
-          <AddItemButton />
-          <RecordList />
-          <RecordSummary />
-        </div>
+        <Records 
+        setCurrentUser={setCurrentUser}
+        currentUser={currentUser}
+        accounts={accounts}
+        setAccounts={setAccounts}
+        currentWallet={currentWallet}
+
+        />
       </div>
     </div>
-  );
+  )
 }
 
 export default ExpensesDashboard;

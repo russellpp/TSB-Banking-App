@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 function Expenses(props) {
   const { setCurrentUser, currentUser, accounts, setAccounts } = props;
   const navigate = useNavigate();
-  const [isExpensesOpen, setIsExpensesOpen] = useState();
+  const [isExpensesOpen, setIsExpensesOpen] = useState(false);
 
   //opening expenses dashboard
   function ExpensesDashboard(props) {
-    navigate("/Expenses");
+    setIsExpensesOpen(true);
+    navigate("/Expenses", {isExpensesOpen}, {setIsExpensesOpen});
   }
 
   return (

@@ -365,7 +365,44 @@
   color: var(--darkBlue);
   height: auto;
   margin-top: 20px;
+  padding: 5px;
+  font-size: 15px;
 }
+
+
+
+.BudgetModalBody select > option:hover{
+  color: white;
+  background-color: var(--darkBlue);
+  height: auto;
+  margin-top: 20px;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.BudgetModalBody button{
+  bottom:5px;
+  padding:5px;
+  outline: 1px solid var(--darkBlue) !important;
+  margin:5px;
+  border-radius: 2px;
+}
+
+.BudgetModalFooter button{
+  font-size: 15px;
+  top: 5px;
+  bottom:5px;
+  padding:5px;
+  outline: 1px solid var(--darkBlue) !important;
+  margin:5px;
+  border-radius: 2px;
+}
+
+.BudgetModalFooter {
+  height: 30px;
+  bottom: 10px;
+}
+
 
 
 /* New item modal */
@@ -375,8 +412,71 @@
   position: absolute;
   transform: translateX(-50%);
   width: 300px;
-  height: 500px;
+  height: auto;
+  box-sizing: border-box;
   top: 100px;
   
 }
 
+.RedButton {
+  background-color: #a52727;
+  color:white;
+  font-weight: 700;
+  cursor: pointer;
+}
+.RedButton:hover {
+  transition:0.2s;
+  background:linear-gradient(to left, white 50%, var(--darkRed) 50%)right;
+  background-size: 200% 100%;
+  color:var(--darkRed);
+  font-weight: 700;
+}
+
+.EditCategoryContainer label{
+  font-size: 15px;
+  color: var(--darkRed);
+  font-weight: 700;
+
+}
+
+.EditCategoryContainer input{
+  margin-bottom: 5px;
+  font-size: 15px;
+  z-index: 3;
+}
+.EditCategoryContainer button{
+  width: 100%;
+  margin: 5px 0;
+}
+
+
+.EditCategoryContainer{
+  border: 2px solid var(--darkRed);
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+}
+
+.BudgetModalFooter{
+  position: relative;
+  margin-top: 10px;
+}
+
+/* // delete modal container // */
+
+.DeleteModal {
+  position: absolute;
+  transform: translateX(-50%);
+  width: 300px;
+  height: auto;
+  box-sizing: border-box;
+  top: 300px;
+  
+}
+
+.DeleteModalFooter {
+  height: 50px;
+  bottom: 5px;
+  position: relative;
+
+}

@@ -1,165 +1,67 @@
-import React from "react";
-import imgDelete from '../assets/delete-icon.svg';
-import imgEdit from '../assets/edit-icon.svg';
+import React, { useState } from "react";
+import imgDelete from "../assets/delete-icon.svg";
+import imgEdit from "../assets/edit-icon.svg";
+import RecordItemDeleteModal from "./RecordItemDeleteModal";
 
-function RecordList() {
-    return (
-        <div className="ListWrapper"> 
-            <ul className="RecordList">
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-                <li className="RecordItem">
-                    <div className="RecordContainer">
-                        <span className="RecordCategory">Category</span>
-                        <span className="RecordId">12/01 05:55am</span>
-                        <span className="RecordValue">+1800.00</span>
-                        <span className="RecordName">Item</span>
-                        <button><img src={imgEdit}/></button>
-                        <button><img src={imgDelete}/></button>
-                    </div>
-                </li>
-            </ul>
+function RecordList({
+  recordList,
+  setRecordList,
+  accounts,
+  setAccounts,
+  currentUser,
+  setCurrentUser,
+  currentWallet,
+}) {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState();
 
-        </div>
-    )
+  const handleDeleteModal = (index) => {
+    setSelectedItem(index);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleEdit = (targetIndex) => {
+    const locatedItem = currentWallet.records.find(
+      (item, index) => index == targetIndex
+    );
+    console.log(locatedItem);
+  };
+
+  return (
+    <div className="ListWrapper">
+      <ul className="RecordList">
+        {recordList.map((item, index) => (
+          <li className="RecordItem" key={index}>
+            <div className="RecordContainer">
+              <span className="RecordCategory">{item.category}</span>
+              <span className="RecordId">{item.id}</span>
+              <span className="RecordValue">{item.value}</span>
+              <span className="RecordName">{item.name}</span>
+              <button onClick={() => handleEdit(index)}>
+                <img src={imgEdit} />
+              </button>
+              <button onClick={() => handleDeleteModal(index)}>
+                <img src={imgDelete} />
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {isDeleteModalOpen && (
+        <RecordItemDeleteModal
+          setCurrentUser={setCurrentUser}
+          currentUser={currentUser}
+          accounts={accounts}
+          setAccounts={setAccounts}
+          currentWallet={currentWallet}
+          isDeleteModalOpen={isDeleteModalOpen}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+          selectedItem={selectedItem}
+        />
+      )}
+    </div>
+  )
 }
 
-export default RecordList
+export default RecordList;

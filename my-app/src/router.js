@@ -24,7 +24,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/Expenses",
-    element: <ExpensesDashboard />,
+    element: <ExpensesDashboard/>,
+    
   },
   {
     path: "*",

@@ -437,7 +437,7 @@ left:230px
 
 /* Modals */
 
-.depositModal, .withdrawModal, .sendModal, .expensesModal, .BudgetModal, .ItemModal{
+.depositModal, .withdrawModal, .sendModal, .expensesModal, .BudgetModal, .ItemModal ,.DeleteModal{
   display: block;
   position: absolute;
   box-sizing: border-box;
@@ -612,7 +612,7 @@ padding-right:7px;
 
 }
 /* MODAL FOOTER */
-.BudgetModalFooter, .depositModalFooter, .withdrawModalFooter, .sendModalFooter{
+.DeleteModalFooter, .BudgetModalFooter, .depositModalFooter, .withdrawModalFooter, .sendModalFooter{
   display: block;
   position: absolute;
   bottom:5px;
@@ -630,20 +630,21 @@ padding-right:7px;
 }
 
 /* MODAL FOOTER BUTTON */
-.BudgetModalFooter button, .depositModalFooter button, .withdrawModalFooter button, .sendModalFooter button, .transactionsModalFooter button, .expensesModalFooter button{
+.DeleteModalFooter button, .BudgetModalFooter button, .depositModalFooter button, .withdrawModalFooter button, .sendModalFooter button, .transactionsModalFooter button, .expensesModalFooter button{
   bottom:5px;
   padding:5px;
   outline: 1px solid var(--darkBlue) !important;
   margin:5px;
   border-radius: 2px;
 }
-.BudgetModalFooter button, .depositModalFooter button:hover, .withdrawModalFooter button:hover, .sendModalFooter button:hover, .transactionsModalFooter button:hover, .expensesModalFooter button:hover{
+.DeleteModalFooter button, .BudgetModalFooter button, .depositModalFooter button:hover, .withdrawModalFooter button:hover, .sendModalFooter button:hover, .transactionsModalFooter button:hover, .expensesModalFooter button:hover{
   cursor:pointer;
 }
 .NewBudgetAccountButton, .depositDepositButton, .withdrawDepositButton, .sendDepositButton{
   background-color: var(--darkBlue);
   color:white;
   font-weight: 700;
+  cursor: pointer;
 }
 .BudgetcancelButton, .depositCancelButton, .withdrawCancelButton, .sendCancelButton, .transactionsCancelButton ,.expensesCancelButton{
   background-color: var(--darkRed);
@@ -656,6 +657,7 @@ padding-right:7px;
   background-size: 200% 100%;
   color:var(--darkBlue);
   font-weight: 700;
+  cursor: pointer;
 }
 .BudgetcancelButton:hover, .depositCancelButton:hover, .withdrawCancelButton:hover, .sendCancelButton:hover, .transactionsCancelButton:hover, .expensesCancelButton:hover   {
   transition:0.2s;
