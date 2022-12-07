@@ -42,6 +42,22 @@ function Dashboard() {
 
     }, [accounts, currentUser]);
 
+    const logOut= () => {
+      const updatedAccount = {
+        ...currentUser,
+        isLoggedIn: false,
+      };
+  
+      const updatedAccounts = accounts.map((account) => {
+        if (account.email === currentUser.email) {
+          return updatedAccount;
+        } else {
+          return account;
+        }
+      });
+      setAccounts(updatedAccounts);
+      navigate(-1);
+    }
 
 
   return (
@@ -49,7 +65,7 @@ function Dashboard() {
         <nav className="dashboardNav">
             <img src ={logo} alt="logo" className="logo"></img>
             <h1>Bank</h1>
-            <div className='logoutButton'><img src = {logout} alt="logout" onClick={() => navigate(-1)} /></div>
+            <div className='logoutButton'><img src = {logout} alt="logout" onClick={logOut} /></div>
         </nav>
         <div className="main">
             <div className='account'>
