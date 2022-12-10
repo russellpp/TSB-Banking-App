@@ -11,7 +11,6 @@ import Expenses from './dashcomponents/Expenses'
 import {useState} from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import  {useRef} from 'react'
 import { useIdleTimer } from 'react-idle-timer'
 
 
@@ -58,12 +57,24 @@ function Dashboard() {
       setAccounts(updatedAccounts);
       navigate(-1);
     }
+ 
+    /* Inactive code */
+    const onIdle = () =>{
+      console.log('User Inactive')
+    }
+    const onActive =()=>{
+      console.log('User Active')
+    }
+
+    const{isIdle} = useIdleTimer({
+      onIdle,onActive,timeout:5*1000
+    })
 
 
   return (
-      <div className="dashboardBox">
+      <div className="dashboardBox" onIdle={isIdle}>
         <nav className="dashboardNav">
-            <img src ={logo} alt="logo" className="logo"></img>
+            <img src ={logo} alt="logo" className="logo"/>
             <h1>Bank</h1>
             <div className='logoutButton'><img src = {logout} alt="logout" onClick={logOut} /></div>
         </nav>
@@ -75,7 +86,7 @@ function Dashboard() {
             <div className='buttonContainer'>
               <Deposit setCurrentUser = {setCurrentUser} currentUser = {currentUser} accounts = {accounts} setAccounts = {setAccounts}/>
               <Withdraw setCurrentUser = {setCurrentUser} currentUser = {currentUser} accounts = {accounts} setAccounts = {setAccounts}/>
-              <Send />
+              <Send setCurrentUser = {setCurrentUser} currentUser = {currentUser} accounts = {accounts} setAccounts = {setAccounts}/>
               <Expenses/>
             </div>
             <div className='transaction'>

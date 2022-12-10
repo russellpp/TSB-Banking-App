@@ -463,6 +463,10 @@ left:230px
   }
 }
 
+.sendModal{
+  height:250px !important;
+}
+
 .transactionsModal{
   display:flex;
   position: absolute;
