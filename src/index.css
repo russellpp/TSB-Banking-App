@@ -437,7 +437,7 @@ left:230px
 
 /* Modals */
 
-.depositModal, .withdrawModal, .sendModal, .expensesModal, .BudgetModal, .ItemModal ,.DeleteModal{
+.depositModal, .withdrawModal, .sendModal, .expensesModal, .BudgetModal, .ItemModal ,.DeleteModal, .EditItemModal{
   display: block;
   position: absolute;
   box-sizing: border-box;
@@ -461,6 +461,10 @@ left:230px
   100%{
     opacity:1;
   }
+}
+
+.sendModal {
+  height: 280px;
 }
 
 .transactionsModal{

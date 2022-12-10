@@ -4,6 +4,11 @@
   --grey: white;
   --lightBlue: #0b8ae6;
   --navyBlue: #09559c;
+  --darkerBlue: #06121E;
+  --iosBlue: #007aff;
+  --pink: #F16273;
+  --iosRed: #ff3b30;
+  --iosGreen: #4cd964;
 }
 
 .BudgetAppContainer {
@@ -20,6 +25,8 @@
 }
 
 .SummaryContainer {
+  display: flex;
+  box-sizing: border-box;
   padding: 20px 0;
   margin: 10px 10px;
   height: 655px;
@@ -31,9 +38,8 @@
 }
 
 .Records {
-  justify-self: flex-end;
   display: grid;
-  grid-template-rows: 35px 480px 100px;
+  grid-template-rows: 35px 0px 480px 100px;
   height: 640px;
 }
 
@@ -57,6 +63,7 @@
   font-size: 17px;
   margin: 0 auto;
   cursor: pointer;
+  z-index: 3;
 }
 
 .AddItemButton > img {
@@ -76,8 +83,8 @@
   height: 170px;
   margin: 15px 10px 0;
   width: 430px;
-  border: 2px solid #b2d0ee;
-  background-color: #b2d0ee;
+  border: 2px solid var(--darkerBlue);
+  background-color: var(--darkerBlue);
   border-radius: 30px;
   box-sizing: border-box;
   margin-bottom: 0;
@@ -87,7 +94,7 @@
 
 .AddAccountButton {
   border-radius: 30px;
-  background-color: #15324d;
+  background-color: var(--iosBlue);
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: none;
@@ -108,33 +115,34 @@
   margin-right: 6px;
 }
 
-
-
 .SelectedAccountRecord {
   padding: 0;
   list-style: none;
-  border: 2px solid #5184b4;
+  width: auto ;
+  border: 2px solid var(--pink);
   border-radius: 20px;
   padding: 10px;
   box-sizing: border-box;
   margin-right: 12px;
   height: 80px;
-  width: 120px;
   text-align: center;
   display: flex;
   font-size: 12px;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--darkBlue);
+  box-shadow: 2px 4px 4px 2px black;;
+  background-color: var(--pink);
   cursor: pointer;
 }
 
 .SelectedAccountRecord > span {
-  width: 80px;
+  width: auto;
+  min-width: 80px;
 }
 
 .SelectedAccountRecord :first-child {
-  font-size: 12px;
+  font-size: 15px;
+  text-transform: uppercase;
   font-weight: bold;
 }
 .SelectedAccountRecord {
@@ -143,29 +151,33 @@
 
 .AccountRecord {
   padding: 0;
+  color: var(--darkBlue);
   list-style: none;
-  border: 2px solid #5184b4;
+  border: 2px solid var(--grey);
+  width: auto;
   border-radius: 20px;
   padding: 10px;
   box-sizing: border-box;
   margin-right: 12px;
   height: 80px;
-  width: 120px;
   text-align: center;
   display: flex;
   font-size: 12px;
   flex-direction: column;
   justify-content: center;
-  background-color: #5184b4;
+  background-color: var(--grey);
+  box-shadow: 2px 4px 4px 2px black;
   cursor: pointer;
 }
 
 .AccountRecord > span {
-  width: 80px;
+  width: auto;
+  min-width: 80px;
 }
 
 .AccountRecord :first-child {
-  font-size: 12px;
+  font-size: 15px;
+  text-transform: uppercase;
   font-weight: bold;
 }
 .AccountRecord {
@@ -176,8 +188,10 @@
   padding-left: 0;
   display: flex;
   flex-direction: row-reverse;
+  /* justify-content: flex-end; */
   height: 110px;
-  margin: 0 15px;
+  max-width: 360px;
+  margin: 0 auto;
   overflow-x: scroll;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
@@ -211,28 +225,58 @@
 
 .RecordList {
   color: var(--darkBlue);
+  box-sizing: border-box;
   list-style-type: none;
-  height: 500px;
+  height: auto;
   max-height: 470px;
-  width: 430px;
-  padding: 0;
+  padding: 5px 0;
+  width: 425px;
   display: flex;
   flex-direction: column-reverse;
-  justify-content: flex-end;
+  overflow-x: hidden;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #15324d transparent;
+}
+
+.RecordList::-webkit-scrollbar {
+  height: 10px;
+}
+
+.RecordList::-webkit-scrollbar-thumb {
+  background: #15324d;
+  border: 1px solid transparent;
+  border-radius: 100 vh;
+}
+
+.RecordList::-webkit-scrollbar-track {
+  background: white;
+  border: none;
 }
 
 .RecordItem {
   height: 50px;
   width: 430px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  
+}
+
+.RecordItem:hover {
+  background-color: #e4e4e45d;
+}
+
+.RecordItem:hover img {
+  filter: invert(50%);
 }
 
 .RecordContainer {
   display: grid;
   background-color: transparent;
+  padding: 0 8px;
   max-height: 50px;
   height: 50px;
-  margin: 5px 20px;
+  margin: 0px 20px;
   grid-template-rows: 20px 15px 15px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
@@ -253,11 +297,23 @@
   color: var(--navyBlue);
 }
 .RecordValue {
-  font-size: 22px;
+  font-size: 20px;
+  color: var(--iosRed);
   grid-area: area2;
   justify-self: right;
   align-self: flex-start;
 }
+
+.RecordValueIncome {
+  font-size: 20px;
+  color: var(--iosGreen);
+  grid-area: area2;
+  justify-self: right;
+  align-self: flex-start;
+}
+
+
+
 .RecordName {
   font-size: 15px;
   grid-area: area1;
@@ -267,23 +323,30 @@
 
 .RecordContainer > button > img {
   position: relative;
-  justify-self: right;
   height: 11px;
   filter: invert(70%);
 }
 
+.RecordContainer > button:hover > img {
+  
+  filter: invert(20%);
+}
+
+
 .RecordContainer > button {
   padding: 0;
-  margin-top: 0;
+  position: relative;
   border: none;
   background-color: transparent;
   justify-self: right;
   height: 10px;
   cursor: pointer;
+  top: -5px;
 }
 
 .RecordContainer :nth-child(5) {
   grid-area: area6;
+  
   margin-right: 20px;
 }
 
@@ -297,50 +360,72 @@
 .RecordSummary {
   display: grid;
   height: 100px;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: uppercase;
   padding: 0 20px 0;
-  color: #ff3b30;
+  color: var(--iosRed);
   grid-template-areas:
+    "b1 b2"
     "e1 e2"
     "i1 i2"
     "n1 n2";
 }
 
 .RecordSummary :first-child {
-  font-size: 18px;
-  grid-area: e1;
+  color: var(--darkBlue);
+  font-size: 16px;
+  grid-area: b1;
   justify-self: left;
 }
 
 .RecordSummary :nth-child(2) {
-  color: #ff3b30;
-  grid-area: e2;
+  color: var(--darkBlue);
+  grid-area: b2;
   justify-self: right;
 }
 
 .RecordSummary :nth-child(3) {
-  font-size: 18px;
-  grid-area: i1;
+  font-size: 16px;
+  grid-area: e1;
   justify-self: left;
 }
 
 .RecordSummary :nth-child(4) {
-  color: #4cd964;
-  grid-area: i2;
+  color: var(--iosRed);
+  grid-area: e2;
   justify-self: right;
 }
 
 .RecordSummary :nth-child(5) {
+  font-size: 16px;
+  grid-area: i1;
+  color: var(--iosGreen);
+  justify-self: left;
+}
+
+.RecordSummary :nth-child(6) {
+  color: var(--iosGreen);
+  grid-area: i2;
+  justify-self: right;
+}
+
+
+.NetValueNeg {
   grid-area: n2;
   font-weight: bold;
-  color: #ff3b30;
+  color: var(--iosRed);
   font-size: 25px;
   justify-self: right;
 }
 
+.NetValuePos {
+  grid-area: n2;
+  font-weight: bold;
+  color: var(--iosGreen);
+  font-size: 25px;
+  justify-self: right;
+}
 /* New budget modal */
-
 
 .BudgetModal {
   position: absolute;
@@ -348,20 +433,19 @@
   width: 300px;
   height: 260px;
   top: 100px;
-  
 }
 
-.BudgetModalHeader{
+.BudgetModalHeader {
   color: var(--darkBlue);
 }
 
-.BudgetModalBody label{
+.BudgetModalBody label {
   color: var(--darkBlue);
   height: auto;
   margin-top: 20px;
 }
 
-.BudgetModalBody select{
+.BudgetModalBody select {
   color: var(--darkBlue);
   height: auto;
   margin-top: 20px;
@@ -369,9 +453,7 @@
   font-size: 15px;
 }
 
-
-
-.BudgetModalBody select > option:hover{
+.BudgetModalBody select > option:hover {
   color: white;
   background-color: var(--darkBlue);
   height: auto;
@@ -380,33 +462,30 @@
   font-size: 15px;
 }
 
-.BudgetModalBody button{
-  bottom:5px;
-  padding:5px;
+.BudgetModalBody button {
+  bottom: 5px;
+  padding: 5px;
   outline: 1px solid var(--darkBlue) !important;
-  margin:5px;
+  margin: 5px;
   border-radius: 2px;
 }
 
-.BudgetModalFooter button{
+.BudgetModalFooter button {
   font-size: 15px;
   top: 5px;
-  bottom:5px;
-  padding:5px;
+  bottom: 5px;
+  padding: 5px;
   outline: 1px solid var(--darkBlue) !important;
-  margin:5px;
+  margin: 5px;
   border-radius: 2px;
 }
 
 .BudgetModalFooter {
-  height: 30px;
+  height: auto;
   bottom: 10px;
 }
 
-
-
 /* New item modal */
-
 
 .ItemModal {
   position: absolute;
@@ -415,49 +494,46 @@
   height: auto;
   box-sizing: border-box;
   top: 100px;
-  
 }
 
 .RedButton {
   background-color: #a52727;
-  color:white;
+  color: white;
   font-weight: 700;
   cursor: pointer;
 }
 .RedButton:hover {
-  transition:0.2s;
-  background:linear-gradient(to left, white 50%, var(--darkRed) 50%)right;
+  transition: 0.2s;
+  background: linear-gradient(to left, white 50%, var(--darkRed) 50%) right;
   background-size: 200% 100%;
-  color:var(--darkRed);
+  color: var(--darkRed);
   font-weight: 700;
 }
 
-.EditCategoryContainer label{
+.EditCategoryContainer label {
   font-size: 15px;
   color: var(--darkRed);
   font-weight: 700;
-
 }
 
-.EditCategoryContainer input{
+.EditCategoryContainer input {
   margin-bottom: 5px;
   font-size: 15px;
   z-index: 3;
 }
-.EditCategoryContainer button{
+.EditCategoryContainer button {
   width: 100%;
   margin: 5px 0;
 }
 
-
-.EditCategoryContainer{
+.EditCategoryContainer {
   border: 2px solid var(--darkRed);
   border-radius: 10px;
   color: white;
   padding: 5px;
 }
 
-.BudgetModalFooter{
+.BudgetModalFooter {
   position: relative;
   margin-top: 10px;
 }
@@ -470,13 +546,228 @@
   width: 300px;
   height: auto;
   box-sizing: border-box;
-  top: 300px;
-  
+  top: 240px;
 }
 
 .DeleteModalFooter {
-  height: 50px;
-  bottom: 5px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  bottom: 5px;
+  padding-top: 10px;
+  font-size: 14px;
+}
 
+.DeleteModalFooter span {
+  text-align: center;
+}
+
+.DeleteModalFooter > .NewBudgetAccountButton {
+  background-color: var(--darkRed);
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.DeleteModalFooter :nth-child(2) {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.DeleteModalFooter :nth-child(3) {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.DeleteModalFooter :nth-child(4) {
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+/* edit modal */ 
+
+.EditItemModal {
+  position: absolute;
+  transform: translateX(-50%);
+  width: 300px;
+  height: auto;
+  box-sizing: border-box;
+  top: 240px;
+}
+
+/* options button */
+.OptionsButtonContainer {
+  display: flex;
+  justify-content: center;
+  padding: 0 auto;
+}
+
+.AccountOptionButton {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  text-transform: capitalize;
+  padding: 0;
+  width: 200px;
+  height: 30px;
+  font-size: 17px;
+  margin: 0 auto;
+  cursor: pointer;
+  top: -35px;
+  left: 190px;
+}
+
+.AccountOptionButton > img {
+  height: 18px;
+  margin-top: 4px;
+  margin-right: 25px;
+  filter: invert(70%);
+}
+
+.AccountOptionButton:hover > img {
+
+  filter: invert(40%);
+}
+
+.OptionDeleteButton{
+  width: 276px;
+  background-color: var(--darkRed);
+  color:white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.OptionDeleteButton:nth-of-type(2){
+  margin-bottom: 10px;
+}
+
+.OptionDeleteButton:hover{
+  transition:0.2s;
+  background:linear-gradient(to left, white 50%, var(--darkRed) 50%)right;
+  background-size: 200% 100%;
+  color:var(--darkRed);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* back button */
+.BackButton {
+  position: absolute;
+  left: 50%;
+  height: 0;
+}
+
+.BackButton img{
+  position: relative;
+  height: 25px;
+  top: -185px;
+  right: 200px;
+  filter: invert(30%);
+  cursor: pointer;
+}
+
+.BackButton:hover img{
+  
+  filter: invert(50%);
+}
+
+
+
+
+/* toggle button */
+
+.wrg-toggle {
+  left: 120px;
+  top: 10px;
+  touch-action: pan-x;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wrg-toggle-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.wrg-toggle-check, .wrg-toggle-uncheck {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  bottom: 0;
+  margin-top: 5px;
+  margin-bottom: auto;
+  line-height: 0;
+  opacity: 0.3;
+  transition: opacity .25s ease;
+  left: -50px;
+}
+
+.wrg-toggle-uncheck {
+  opacity: 1;
+}
+.wrg-toggle-check {
+  opacity: 0.3;
+  left: 90px;
+}
+
+.wrg-toggle-uncheck span, 
+.wrg-toggle-check span {
+  align-items: center;
+  display: flex;
+  height: 10px;
+  justify-content: center;
+  position: relative;
+  width: 10px;
+  font-weight: 600;
+}
+
+.wrg-toggle-container{
+  width: 50px;
+  height: 24px;
+  padding: 0;
+  border-radius: 30px;
+  background-color: var(--darkBlue);
+  transition: all .2s ease;
+}
+
+.wrg-toggle-circle{
+  transition: all .5s cubic-bezier(.23,1,.32,1) 0ms;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #4d4d4d;
+  border-radius: 50%;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  transition: all .25s ease;
+}
+
+.wrg-toggle--checked .wrg-toggle-check{
+  opacity: 1;
+}
+.wrg-toggle--checked .wrg-toggle-uncheck {
+  opacity: 0.3;
+}
+.wrg-toggle--checked .wrg-toggle-circle {
+  left: 27px;
 }

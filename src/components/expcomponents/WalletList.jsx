@@ -11,7 +11,7 @@ function WalletList(props) {
     setAccounts,
   } = props;
 
-  function SelectWallet(indexTarget) {
+  function handleSelectWallet(indexTarget) {
     //make target iscurrentaccount true
     listWallets.map((wallet, index) => {
       if (index == indexTarget) {
@@ -45,14 +45,14 @@ function WalletList(props) {
     <ul className="AccountList">
       {listWallets.map((list, index) => (
         <li
-          onClick={() => SelectWallet(index)}
+          onClick={() => handleSelectWallet(index)}
           key={index}
           className={
             currentWallet !== list ? "AccountRecord" : "SelectedAccountRecord"
           }
         >
           <span>{list.name}</span>
-          <span>{list.balance}</span>
+          <span>{list.budget}</span>
         </li>
       ))}
     </ul>

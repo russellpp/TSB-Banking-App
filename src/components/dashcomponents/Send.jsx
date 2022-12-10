@@ -1,28 +1,25 @@
-import React from 'react'
-import SendModal from './SendModal'
-import send from '../assets/send.png'
-import { useState } from 'react';
+import React from "react";
+import SendModal from "./SendModal";
+import send from "../assets/send.png";
+import { useState } from "react";
 
+function Send({ currentUser, setCurrentUser, accounts, setAccounts }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-
-function Send() {
-
-    const [isOpen, setIsOpen] = useState(false);
-
-    //opening modal function
-    function OpenSendModal(){
+  //opening modal function
+  function OpenSendModal() {
     setIsOpen(true);
-    }
+  }
 
   return (
     <div>
-        <div className="sendBox" onClick={OpenSendModal}>
-            <img src={send} alt="send logo" className="sendLogo" />
-            <h2>Send</h2>
-        </div>
-        {isOpen && <SendModal setIsOpen={setIsOpen}/>}
+      <div className="sendBox" onClick={OpenSendModal}>
+        <img src={send} alt="send logo" className="sendLogo" />
+        <h2>Send</h2>
+      </div>
+      {isOpen && <SendModal setCurrentUser={setCurrentUser} setIsOpen={setIsOpen} currentUser={currentUser} accounts={accounts} setAccounts={setAccounts} />}
     </div>
-  )
+  );
 }
 
-export default Send
+export default Send;

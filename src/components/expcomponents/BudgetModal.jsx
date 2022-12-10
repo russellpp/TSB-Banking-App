@@ -9,7 +9,9 @@ function BudgetModal({
   accounts,
   setAccounts,
   currentWallet,
-  setCurrentWallet
+  setCurrentWallet,
+  walletBalance,
+  setWalletBalance
 }) {
   let [budgetValue, setBudgetValue] = useState();
   let [budgetAccount, setBudgetAccount] = useState();
@@ -37,7 +39,7 @@ function BudgetModal({
     }
     const newWallet = {
       name: budgetAccount,
-      balance: budgetValue,
+      budget: budgetValue,
       isCurrentAccount: true,
       records: [],
     };
@@ -77,7 +79,7 @@ function BudgetModal({
             onChange={getAccount}
           />
 
-          <label htmlFor="amount">Enter amount: </label>
+          <label htmlFor="amount">Enter initial budget: </label>
           <input
             type="number"
             name="amount"
