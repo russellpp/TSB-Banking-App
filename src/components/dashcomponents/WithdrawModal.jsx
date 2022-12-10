@@ -28,7 +28,7 @@ function WithdrawModal({setIsOpen, currentUser, setCurrentUser, accounts, setAcc
      const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
      const currentTime = /* thisTime.getFullYear() */ thisTime.getDate() + '-' + month[thisTime.getMonth()]
 
-     function withdrawMoney(){
+     function WithdrawMoney(){
         const result = Number(balance) - Number(withdrawValue);
     
         if(result < 0 ){
@@ -36,6 +36,9 @@ function WithdrawModal({setIsOpen, currentUser, setCurrentUser, accounts, setAcc
         }
         else if(!withdrawValue){
             alert('Enter a valid amount')
+        }
+        else if(withdrawValue < 0){
+            alert('Withdraw value should be greater than 0')
         }
         else{    
            
@@ -80,7 +83,7 @@ function WithdrawModal({setIsOpen, currentUser, setCurrentUser, accounts, setAcc
                <input type="number" name='amount' id='amount' autoComplete='off' autoFocus onChange={getValue}/>
             </div>
             <div className="withdrawModalFooter">
-                <button className="withdrawDepositButton" onClick={withdrawMoney}>Withdraw</button>
+                <button className="withdrawDepositButton" onClick={WithdrawMoney}>Withdraw</button>
                 <button className="withdrawCancelButton" onClick={CloseModal}>Cancel</button>
             </div>
         </div>  

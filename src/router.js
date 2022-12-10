@@ -2,11 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
 import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
-import Transactions from "./components/dashcomponents/Transactions";
-import Account from "./components/dashcomponents/Account";
+/* import Transactions from "./components/dashcomponents/Transactions";
+import Account from "./components/dashcomponents/Account"; */
 import ExpensesDashboard from "./components/ExpensesDashboard";
 import ErrorPage from "./components/ErrorPage";
-import App from "./App";
+/* import App from "./App"; */
+import AdminDashboard from "./components/AdminDashboard";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/Expenses",
     element: <ExpensesDashboard/>,
+    
+  },
+  {
+    path: "/Admin",
+    element: <AdminDashboard/>,
     
   },
   {

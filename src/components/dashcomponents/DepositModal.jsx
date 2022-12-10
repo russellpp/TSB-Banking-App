@@ -19,7 +19,7 @@ function DepositModal({setIsDepositOpen, currentUser, setCurrentUser, accounts, 
 
     const thisTime = new Date();
     const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const currentTime = /* thisTime.getFullYear() */ thisTime.getDate() + '-' + month[thisTime.getMonth()]
+    const currentTime = thisTime.getDate() + '-' + month[thisTime.getMonth()]
     
     function DepositMoney(){
       let balance = currentUser.balance;
@@ -28,6 +28,9 @@ function DepositModal({setIsDepositOpen, currentUser, setCurrentUser, accounts, 
 
         if(!depositValue){
           alert('Enter a valid amount')
+        }
+        else if(depositValue < 0){
+          alert('Deposit value should be greater than 0')
         }
         else{
           currentUser.transactions.unshift({

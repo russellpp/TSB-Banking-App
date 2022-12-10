@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
+<<<<<<< HEAD
 const thisTime = new Date();
 const month = [
   "Jan",
@@ -33,6 +34,9 @@ function SendModal({
     receiver: "",
     sender: currentUser?.accountNumber || [],
   });
+=======
+function SendModal({setIsOpen, currentUser, setCurrentUser, accounts, setAccounts}) {
+>>>>>>> 6c4b5ae26a50bac220aebed937ea0fc029a43a83
 
   //handle send
 
@@ -116,6 +120,7 @@ function SendModal({
     }
   };
 
+<<<<<<< HEAD
   const handleCloseModal = () => {
     setIsOpen(false);
   };
@@ -157,6 +162,29 @@ function SendModal({
           </button>
         </div>
       </div>
+=======
+
+    
+
+  return (
+    <div className = "sendModal">
+        <div className="sendModalContent">
+            <div className="sendModalHeader">
+                <h4 className='sendModalTitle'>Send</h4>
+            </div>
+            <div className="sendModalBody">
+               <div className="currentBalance">Current Balance: {currentUser.balance}</div>
+               <label htmlFor='sendAccount'>Enter Account:</label>
+               <input type="number" name='sendAccount' id='sendAccount' autoComplete='off' autoFocus/>
+               <label htmlFor="amount">Enter amount: </label>
+               <input type="number" name='amount' id='amount' autoComplete='off'/>
+            </div>
+            <div className="sendModalFooter">
+                <button className="sendDepositButton">Send</button>
+                <button className="sendCancelButton" onClick={CloseDepoModal}>Cancel</button>
+            </div>
+        </div>  
+>>>>>>> 6c4b5ae26a50bac220aebed937ea0fc029a43a83
     </div>
   );
 }
