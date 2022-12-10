@@ -8,6 +8,11 @@ function AddCategory({
   setDataOptions,
   isAddCategoryOpen,
   setIsAddCategoryOpen,
+  incomeOptions,
+  setIncomeOptions,
+  expenseOptions,
+  setExpenseOptions,
+  isExpense
 
 }) {
   const handleCategoryChange = (e) => {
@@ -15,11 +20,33 @@ function AddCategory({
   };
 
   const handleClearCategory = () => {
-    setDataOptions(defaultOptions);
+    isExpense ? setExpenseOptions([
+      "Food & Drinks",
+      "Shopping",
+      "Housing",
+      "Transportation",
+      "Vehicle",
+      "Life & Entertainment",
+      "Communication, PC",
+      "Financial Expenses",
+      "Investments",
+      "Others",
+    ]) : setIncomeOptions([
+      "Salary",
+      "Business Revenue",
+      "Bonuses",
+      "Tax Refund",
+      "Gifts & Donations",
+      "Others"
+    ])
+    isExpense ? setDataOptions(expenseOptions) : setDataOptions(incomeOptions)
   };
 
   const handleAddCategory = () => {
-    setDataOptions((prevState) => {
+
+    isExpense ? setExpenseOptions((prevState) => {
+      return [...prevState, addedCategory];
+    }) : setIncomeOptions((prevState) => {
       return [...prevState, addedCategory];
     });
     setAddedCategory("");

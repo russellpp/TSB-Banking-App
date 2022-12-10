@@ -7,7 +7,6 @@ import WalletList from "./WalletList";
 
 function AccountContainer(props) {
   const [isBudgetOpen, setIsBudgetOpen] = useState(false);
-  const [walletList, setWalletList] = useState([]);
   const {
     currentUser,
     setCurrentUser,
@@ -15,12 +14,19 @@ function AccountContainer(props) {
     setAccounts,
     currentWallet,
     setCurrentWallet,
+    walletBalance,
+    setWalletBalance,
+    walletList,
+    setWalletList
   } = props;
   
   // finding current wallet
   
   const listWallets = currentUser?.wallets || [];
 
+  useEffect(()=> {
+    setWalletList(listWallets)
+  },[listWallets])
 
   useEffect(() => {
     if (listWallets.length > 0) {
@@ -51,6 +57,8 @@ function AccountContainer(props) {
           setAccounts={setAccounts}
           currentWallet={currentWallet}
           setCurrentWallet={setCurrentWallet}
+          walletBalance={walletBalance}
+          setWalletBalance={setWalletBalance}
         />
       )}
       <WalletList

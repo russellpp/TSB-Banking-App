@@ -1,6 +1,7 @@
 import React from "react";
+import { useState } from "react";
 
-function RecordItemDeleteModal({
+function ClearRecordsModal({
   recordList,
   setRecordList,
   accounts,
@@ -8,20 +9,13 @@ function RecordItemDeleteModal({
   currentUser,
   setCurrentUser,
   currentWallet,
-  isDeleteModalOpen,
-  setIsDeleteModalOpen,
-  selectedItem,
+  isClearModalOpen,
+  setIsClearModalOpen,
+  setCurrentWallet,
 }) {
-  const handleCloseModal = () => {
-    setIsDeleteModalOpen(false);
-  };
-  const handleDelete = () => {
-    const indexItem = currentWallet.records.findIndex(
-      (item) => item.uniqueId == selectedItem.item.uniqueId
-    );
+  const handleClear = () => {
+    currentWallet.records = [];
 
-    currentWallet.records.splice(indexItem, 1);
-    
     const updatedWallets = currentUser.wallets.map((wallet) => {
       if (wallet.isCurrentAccount) {
         return currentWallet;
@@ -44,22 +38,23 @@ function RecordItemDeleteModal({
     });
 
     setAccounts(updatedAccounts);
-    setRecordList(currentWallet.records);
-    handleCloseModal()
+    handleCloseModal();
   };
 
+  const handleCloseModal = () => {
+    setIsClearModalOpen(false);
+  };
 
   return (
     <div className="DeleteModal">
       <div className="BudgetModalContent">
         <div className="DeleteModalFooter">
-          <span>Are you sure you want to delete this item?</span>
-          <span>{selectedItem.item.name}</span>
-          <span>{selectedItem.item.category}</span>
-          <span>{selectedItem.item.value}</span>
+          <span>
+            Are you sure you want to delete all recorded items in this account?
+          </span>
 
-          <button className="NewBudgetAccountButton" onClick={handleDelete}>
-            Delete
+          <button className="NewBudgetAccountButton" onClick={handleClear}>
+            Clear
           </button>
           <button className="BudgetCancelButton" onClick={handleCloseModal}>
             Cancel
@@ -70,4 +65,4 @@ function RecordItemDeleteModal({
   )
 }
 
-export default RecordItemDeleteModal;
+export default ClearRecordsModal;

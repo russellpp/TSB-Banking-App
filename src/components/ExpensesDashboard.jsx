@@ -3,15 +3,16 @@ import "./ExpensesDashboard.css";
 import AccountContainer from "./expcomponents/AccountContainer";
 import Records from "./expcomponents/Records";
 import { useState, useEffect } from "react";
+import BackButton from "./expcomponents/BackButton";
 
 function ExpensesDashboard(props) {
   const [currentUser, setCurrentUser] = useState(null);
   const [accounts, setAccounts] = useState([]);
-  const [currentWallet, setCurrentWallet] = useState()
-  const {isExpensesOpen, setIsExpensesOpen} = props;
+  const [currentWallet, setCurrentWallet] = useState([])
+  const [walletBalance, setWalletBalance] = useState()
+  const [walletList, setWalletList] = useState([])
   
-
-  let WalletsNow = currentUser?.wallets || [];
+  
   
   /* useEffect(() => {
     if (WalletsNow.length > 0){
@@ -36,6 +37,9 @@ function ExpensesDashboard(props) {
       localStorage.setItem("accounts", JSON.stringify(accounts));
     }
   }, [accounts, currentUser]);
+
+  
+
  
   
   return (
@@ -47,14 +51,24 @@ function ExpensesDashboard(props) {
         setAccounts={setAccounts}
         currentWallet = {currentWallet}
         setCurrentWallet = {setCurrentWallet}
+        walletBalance={walletBalance}
+        setWalletBalance={setWalletBalance}
+        walletList={walletList}
+        setWalletList={setWalletList}
       />
       <div className="SummaryContainer">
+        <BackButton />
         <Records 
         setCurrentUser={setCurrentUser}
         currentUser={currentUser}
         accounts={accounts}
         setAccounts={setAccounts}
         currentWallet={currentWallet}
+        setCurrentWallet={setCurrentWallet}
+        walletBalance={walletBalance}
+        setWalletBalance={setWalletBalance}
+        walletList={walletList}
+        setWalletList={setWalletList}
 
         />
       </div>

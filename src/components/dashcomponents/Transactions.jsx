@@ -13,7 +13,7 @@ function Transactions(props) {
     setIsTransactionsOpen(true);
   }
 
-  const listTransactions = currentUser?.transactions || [];
+  /* const listTransactions = currentUser?.transactions || [];
   return (
     <div>
       <div className="transactionsBox" onClick={OpenTransactionsModal}>
@@ -49,7 +49,7 @@ function Transactions(props) {
         />
       )}
     </div>
-  );
+  ); */
 }
 
 export default Transactions;

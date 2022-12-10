@@ -10,7 +10,9 @@ function AddItemButton({
   setAccounts,
   currentUser,
   setCurrentUser,
-  currentWallet
+  currentWallet,
+  dataOptions,
+  setDataOptions
 }) {
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
 
@@ -35,6 +37,8 @@ function AddItemButton({
           accounts={accounts}
           setAccounts={setAccounts}
           currentWallet={currentWallet}
+          dataOptions={dataOptions}
+          setDataOptions={setDataOptions}
         />
       )}
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function RecordItemDeleteModal({
+function AccountDeleteModal({
   recordList,
   setRecordList,
   accounts,
@@ -10,25 +10,14 @@ function RecordItemDeleteModal({
   currentWallet,
   isDeleteModalOpen,
   setIsDeleteModalOpen,
-  selectedItem,
+  setCurrentWallet,
 }) {
-  const handleCloseModal = () => {
-    setIsDeleteModalOpen(false);
-  };
   const handleDelete = () => {
-    const indexItem = currentWallet.records.findIndex(
-      (item) => item.uniqueId == selectedItem.item.uniqueId
-    );
+    const updatedWallets = currentUser.wallets;
+    const index = updatedWallets.findIndex((wallet) => wallet.isCurrentAccount);
 
-    currentWallet.records.splice(indexItem, 1);
-    
-    const updatedWallets = currentUser.wallets.map((wallet) => {
-      if (wallet.isCurrentAccount) {
-        return currentWallet;
-      } else {
-        return wallet;
-      }
-    });
+    updatedWallets.splice(index, 1);
+    updatedWallets[0].isCurrentAccount = true;
 
     const updatedAccount = {
       ...currentUser,
@@ -43,20 +32,21 @@ function RecordItemDeleteModal({
       }
     });
 
+    setCurrentWallet(currentWallet ? currentUser.wallets[0] : []);
     setAccounts(updatedAccounts);
-    setRecordList(currentWallet.records);
-    handleCloseModal()
+    setRecordList(currentWallet.records)
+    handleCloseModal();
   };
 
+  const handleCloseModal = () => {
+    setIsDeleteModalOpen(false);
+  };
 
   return (
     <div className="DeleteModal">
       <div className="BudgetModalContent">
         <div className="DeleteModalFooter">
-          <span>Are you sure you want to delete this item?</span>
-          <span>{selectedItem.item.name}</span>
-          <span>{selectedItem.item.category}</span>
-          <span>{selectedItem.item.value}</span>
+          <span>Are you sure you want to delete this account?</span>
 
           <button className="NewBudgetAccountButton" onClick={handleDelete}>
             Delete
@@ -70,4 +60,4 @@ function RecordItemDeleteModal({
   )
 }
 
-export default RecordItemDeleteModal;
+export default AccountDeleteModal;

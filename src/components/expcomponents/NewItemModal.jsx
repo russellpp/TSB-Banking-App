@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import AddCategory from "./AddCategoryModal";
 
@@ -12,8 +12,28 @@ function NewItemModal({
   currentUser,
   setCurrentUser,
   currentWallet,
+  dataOptions,
+  setDataOptions,
 }) {
-  const defaultOptions = [
+  
+
+  const [itemName, setItemName] = useState();
+  const [itemValue, setItemValue] = useState();
+  const [itemCategory, setItemCategory] = useState();
+  const [itemId, setItemId] = useState();
+  const [addedCategory, setAddedCategory] = useState("");
+  const [isAddCategoryOpen, setIsAddCategoryOpen] = useState(false);
+  const [buttontext, setButtonText] = useState("Edit Categories");
+  const [isExpense, setIsExpense] = useState(true);
+  const [incomeOptions, setIncomeOptions] = useState([
+    "Salary",
+    "Business Revenue",
+    "Bonuses",
+    "Tax Refund",
+    "Gifts & Donations",
+    "Others"
+  ])
+  const [expenseOptions, setExpenseOptions] = useState([
     "Food & Drinks",
     "Shopping",
     "Housing",
@@ -23,21 +43,20 @@ function NewItemModal({
     "Communication, PC",
     "Financial Expenses",
     "Investments",
-    "Income",
     "Others",
-  ];
-  const [dataOptions, setDataOptions] = useState(defaultOptions);
-  const [itemName, setItemName] = useState();
-  const [itemValue, setItemValue] = useState();
-  const [itemCategory, setItemCategory] = useState();
-  const [itemId, setItemId] = useState();
-  const [addedCategory, setAddedCategory] = useState("");
-  const [isAddCategoryOpen, setIsAddCategoryOpen] = useState(false);
-  const [buttontext, setButtonText] = useState("Edit Categories");
+  ])
+  
+  useEffect(() => {
+    isExpense ? setDataOptions(expenseOptions) : setDataOptions(incomeOptions)
+  },[isExpense, dataOptions, addedCategory, incomeOptions, expenseOptions])
+
+  const handleToggle = () => {
+    setIsExpense(!isExpense);
+    console.log(isExpense);
+  };
 
   const handleCloseModal = () => {
     setIsAddItemModalOpen(false);
-    console.log(isAddItemModalOpen);
   };
 
   const handleItem = (e) => {
@@ -45,7 +64,9 @@ function NewItemModal({
   };
 
   const handleValue = (e) => {
-    setItemValue(e.target.value);
+    isExpense
+      ? setItemValue(parseFloat(-1 * e.target.value).toFixed(2))
+      : setItemValue(parseFloat(e.target.value).toFixed(2));
   };
 
   const handleGetCategory = (e) => {
@@ -98,12 +119,13 @@ function NewItemModal({
       min;
 
     //add new record
-    
+
     const newRecord = {
       id: currentTime,
       name: itemName,
       category: itemCategory,
       value: itemValue,
+      uniqueId: Date.now(),
     };
 
     // updateaccounts
@@ -152,6 +174,26 @@ function NewItemModal({
           <h4 className="BudgetModalTitle">New Item</h4>
         </div>
         <div className="BudgetModalBody">
+          <div
+            onClick={handleToggle}
+            className={`wrg-toggle ${isExpense ? "wrg-toggle--checked" : ""}`}
+          >
+            <div className="wrg-toggle-container">
+              <div className="wrg-toggle-check">
+                <span>Expense</span>
+              </div>
+              <div className="wrg-toggle-uncheck">
+                <span>Income</span>
+              </div>
+            </div>
+            <div className="wrg-toggle-circle"></div>
+            <input
+              className="wrg-toggle-input"
+              type="checkbox"
+              aria-label="Toggle Button"
+            />
+          </div>
+
           <label htmlFor="accountName">Item name: </label>
           <input
             type="text"
@@ -171,6 +213,9 @@ function NewItemModal({
             autoFocus
             onChange={handleGetCategory}
           >
+            <option disabled selected>
+              Select category...
+            </option>
             {dataOptions.map((item, index) => {
               return (
                 <option key={index} value={item.displayValue}>
@@ -193,11 +238,16 @@ function NewItemModal({
             <AddCategory
               isAddCategoryOpen={isAddCategoryOpen}
               setIsAddCategoryOpen={setIsAddCategoryOpen}
-              defaultOptions={defaultOptions}
               setDataOptions={setDataOptions}
               dataOptions={dataOptions}
               addedCategory={addedCategory}
               setAddedCategory={setAddedCategory}
+              incomeOptions={incomeOptions}
+              setIncomeOptions={setIncomeOptions}
+              expenseOptions={expenseOptions}
+              setExpenseOptions={setExpenseOptions}
+              isExpense={isExpense}
+
             />
           )}
 
