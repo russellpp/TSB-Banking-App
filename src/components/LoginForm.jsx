@@ -2,6 +2,19 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+const adminDetails = {
+  name: "admin",
+  email: "admin@bank.com",
+  password: "12345",
+  accountNumber: "000000001",
+  balance: "1000000000",
+  expiration: "12/99",
+  isLoggedIn: false,
+  isAdmin: true,
+  transactions: [],
+  wallets: [],
+};
+
 function LoginForm() {
   const [details, setDetails] = useState({ email: "", password: "" });
 
@@ -23,17 +36,23 @@ function LoginForm() {
   useEffect(() => {
     if (accounts.length === 0) {
       const localAccounts = localStorage.getItem("accounts");
+
       if (localAccounts) {
         setAccounts(JSON.parse(localAccounts));
+      } else {
+        localStorage.setItem(
+          "accounts",
+          JSON.stringify([...accounts, adminDetails])
+        );
       }
     }
   }, [accounts]);
 
-  const login = (details) => {
+  const handleLogin = (details) => {
     let hasLoggedIn = false;
+    let isAdmin = false;
 
     const updatedAccounts = accounts.map((account) => {
-      console.log(accounts);
       if (
         details.email === account.email &&
         details.password === account.password
@@ -43,16 +62,22 @@ function LoginForm() {
           ...account,
           isLoggedIn: true,
         };
+         if(account.isAdmin){
+          isAdmin = true
+        };
         return loggedInAccount;
       } else {
         return account;
       }
     });
-    console.log(hasLoggedIn);
 
     if (hasLoggedIn) {
       localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-      navigate("/Dashboard");
+      if (isAdmin){
+        navigate("/Admin")
+      } else {
+        navigate("/Dashboard");
+      }
     } else {
       setError("Invalid email/password");
     }
@@ -61,7 +86,7 @@ function LoginForm() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    login(details);
+    handleLogin(details);
   };
 
   function SignUpForm() {
@@ -100,14 +125,14 @@ function LoginForm() {
               value={details.password}
             />
           </div>
-          <input type="submit" value="Log in" onClick={login} />
+          <input type="submit" value="Log in" onClick={handleLogin} />
           <button className="signUp" onClick={SignUpForm}>
             Don't have an account? Sign Up!
           </button>
         </div>
       </form>
     </div>
-  )
+  );
 }
 
 export default LoginForm;

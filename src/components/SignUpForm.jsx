@@ -12,7 +12,6 @@ function SignUpForm() {
 
     const navigate = useNavigate();
     const [accounts, setAccounts] = useState([]);
-
     const LoginForm = useCallback(()=>{
         navigate('/')
     },[navigate]);
@@ -65,7 +64,6 @@ function SignUpForm() {
     
     /* Sign Up Button Function */
     function signUp(){
-        
         const newAccount = 
         {
           name: firstNameValue,
@@ -75,8 +73,9 @@ function SignUpForm() {
           balance:"0",
           expiration:"12/26",
           isLoggedIn:false,
+          isAdmin: false,
           transactions:[],
-          wallets:[]
+          wallets:[],
         }
 
         if(passwordValue === confirmPasswordValue){
