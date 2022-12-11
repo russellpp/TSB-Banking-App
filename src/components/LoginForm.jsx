@@ -20,7 +20,7 @@ function LoginForm() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
-  const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState([adminDetails]);
   const navigate = useNavigate();
 
   /* useEffect(()=>{
@@ -34,7 +34,7 @@ function LoginForm() {
       ) */
 
   useEffect(() => {
-    if (accounts.length === 0) {
+    if (accounts.length === 1) {
       const localAccounts = localStorage.getItem("accounts");
 
       if (localAccounts) {
@@ -42,13 +42,13 @@ function LoginForm() {
       } else {
         localStorage.setItem(
           "accounts",
-          JSON.stringify([...accounts, adminDetails])
+          JSON.stringify(accounts)
         );
       }
     }
   }, [accounts]);
 
-  const handleLogin = (details) => {
+  const handleLogin = () => {
     let hasLoggedIn = false;
     let isAdmin = false;
 
@@ -62,9 +62,9 @@ function LoginForm() {
           ...account,
           isLoggedIn: true,
         };
-         if(account.isAdmin){
-          isAdmin = true
-        };
+        if (account.isAdmin) {
+          isAdmin = true;
+        }
         return loggedInAccount;
       } else {
         return account;
