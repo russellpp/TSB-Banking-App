@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./CreateAccount.css";
 import ConfirmCreateModal from "./ConfirmCreateModal/ConfirmCreateModal";
 
-function CreateAccount({ accounts, setAccounts, formRef }) {
+function CreateAccount({ accounts, setAccounts, createRef }) {
   const [isConfirmCreateModal, setIsConfirmCreateModal] = useState(false);
   const [newDetails, setNewDetails] = useState({
     name: "",
@@ -80,10 +80,10 @@ function CreateAccount({ accounts, setAccounts, formRef }) {
           isConfirmCreateModal={isConfirmCreateModal}
           setIsConfirmCreateModal={setIsConfirmCreateModal}
           newDetails={newDetails}
-          formRef={formRef}
+          createRef={createRef}
         />
       )}
-      <form className="AccountEditForm" ref={formRef}>
+      <form className="AccountEditForm" ref={createRef}>
         <label htmlFor="accountName">Account Name: </label>
         <input
           type="text"
