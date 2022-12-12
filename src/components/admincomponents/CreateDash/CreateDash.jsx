@@ -19,7 +19,7 @@ function CreateDash({ accounts, setAccounts }) {
         />
         
       </div>
-      <div className="AdminDashFooter">footer</div>
+      <div className="AdminDashFooter"><span>totally secure bank</span></div>
     </div>
   );
 }

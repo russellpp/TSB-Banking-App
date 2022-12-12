@@ -1,11 +1,12 @@
 import React from "react";
 import "./sidebar.css";
-import logout from "../../assets/shutdown.png";
+import logout from "../../assets/back-solid.svg";
 import customerLogo from "../../assets/customer.png";
 import transferLogo from "../../assets/transfer.png";
 import withdrawLogo from "../../assets/withdraw (1).png";
 import depositLogo from "../../assets/deposit (1).png";
 import createLogo from "../../assets/create-icon.png";
+import tsblogo from "../../assets/tsb-icon(2).png"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -80,7 +81,9 @@ function Sidebar({ accounts, setAccounts, dashState, setDashState, currentUser, 
 
   return (
     <div className="sideBarContainer">
-      <div className="sideBarTop">TSB</div>
+      <div className="sideBarTop">
+        <img className="tsb-logo" src={tsblogo} alt="tsb-logo" />
+      </div>
       <nav className="sideBarNav">
         <ul className="sideBarNavList">
           <li onClick={handleOpenMain}>
