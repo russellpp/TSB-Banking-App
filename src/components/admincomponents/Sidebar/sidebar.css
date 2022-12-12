@@ -6,8 +6,8 @@
   }
 
   .logoutAdmin{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 60px;
   }
 
   .logoutAdmin:hover{
@@ -71,6 +71,13 @@
     bottom: 0px;
     height: 100px;
     width: 100%;
+
+}
+.sideBarBottom img{
+    filter: invert(35%);
+}
+.sideBarBottom img:hover{
+    filter: invert(50%);
 }
 
 .sideBarNavList > li{
@@ -90,4 +97,11 @@
     cursor: pointer;
     font-weight: bold;
 
+}
+
+.tsb-logo{
+  height: 80px;
+  position: relative;
+  top: 0px;
+  left: 780px
 }

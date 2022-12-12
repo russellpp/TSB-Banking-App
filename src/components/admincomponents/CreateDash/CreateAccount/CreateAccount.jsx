@@ -60,6 +60,7 @@ function CreateAccount({ accounts, setAccounts, createRef }) {
   
 
   const handleBalance = (e) => {
+    e.preventDefault()
     setNewDetails((prevState) => {
       return {
         ...prevState,
@@ -79,7 +80,8 @@ function CreateAccount({ accounts, setAccounts, createRef }) {
 
 
   return (
-    <div className="AccountEdit">
+    <div className="AccountEdit CreateModal">
+      <span>New Account Form</span>
       {isConfirmCreateModal && (
         <ConfirmCreateModal
           accounts={accounts}
@@ -145,8 +147,8 @@ function CreateAccount({ accounts, setAccounts, createRef }) {
           autoFocus
           onChange={handleBalance}
         />
-      </form>
       <button onClick={handleCreate}> Create Account</button>
+      </form>
     </div>
   );
 }
