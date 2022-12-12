@@ -50,7 +50,7 @@ function ConfirmWithdrawModal({
         };
       });
     } else if (
-      withdrawValue == 0 ||
+      withdrawValue <= 0 ||
       withdrawValue == "" ||
       withdrawValue === undefined
     ) {
@@ -77,15 +77,15 @@ function ConfirmWithdrawModal({
     const transactionDetails = {
       type: "Withdraw",
       date: timeNow(),
-      amount: `${withdrawValue}`,
+      amount: `-${withdrawValue}`,
       balance: `${newBalance}`,
-      uniqueId: Date.now(),
+      id: Date.now(),
     };
 
     const updatedAccounts = accounts.map((account) => {
       if (selectedWithdrawAccount.email === account.email) {
         const newTransactions = account.transactions;
-        newTransactions.push(transactionDetails);
+        newTransactions.unshift(transactionDetails);
         const updatedDetails = {
           ...account,
           balance: newBalance,

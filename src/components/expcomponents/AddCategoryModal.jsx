@@ -43,13 +43,17 @@ function AddCategory({
   };
 
   const handleAddCategory = () => {
+    if (addedCategory == "" || undefined ){
+      alert('Empty input!')
+    } else {
+      isExpense ? setExpenseOptions((prevState) => {
+        return [...prevState, addedCategory];
+      }) : setIncomeOptions((prevState) => {
+        return [...prevState, addedCategory];
+      });
+      setAddedCategory("");
 
-    isExpense ? setExpenseOptions((prevState) => {
-      return [...prevState, addedCategory];
-    }) : setIncomeOptions((prevState) => {
-      return [...prevState, addedCategory];
-    });
-    setAddedCategory("");
+    }
   };
 
   return (

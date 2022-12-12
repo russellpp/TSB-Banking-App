@@ -45,7 +45,7 @@ function ConfirmCreateModal({
           isAcctNoInvalid: true,
         };
       });
-    } else if (!emailValidation(newDetails.email) || newDetails.email === "") {
+    } else if (!emailValidation(newDetails.email) || newDetails.email === "" || accounts.some((acct) => acct.email === newDetails.email)) {
       setErrorCreate((prevState) => {
         return {
           ...prevState,
@@ -162,7 +162,6 @@ function ConfirmCreateModal({
   };
 
   const handleCreate = () => {
-    console.log(console.log(errorCreate));
     setAccounts((prevState) => {
       return [...prevState, newDetails];
     });

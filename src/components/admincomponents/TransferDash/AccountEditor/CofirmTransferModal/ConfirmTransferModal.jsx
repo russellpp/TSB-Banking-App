@@ -89,7 +89,7 @@ function ConfirmTransferModal({
     const transactionDetails = {
       type: "Send",
       date: timeNow(),
-      amount: `${transferDetails}`,
+      amount: `-${transferDetails.amount}`,
       balance: `${newBalance}`,
       receiver: transferDetails.receiver,
       id: Date.now(),
@@ -97,8 +97,8 @@ function ConfirmTransferModal({
     const recipientTransaction = {
       type: "Receive",
       date: timeNow(),
-      amount: `${transferDetails}`,
-      balance: `${newBalance}`,
+      amount: `${transferDetails.amount}`,
+      balance: `${newRBalance}`,
       sender: transferDetails.receiver,
       id: Date.now(),
     };
@@ -106,7 +106,7 @@ function ConfirmTransferModal({
     const updatedAccounts = accounts.map((account) => {
       if (selectedTransferAccount.email === account.email) {
         const newTransactions = account.transactions;
-        newTransactions.push(transactionDetails);
+        newTransactions.unshift(transactionDetails);
         const updatedDetails = {
           ...account,
           balance: newBalance,
@@ -116,7 +116,7 @@ function ConfirmTransferModal({
         return updatedDetails;
       } else if (account.accountNumber === transferDetails.receiver) {
         const newRTransactions = account.transactions;
-        newRTransactions.push(recipientTransaction);
+        newRTransactions.unshift(recipientTransaction);
         const updatedRDetails = {
           ...account,
           balance: newRBalance,

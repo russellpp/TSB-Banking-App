@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 
 function BudgetModal({
@@ -11,56 +12,92 @@ function BudgetModal({
   currentWallet,
   setCurrentWallet,
   walletBalance,
-  setWalletBalance
+  setWalletBalance,
 }) {
-  let [budgetValue, setBudgetValue] = useState();
-  let [budgetAccount, setBudgetAccount] = useState();
+  const [budgetValue, setBudgetValue] = useState();
+  const [budgetAccount, setBudgetAccount] = useState();
+  const [errorCreate, setErorCreate] = useState({
+    isEmpty: false,
+    isInvalidAmount: false,
+  });
 
-  function CloseBudgetModal() {
+  const handleCloseModal = () => {
     setIsBudgetOpen(false);
-  }
+  };
 
-  function getValue(budget) {
-    setBudgetValue(budget.target.value);
-    budgetValue = budget.target.value;
-  }
+  const handleWalletValue = (e) => {
+    setBudgetValue(e.target.value);
+  };
 
-  function getAccount(budgetAcct) {
-    setBudgetAccount(budgetAcct.target.value);
-    budgetAccount = budgetAcct.target.value;
-  }
+  const handleWalletName = (e) => {
+    setBudgetAccount(e.target.value);
+  };
 
-  function createNewBudget() {
-    const wallets = currentUser.wallets;
-    if (wallets.length > 0) {
-      wallets.map((wallet) => {
-        wallet.isCurrentAccount = false;
+  useEffect(() => {
+    if (
+      budgetValue === "" ||
+      budgetAccount === "" ||
+      !budgetValue ||
+      !budgetAccount
+    ) {
+      setErorCreate((prevState) => {
+        return {
+          ...prevState,
+          isEmpty: true,
+        };
+      });
+    } else if (budgetValue <= 0) {
+      setErorCreate((prevState) => {
+        return {
+          ...prevState,
+          isInvalidAmount: true,
+        };
+      });
+    } else {
+      setErorCreate({
+        isEmpty: false,
+        isInvalidAmount: false,
       });
     }
-    const newWallet = {
-      name: budgetAccount,
-      budget: budgetValue,
-      isCurrentAccount: true,
-      records: [],
-    };
-    wallets.push(newWallet);
-    const updatedAccount = {
-      ...currentUser,
-      wallets: wallets,
-    };
-    const updatedAccounts = accounts.map((account) => {
-      if (account.email === currentUser.email) {
-        return updatedAccount;
-      } else {
-        return account;
+  }, [budgetValue, budgetAccount]);
+
+  const handleCreateWallet = () => {
+    if (errorCreate.isInvalidAmount) {
+      alert("Invalid amount!");
+    } else if (errorCreate.isEmpty) {
+      alert("Empty input!");
+    } else {
+      const wallets = currentUser.wallets;
+      if (wallets.length > 0) {
+        wallets.map((wallet) => {
+          wallet.isCurrentAccount = false;
+        });
       }
-    });
-    const selectedWallet = wallets.find((wallet) => wallet.isCurrentAccount)
-    console.log(selectedWallet);
-    setCurrentWallet(selectedWallet);
-    setAccounts(updatedAccounts);
-    CloseBudgetModal();
-  }
+      const newWallet = {
+        name: budgetAccount,
+        budget: budgetValue,
+        isCurrentAccount: true,
+        records: [],
+      };
+      wallets.push(newWallet);
+      const updatedAccount = {
+        ...currentUser,
+        wallets: wallets,
+      };
+      const updatedAccounts = accounts.map((account) => {
+        if (account.email === currentUser.email) {
+          return updatedAccount;
+        } else {
+          return account;
+        }
+      });
+      const selectedWallet = wallets.find((wallet) => wallet.isCurrentAccount);
+      console.log(selectedWallet);
+      setCurrentWallet(selectedWallet);
+      setAccounts(updatedAccounts);
+      handleCloseModal();
+    }
+  };
 
   return (
     <div className="BudgetModal">
@@ -76,7 +113,7 @@ function BudgetModal({
             id="amountName"
             autoComplete="off"
             autoFocus
-            onChange={getAccount}
+            onChange={handleWalletName}
           />
 
           <label htmlFor="amount">Enter initial budget: </label>
@@ -86,20 +123,23 @@ function BudgetModal({
             id="amount"
             autoComplete="off"
             autoFocus
-            onChange={getValue}
+            onChange={handleWalletValue}
           />
         </div>
         <div className="BudgetModalFooter">
-          <button className="NewBudgetAccountButton" onClick={createNewBudget}>
+          <button
+            className="NewBudgetAccountButton"
+            onClick={handleCreateWallet}
+          >
             Add Account
           </button>
-          <button className="BudgetCancelButton" onClick={CloseBudgetModal}>
+          <button className="BudgetCancelButton" onClick={handleCloseModal}>
             Cancel
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default BudgetModal;

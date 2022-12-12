@@ -30,46 +30,45 @@ function RecordsOpttionsModal({
   };
 
   const handleEditAccount = () => {
-    /* setCurrentWallet((prevState) => {return ({
-        ...prevState,
-        name: itemName,
-        budget: itemValue
-    })}) */
+    if (!itemName || !itemValue) {
+      alert('Empty fields!')
+    } else if (Math.abs(itemValue) < 0) {
+      alert('Must enter value above 0.')
+    } else {
 
-    const updatedWallet = {
+      const updatedWallet = {
         ...currentWallet,
         name: itemName,
-        budget: itemValue
-    } 
-
-    
-    const updatedWallets = currentUser.wallets.map((wallet) => {
+        budget: itemValue,
+      };
+  
+      const updatedWallets = currentUser.wallets.map((wallet) => {
         if (wallet.isCurrentAccount) {
-            return updatedWallet;
+          return updatedWallet;
         } else {
-            return wallet;
+          return wallet;
         }
-    });
-    
-    const updatedAccount = {
+      });
+  
+      const updatedAccount = {
         ...currentUser,
         wallets: updatedWallets,
-    };
-    
-    const updatedAccounts = accounts.map((account) => {
+      };
+  
+      const updatedAccounts = accounts.map((account) => {
         if (account.email === currentUser.email) {
-            return updatedAccount;
+          return updatedAccount;
         } else {
-            return account;
+          return account;
         }
-    });
+      });
+  
+      setAccounts(updatedAccounts);
+      setCurrentWallet(currentWallet);
+      handleCloseModal();
+    }
     
-    setAccounts(updatedAccounts);
-    setCurrentWallet(currentWallet)
-    handleCloseModal();
-      
-
-  }
+  };
 
   const handleCloseModal = () => {
     setIsOptionsModalOpen(false);
@@ -87,7 +86,7 @@ function RecordsOpttionsModal({
     <div className="EditItemModal">
       <div className="BudgetModalContent">
         <div className="BudgetModalHeader">
-          <h4 className="BudgetModalTitle">New Item</h4>
+          <h4 className="BudgetModalTitle">Edit Wallet</h4>
         </div>
         <div className="BudgetModalBody">
           <label htmlFor="accountName">Item name: </label>
@@ -101,7 +100,7 @@ function RecordsOpttionsModal({
             onChange={handleItem}
           />
 
-          <label htmlFor="amount">Change Initial Value: </label>
+          <label htmlFor="amount">Change Initial Budget: </label>
           <input
             type="number"
             name="amount"
@@ -143,6 +142,8 @@ function RecordsOpttionsModal({
           isDeleteModalOpen={isDeleteModalopen}
           setIsDeleteModalOpen={setIsDeleteModalOpen}
           setCurrentWallet={setCurrentWallet}
+          isOptionsModalOpen={isOptionsModalOpen}
+          setIsOptionsModalOpen={setIsOptionsModalOpen}
         />
       )}
       {isClearModalopen && (
@@ -157,10 +158,12 @@ function RecordsOpttionsModal({
           isClearModalOpen={isClearModalopen}
           setIsClearModalOpen={setIsClearModalOpen}
           setCurrentWallet={setCurrentWallet}
+          isOptionsModalOpen={isOptionsModalOpen}
+          setIsOptionsModalOpen={setIsOptionsModalOpen}
         />
       )}
     </div>
-  )
+  );
 }
 
 export default RecordsOpttionsModal;

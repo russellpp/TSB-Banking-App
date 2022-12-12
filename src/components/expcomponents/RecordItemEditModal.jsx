@@ -35,45 +35,50 @@ function RecordItemEditModal({
   };
 
   const handleEditItem = () => {
-    const indexItem = currentWallet.records.findIndex(
-      (item) => item.uniqueId == selectedItem.item.uniqueId
-    );
+    if (!itemCategory || !itemName || !itemValue ) {
+      alert("Empty field!");
+    } else if (Math.abs(itemValue) <= 0) {
+      alert("Invalid amount");
+    } else {
+      const indexItem = currentWallet.records.findIndex(
+        (item) => item.uniqueId == selectedItem.item.uniqueId
+      );
 
+      const editedItem = {
+        id: selectedItem.item.id,
+        name: itemName,
+        category: itemCategory,
+        value: itemValue,
+        uniqueId: selectedItem.item.uniqueId,
+      };
 
-    const editedItem = {
-      id: selectedItem.item.id,
-      name: itemName,
-      category: itemCategory,
-      value: itemValue,
-      uniqueId: selectedItem.item.uniqueId,
-    };
+      currentWallet.records[indexItem] = editedItem;
 
-    currentWallet.records[indexItem] = editedItem;
+      const updatedWallets = currentUser.wallets.map((wallet) => {
+        if (wallet.isCurrentAccount) {
+          return currentWallet;
+        } else {
+          return wallet;
+        }
+      });
 
-    const updatedWallets = currentUser.wallets.map((wallet) => {
-      if (wallet.isCurrentAccount) {
-        return currentWallet;
-      } else {
-        return wallet;
-      }
-    });
+      const updatedAccount = {
+        ...currentUser,
+        wallets: updatedWallets,
+      };
 
-    const updatedAccount = {
-      ...currentUser,
-      wallets: updatedWallets,
-    };
+      const updatedAccounts = accounts.map((account) => {
+        if (account.email === currentUser.email) {
+          return updatedAccount;
+        } else {
+          return account;
+        }
+      });
 
-    const updatedAccounts = accounts.map((account) => {
-      if (account.email === currentUser.email) {
-        return updatedAccount;
-      } else {
-        return account;
-      }
-    });
-
-    setAccounts(updatedAccounts);
-    setRecordList(currentWallet.records);
-    handleCloseModal();
+      setAccounts(updatedAccounts);
+      setRecordList(currentWallet.records);
+      handleCloseModal();
+    }
   };
 
   const handleCloseModal = () => {
@@ -89,7 +94,7 @@ function RecordItemEditModal({
     <div className="EditItemModal">
       <div className="BudgetModalContent">
         <div className="BudgetModalHeader">
-          <h4 className="BudgetModalTitle">New Item</h4>
+          <h4 className="BudgetModalTitle">Edit Item</h4>
         </div>
         <div className="BudgetModalBody">
           <div
@@ -149,7 +154,7 @@ function RecordItemEditModal({
             type="number"
             name="amount"
             id="amount"
-            placeholder={selectedItem.item.value}
+            placeholder={Math.abs(selectedItem.item.value)}
             autoComplete="off"
             autoFocus
             onChange={handleValue}
@@ -165,7 +170,7 @@ function RecordItemEditModal({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default RecordItemEditModal;

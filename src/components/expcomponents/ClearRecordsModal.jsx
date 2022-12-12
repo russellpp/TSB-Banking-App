@@ -12,6 +12,8 @@ function ClearRecordsModal({
   isClearModalOpen,
   setIsClearModalOpen,
   setCurrentWallet,
+  isOptionsModalOpen,
+  setIsOptionsModalOpen
 }) {
   const handleClear = () => {
     currentWallet.records = [];
@@ -39,6 +41,7 @@ function ClearRecordsModal({
 
     setAccounts(updatedAccounts);
     handleCloseModal();
+    setIsOptionsModalOpen(false)
   };
 
   const handleCloseModal = () => {
@@ -46,9 +49,9 @@ function ClearRecordsModal({
   };
 
   return (
-    <div className="DeleteModal">
+    <div className="DeleteModal DeleteWalletModal">
       <div className="BudgetModalContent">
-        <div className="DeleteModalFooter">
+        <div className="DeleteModalExpFooter">
           <span>
             Are you sure you want to delete all recorded items in this account?
           </span>

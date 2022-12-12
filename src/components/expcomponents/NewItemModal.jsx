@@ -2,6 +2,42 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import AddCategory from "./AddCategoryModal";
 
+const timeNow = () => {
+  const thisTime = new Date();
+  const month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let hrs = thisTime.getHours();
+  if (hrs < 10) {
+    hrs = "0" + hrs;
+  }
+  let min = thisTime.getMinutes();
+  if (min < 10) {
+    min = "0" + min;
+  }
+
+  const currentTime =
+    thisTime.getDate() +
+    "-" +
+    month[thisTime.getMonth()] +
+    " " +
+    hrs +
+    ":" +
+    min;
+  return currentTime;
+};
+
 function NewItemModal({
   setIsAddItemModalOpen,
   isAddItemModalOpen,
@@ -15,8 +51,6 @@ function NewItemModal({
   dataOptions,
   setDataOptions,
 }) {
-  
-
   const [itemName, setItemName] = useState();
   const [itemValue, setItemValue] = useState();
   const [itemCategory, setItemCategory] = useState();
@@ -31,8 +65,8 @@ function NewItemModal({
     "Bonuses",
     "Tax Refund",
     "Gifts & Donations",
-    "Others"
-  ])
+    "Others",
+  ]);
   const [expenseOptions, setExpenseOptions] = useState([
     "Food & Drinks",
     "Shopping",
@@ -44,11 +78,11 @@ function NewItemModal({
     "Financial Expenses",
     "Investments",
     "Others",
-  ])
-  
+  ]);
+
   useEffect(() => {
-    isExpense ? setDataOptions(expenseOptions) : setDataOptions(incomeOptions)
-  },[isExpense, dataOptions, addedCategory, incomeOptions, expenseOptions])
+    isExpense ? setDataOptions(expenseOptions) : setDataOptions(incomeOptions);
+  }, [isExpense, dataOptions, addedCategory, incomeOptions, expenseOptions]);
 
   const handleToggle = () => {
     setIsExpense(!isExpense);
@@ -84,87 +118,48 @@ function NewItemModal({
   };
 
   const handleAddItem = () => {
-    //get date
-    let thisTime = new Date();
-    let month = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    let hrs = thisTime.getHours();
-    if (hrs < 10) {
-      hrs = "0" + hrs;
+    if (itemName == "" || !itemName || !itemCategory || !itemValue) {
+      alert("Empty input!");
+    } else if (Math.abs(itemValue) <= 0) {
+      alert("Invalid amount!");
+    } else {
+      //add new record
+
+      const newRecord = {
+        id: timeNow(),
+        name: itemName,
+        category: itemCategory,
+        value: itemValue,
+        uniqueId: Date.now(),
+      };
+
+      currentWallet.records.push(newRecord);
+
+      const updatedWallets = currentUser.wallets.map((wallet) => {
+        if (wallet.isCurrentAccount) {
+          return currentWallet;
+        } else {
+          return wallet;
+        }
+      });
+
+      const updatedAccount = {
+        ...currentUser,
+        wallets: updatedWallets,
+      };
+
+      const updatedAccounts = accounts.map((account) => {
+        if (account.email === currentUser.email) {
+          return updatedAccount;
+        } else {
+          return account;
+        }
+      });
+
+      setAccounts(updatedAccounts);
+      setRecordList(currentWallet.records);
+      handleCloseModal();
     }
-    let min = thisTime.getMinutes();
-    if (min < 10) {
-      min = "0" + min;
-    }
-
-    let currentTime =
-      thisTime.getDate() +
-      "-" +
-      month[thisTime.getMonth()] +
-      " " +
-      hrs +
-      ":" +
-      min;
-
-    //add new record
-
-    const newRecord = {
-      id: currentTime,
-      name: itemName,
-      category: itemCategory,
-      value: itemValue,
-      uniqueId: Date.now(),
-    };
-
-    // updateaccounts
-    /* const walletPath = currentUser.wallets.find((wallet) => wallet.isCurrentAccount);
-    walletPath.records.push(newRecord)
-    
-    const updatedAccounts = accounts.map((account) => {
-      if (account.email === currentUser.email) {
-        return updatedAccount;
-      } else {
-        return account;
-      }
-    }); */
-    currentWallet.records.push(newRecord);
-
-    const updatedWallets = currentUser.wallets.map((wallet) => {
-      if (wallet.isCurrentAccount) {
-        return currentWallet;
-      } else {
-        return wallet;
-      }
-    });
-
-    const updatedAccount = {
-      ...currentUser,
-      wallets: updatedWallets,
-    };
-
-    const updatedAccounts = accounts.map((account) => {
-      if (account.email === currentUser.email) {
-        return updatedAccount;
-      } else {
-        return account;
-      }
-    });
-
-    setAccounts(updatedAccounts);
-    setRecordList(currentWallet.records);
-    handleCloseModal();
   };
 
   return (
@@ -247,7 +242,6 @@ function NewItemModal({
               expenseOptions={expenseOptions}
               setExpenseOptions={setExpenseOptions}
               isExpense={isExpense}
-
             />
           )}
 
@@ -271,7 +265,7 @@ function NewItemModal({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default NewItemModal;
