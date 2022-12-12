@@ -70,7 +70,6 @@ function CreateAccount({ accounts, setAccounts, createRef }) {
   };
 
   const handleCreate = (e) => {
-    console.log(newDetails)
     e.preventDefault();
     setIsConfirmCreateModal(true);
   };

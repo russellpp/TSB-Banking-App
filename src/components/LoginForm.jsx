@@ -46,7 +46,7 @@ function LoginForm() {
         );
       }
     }
-  }, [accounts]);
+  }, []);
 
   const handleLogin = () => {
     let hasLoggedIn = false;

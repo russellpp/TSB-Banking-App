@@ -106,7 +106,7 @@ function ConfirmTransferModal({
     const updatedAccounts = accounts.map((account) => {
       if (selectedTransferAccount.email === account.email) {
         const newTransactions = account.transactions;
-        newTransactions.unshift(transactionDetails);
+        newTransactions.push(transactionDetails);
         const updatedDetails = {
           ...account,
           balance: newBalance,
@@ -116,7 +116,7 @@ function ConfirmTransferModal({
         return updatedDetails;
       } else if (account.accountNumber === transferDetails.receiver) {
         const newRTransactions = account.transactions;
-        newRTransactions.unshift(recipientTransaction);
+        newRTransactions.push(recipientTransaction);
         const updatedRDetails = {
           ...account,
           balance: newRBalance,

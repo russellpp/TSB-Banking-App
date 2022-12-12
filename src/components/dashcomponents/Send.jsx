@@ -8,6 +8,7 @@ function Send({ currentUser, setCurrentUser, accounts, setAccounts }) {
 
   //opening modal function
   function OpenSendModal() {
+    console.log(currentUser.transactions)
     setIsOpen(true);
   }
 

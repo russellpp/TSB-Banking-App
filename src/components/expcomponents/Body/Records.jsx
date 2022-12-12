@@ -40,7 +40,7 @@ function Records({
   useEffect(() => {
     if (currentUser === null) {
       setRecordList([]);
-    } else if (currentWallet === null || currentWallet === undefined || currentWallet == []) {
+    } else if (currentWallet === null || currentWallet === undefined || currentWallet.length == 0) {
       setRecordList([]);
     } else {
       setRecordList(currentWallet.records);

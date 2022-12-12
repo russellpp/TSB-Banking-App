@@ -2,25 +2,25 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const thisTime = new Date();
-const month = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-const currentTime =
-  /* thisTime.getFullYear() */ thisTime.getDate() +
-  "-" +
-  month[thisTime.getMonth()];
+const timeNow = () => {
+  const thisTime = new Date();
+  const month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const currentTime = thisTime.getDate() + "-" + month[thisTime.getMonth()];
+  return currentTime;
+};
 
 function SendModal({
   setIsOpen,
@@ -39,6 +39,9 @@ function SendModal({
     receiver: "",
     sender: currentUser?.accountNumber || "",
   });
+  const [userTransactions, setUserTransactions] = useState(
+    currentUser.transactions
+  );
 
   //handle send
 
@@ -108,68 +111,60 @@ function SendModal({
     } else if (errorSend.isAcctInvalid) {
       alert("Invalid account number! Please input correct account number.");
     } else {
+      //update transactions
+
       const newBalance =
         Number(currentUser.balance) - Number(sendDetails.amount);
-      const receiverUser = accounts.find(
-        (account) => account.accountNumber === sendDetails.receiver
+
+      const receiverAcct = accounts.find(
+        (acct) => acct.accountNumber === sendDetails.receiver
       );
+      const newRBalance =
+        Number(receiverAcct.balance) + Number(sendDetails.amount);
 
       const transactionDetails = {
         type: "Send",
-        date: currentTime,
+        date: timeNow(),
         amount: `-${sendDetails.amount}`,
         balance: `${newBalance}`,
         receiver: sendDetails.receiver,
         id: Date.now(),
       };
-
-      const newTransactions = currentUser.transactions.unshift(transactionDetails);
-     currentUser.transactions = newTransactions
-      
-      /* setCurrentUser((prevState) => {
-        return {
-          ...prevState,
-          balance: newBalance,
-          transactions: newTransactions,
-        };
-      }); */
-
-      //update receiver end
-
-      const newRBalance =
-        Number(receiverUser.balance) + Number(sendDetails.amount);
-      receiverUser.balance = `${newRBalance}`;
-
-      const receiverTransaction = {
+      const recipientTransaction = {
         type: "Receive",
-        date: currentTime,
-        amount: sendDetails.amount,
+        date: timeNow(),
+        amount: `${sendDetails.amount}`,
         balance: `${newRBalance}`,
+        sender: sendDetails.receiver,
         id: Date.now(),
       };
 
-      receiverUser.transactions.unshift(receiverTransaction);
-
-      const updatedAccount = {
-        ...currentUser,
-        balance: `${newBalance}`,
-        transactions: currentUser.transactions,
-      };
-
       const updatedAccounts = accounts.map((account) => {
-        if (account.email === currentUser.email) {
-          return updatedAccount;
+        if (currentUser.accountNumber === account.accountNumber) {
+          const newTransactions = account.transactions;
+          newTransactions.push(transactionDetails);
+          const updatedDetails = {
+            ...account,
+            balance: newBalance,
+            transactions: newTransactions,
+          };
+
+          return updatedDetails;
         } else if (account.accountNumber === sendDetails.receiver) {
-          return receiverUser;
+          const newRTransactions = account.transactions;
+          newRTransactions.push(recipientTransaction);
+          const updatedRDetails = {
+            ...account,
+            balance: newRBalance,
+            transactions: newRTransactions,
+          };
+          return updatedRDetails;
         } else {
           return account;
         }
       });
-      
+
       setAccounts(updatedAccounts);
-      alert(
-        `Successfully sent ${sendDetails.amount} to ${receiverUser.name}(${receiverUser.accountNumber})`
-      );
       handleCloseModal();
     }
   };
