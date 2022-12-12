@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import imgAdd from "../assets/add-icon.svg";
-import NewItemModal from "./NewItemModal";
+import imgAdd from "../../assets/add-icon.svg";
+import NewItemModal from "../Modals/NewItemModal";
 
 function AddItemButton({
   recordList,

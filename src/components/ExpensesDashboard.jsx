@@ -1,9 +1,9 @@
 import React from "react";
 import "./ExpensesDashboard.css";
-import AccountContainer from "./expcomponents/AccountContainer";
-import Records from "./expcomponents/Records";
+import AccountContainer from "./expcomponents/Header/AccountContainer";
+import Records from "./expcomponents/Body/Records"
 import { useState, useEffect } from "react";
-import BackButton from "./expcomponents/BackButton";
+import BackButton from "./expcomponents/Buttons/BackButton";
 
 function ExpensesDashboard(props) {
   const [currentUser, setCurrentUser] = useState(null);

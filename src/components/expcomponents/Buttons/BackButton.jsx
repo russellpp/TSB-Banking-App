@@ -1,5 +1,5 @@
 import React from "react";
-import imgBack from "../assets/back-solid.svg";
+import imgBack from "../../assets/back-solid.svg";
 import { useNavigate } from "react-router-dom";
 
 function BackButton() {

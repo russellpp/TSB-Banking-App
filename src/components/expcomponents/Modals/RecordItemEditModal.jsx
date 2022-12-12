@@ -1,5 +1,5 @@
 import React from "react";
-import RecordList from "./RecordList";
+import RecordList from "../Body/RecordList";
 import { useState } from "react";
 
 function RecordItemEditModal({

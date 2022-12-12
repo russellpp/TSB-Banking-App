@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import imgAdd from "../assets/add-icon.svg";
-import BudgetModal from "./BudgetModal";
+import imgAdd from "../../assets/add-icon.svg";
+import BudgetModal from "../Modals/BudgetModal";
 import WalletList from "./WalletList";
 
 function AccountContainer(props) {

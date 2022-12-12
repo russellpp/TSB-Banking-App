@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import imgDelete from "../assets/delete-icon.svg";
-import imgEdit from "../assets/edit-icon.svg";
-import RecordItemDeleteModal from "./RecordItemDeleteModal";
-import RecordItemEditModal from "./RecordItemEditModal";
-import RecordsOptionButton from "./RecordsOptionButton";
+import imgDelete from "../../assets/delete-icon.svg";
+import imgEdit from "../../assets/edit-icon.svg";
+import RecordItemDeleteModal from "../Modals/RecordItemDeleteModal";
+import RecordItemEditModal from "../Modals/RecordItemEditModal";
+import RecordsOptionButton from "../Buttons/RecordsOptionButton"
 
 function RecordList({
   recordList,
