@@ -1,11 +1,11 @@
 import React from "react";
 import RecordList from "./RecordList";
-import RecordSummary from "./RecordSummary";
-import AddItemButton from "./AddItemButton";
-import RecordsOptionButton from "./RecordsOptionButton";
+import RecordSummary from "../Footer/RecordSummary";
+import AddItemButton from "../Buttons/AddItemButton";
+import RecordsOptionButton from "../Buttons/RecordsOptionButton";
 import { useState } from "react";
 import { useEffect } from "react";
-import WalletList from "./WalletList";
+import WalletList from "../Header/WalletList";
 
 function Records({
   accounts,

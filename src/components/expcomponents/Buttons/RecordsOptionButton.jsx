@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import imgOptions from "../assets/settings-icon.svg";
-import RecordsOptionsModal from "./RecordsOptionsModal"
+import imgOptions from "../../assets/settings-icon.svg";
+import RecordsOptionsModal from "../Modals/RecordsOptionsModal"
 
 function RecordsOptionButton({
     recordList,
