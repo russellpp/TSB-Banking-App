@@ -16,7 +16,7 @@ function WithdrawDash({ accounts, setAccounts }) {
       </div>
       <div className="AdminDashBody">
         <div className="AccountListWrapper">
-          <div className="SearchBarContainer">searchbar</div>
+          <div className="SearchBarContainer"><span>user accounts</span></div>
           <div className="ListBoxWrapper">
             <ListBox
               accounts={accounts}
@@ -35,7 +35,7 @@ function WithdrawDash({ accounts, setAccounts }) {
           setSelectedWithdrawAccount={setSelectedWithdrawAccount}
         />
       </div>
-      <div className="AdminDashFooter">footer</div>
+      <div className="AdminDashFooter"><span>totally secure bank</span></div>
     </div>
   );
 }

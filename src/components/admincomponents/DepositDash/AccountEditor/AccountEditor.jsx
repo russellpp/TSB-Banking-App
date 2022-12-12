@@ -39,7 +39,6 @@ function AccountEditor({
           setSelectedDepositAccount={setSelectedDepositAccount}
         />
       )}
-      <span>Deposit</span>
       <form className="AccountEditForm" ref={formRef}>
         <span>Account Name</span>
         <span>{selectedDepositAccount?.name || ""}</span>
@@ -48,7 +47,10 @@ function AccountEditor({
         <span>{selectedDepositAccount?.accountNumber || ""}</span>
 
         <span>Current Balance</span>
-        <span>{selectedDepositAccount?.balance || ""}</span>
+        <span>₱{" "}{parseFloat(selectedDepositAccount?.balance || "")
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
 
         <label htmlFor="accountNumber">Deposit amount: </label>
         <input
@@ -59,8 +61,9 @@ function AccountEditor({
           autoFocus
           onChange={handleNumber}
         />
-
-        <button onClick={handleDeposit}> Confirm Edit Details</button>
+        <span></span>
+        <span></span>
+        <button onClick={handleDeposit}> Confirm Deposit Details</button>
       </form>
     </div>
   );

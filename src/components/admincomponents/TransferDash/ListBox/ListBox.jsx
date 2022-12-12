@@ -31,7 +31,10 @@ function ListBox({
           <span>{account.accountNumber}</span>
           <span>{account.email}</span>
           <span>{account.password}</span>
-          <span>{account.balance}</span>
+          <span>₱{" "}{parseFloat(account.balance)
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
         </li>
       ))}
     </ul>
