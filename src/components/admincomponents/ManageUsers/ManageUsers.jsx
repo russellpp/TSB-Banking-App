@@ -16,7 +16,7 @@ function ManageUsers({ accounts, setAccounts }) {
       </div>
       <div className="AdminDashBody">
         <div className="AccountListWrapper">
-          <div className="SearchBarContainer">searchbar</div>
+          <div className="SearchBarContainer"><span>manage user accounts</span></div>
           <div className="ListBoxWrapper">
             <ListBox
               accounts={accounts}
@@ -35,7 +35,7 @@ function ManageUsers({ accounts, setAccounts }) {
           setSelectedAccount={setSelectedAccount}
         />
       </div>
-      <div className="AdminDashFooter">footer</div>
+      <div className="AdminDashFooter"><span>totally secure bank</span></div>
     </div>
   );
 }

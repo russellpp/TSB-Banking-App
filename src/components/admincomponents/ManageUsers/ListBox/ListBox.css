@@ -9,6 +9,7 @@
 
 .AccountItem {
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-y: hidden;
     padding: 0;
     display: grid;
@@ -16,8 +17,8 @@
     grid-template-areas: 
     "a1 a2 a3"
     "b1 b2 b3";
-    grid-template-rows: 20px 20px;
-    grid-template-columns: 350px 200px 200px;
+    grid-template-rows: 30px 30px;
+    grid-template-columns: 300px 250px 200px;
     margin-bottom: 10px;
     cursor: pointer;
 }
@@ -27,37 +28,50 @@
 }
 
 .AccountItem :first-child{
+    position: relative;
+    left: 10px;
     grid-area: a1;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .AccountItem :nth-child(2) {
     grid-area: b1;
+    font-size: 15px;
+    position: relative;
+    left: 10px;
 }
 
 .AccountItem :nth-child(3) {
     grid-area: a2;
+    font-size: 13px;
 }
 
 .AccountItem :nth-child(4) {
     grid-area: b2;
+    font-size: 13px;
 }
 
 .AccountItem :nth-child(5) {
     grid-area: a3;
+    font-size: 20px;
 }
 
 
 /*selected account item*/
 .SelectedItem {
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-y: hidden;
     padding: 0;
     display: grid;
+    overflow: hidden;
     grid-template-areas: 
     "a1 a2 a3"
     "b1 b2 b3";
-    grid-template-rows: 20px 20px;
-    grid-template-columns: 350px 200px 200px;
+    grid-template-rows: 30px 30px;
+    grid-template-columns: 300px 250px 200px;
     margin-bottom: 10px;
     cursor: pointer;
     color: white;
@@ -70,21 +84,32 @@
 }
 
 .SelectedItem :first-child{
+    position: relative;
+    left: 10px;
     grid-area: a1;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .SelectedItem :nth-child(2) {
     grid-area: b1;
+    font-size: 15px;
+    position: relative;
+    left: 10px;
 }
 
 .SelectedItem :nth-child(3) {
     grid-area: a2;
+    font-size: 13px;
 }
 
 .SelectedItem :nth-child(4) {
     grid-area: b2;
+    font-size: 13px;
 }
 
 .SelectedItem :nth-child(5) {
     grid-area: a3;
+    font-size: 20px;
 }

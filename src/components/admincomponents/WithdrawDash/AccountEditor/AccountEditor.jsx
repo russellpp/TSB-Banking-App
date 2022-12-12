@@ -39,7 +39,6 @@ function AccountEditor({
           setSelectedWithdrawAccount={setSelectedWithdrawAccount}
         />
       )}
-      <span>Withdraw</span>
       <form className="AccountEditForm" ref={formRef}>
         <span>Account Name</span>
         <span>{selectedWithdrawAccount?.name || ""}</span>
@@ -48,7 +47,10 @@ function AccountEditor({
         <span>{selectedWithdrawAccount?.accountNumber || ""}</span>
 
         <span>Current Balance</span>
-        <span>{selectedWithdrawAccount?.balance || ""}</span>
+        <span>₱{" "}{parseFloat(selectedWithdrawAccount?.balance || "")
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
 
         <label htmlFor="accountNumber">Withdraw amount: </label>
         <input
@@ -59,8 +61,10 @@ function AccountEditor({
           autoFocus
           onChange={handleNumber}
         />
+        <span></span>
+        <span></span>
 
-        <button onClick={handleWithdraw}> Confirm Edit Details</button>
+        <button onClick={handleWithdraw}> Confirm Withdraw Details</button>
       </form>
     </div>
   );

@@ -12,11 +12,13 @@ function DepositDash({ accounts, setAccounts }) {
   return (
     <div className="AdminDashContainer">
       <div className="AdminDashHeader">
-        <span>Manage Accounts</span>
+        <span>Deposit</span>
       </div>
       <div className="AdminDashBody">
         <div className="AccountListWrapper">
-          <div className="SearchBarContainer">searchbar</div>
+          <div className="SearchBarContainer">
+            <span>User accounts</span>
+          </div>
           <div className="ListBoxWrapper">
             <ListBox
               accounts={accounts}
@@ -35,7 +37,7 @@ function DepositDash({ accounts, setAccounts }) {
           setSelectedDepositAccount={setSelectedDepositAccount}
         />
       </div>
-      <div className="AdminDashFooter">footer</div>
+      <div className="AdminDashFooter"><span>totally secure bank</span></div>
     </div>
   );
 }

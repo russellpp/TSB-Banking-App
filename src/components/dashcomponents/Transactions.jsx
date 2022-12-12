@@ -5,7 +5,6 @@ import TransactionsModal from "./TransactionsModal";
 
 function Transactions(props) {
   const { setCurrentUser, currentUser } = props;
-
   const [isTransactionsOpen, setIsTransactionsOpen] = useState(false);
 
   //opening modal function
@@ -13,16 +12,18 @@ function Transactions(props) {
     setIsTransactionsOpen(true);
   }
 
-  /* const listTransactions = currentUser?.transactions || [];
+  const listTransactions = currentUser?.transactions || [];
+  
+
   return (
     <div>
       <div className="transactionsBox" onClick={OpenTransactionsModal}>
         <nav className="transactionsNav">
           <h2>Transactions</h2>
         </nav>
-        <div className="transactionsBody">
+        <ul className="transactionsBody">
           {listTransactions.map((list) => (
-            <>
+            <li>
               <div className="transactionsContainer">
                 <div className="transactionsBodyLeft">
                   <div className="transactionsDate">{list.date}</div>
@@ -32,12 +33,12 @@ function Transactions(props) {
                   <div className="transactionsBalance">
                     Balance: {list.balance}
                   </div>
-                  <div className="transactionsAmount">₱ {list.amount}</div>
+                  <div className="transactionsAmount">₱ ${list.amount}</div>
                 </div>
               </div>
-            </>
+            </li>
           ))}
-        </div>
+        </ul>
         <footer className="transactionsFooter">
           <span className="clickHere">Click here for more transactions</span>
         </footer>
@@ -49,7 +50,7 @@ function Transactions(props) {
         />
       )}
     </div>
-  ); */
+  );
 }
 
 export default Transactions;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ConfirmDepositModal.css";
 
 const timeNow = () => {
@@ -31,7 +31,87 @@ function ConfirmDepositModal({
   depositValue,
   setSelectedDepositAccount,
 }) {
-  const newBalance = Number(selectedDepositAccount.balance) + Number(depositValue);
+  const [errorDeposit, setDepositError] = useState({
+    negative: false,
+    noInput: false,
+    noAccount: false,
+  });
+
+  useEffect(() => {
+    const newBalance =
+      Number(selectedDepositAccount.balance) - Number(depositValue);
+   if (
+      depositValue <= 0 ||
+      depositValue == "" ||
+      depositValue === undefined
+    ) {
+      setDepositError((prevState) => {
+        return {
+          ...prevState,
+          noInput: true,
+        };
+      });
+    } else {
+      setDepositError({
+        negative: false,
+        noInput: false,
+        noAccount: false,
+      });
+    }
+
+    formRef.current.reset();
+  }, [depositValue]);
+
+  const handleError = () => {
+    const successModal = (
+      <div className="ModalBody">
+        <span>Confirm Deposit Details</span>
+        <span>{`Account Name: ${selectedDepositAccount.name}`}</span>
+        <span>{`Account Number: ${selectedDepositAccount.accountNumber}`}</span>
+        <span>{`Deposit Amount: ${depositValue}`}</span>
+        <span>{`Balance: ${selectedDepositAccount.balance} to ${newBalance}`}</span>
+
+        <button className="ConfirmButton" onClick={handleDeposit}>
+          Confirm Deposit
+        </button>
+        <button className="CancelButton" onClick={handleCloseModal}>
+          Cancel
+        </button>
+      </div>
+    );
+
+    
+
+    const errorInvalid = (
+      <div className="ModalBody">
+        <span>Invalid input! Please input proper value.</span>
+        <button className="CancelButton" onClick={handleCloseModal}>
+          Close
+        </button>
+      </div>
+    );
+
+    const errorNoAccount = (
+      <div className="ModalBody">
+        <span>No account selected! Please select account.</span>
+        <button className="CancelButton" onClick={handleCloseModal}>
+          Close
+        </button>
+      </div>
+    );
+
+    if (errorDeposit.noInput) {
+      return errorInvalid;
+    } else if (errorDeposit.noAccount) {
+      return errorNoAccount;
+    } else {
+      return successModal;
+    }
+
+  };
+
+  const newBalance =
+    Number(selectedDepositAccount.balance) + Number(depositValue);
 
   const handleDeposit = () => {
     const transactionDetails = {
@@ -44,8 +124,8 @@ function ConfirmDepositModal({
 
     const updatedAccounts = accounts.map((account) => {
       if (selectedDepositAccount.email === account.email) {
-        const newTransactions = account.transactions
-        newTransactions.push(transactionDetails)
+        const newTransactions = account.transactions;
+        newTransactions.unshift(transactionDetails);
         const updatedDetails = {
           ...account,
           balance: newBalance,
@@ -57,8 +137,8 @@ function ConfirmDepositModal({
         return account;
       }
     });
-    setAccounts(updatedAccounts)
-    handleCloseModal()
+    setAccounts(updatedAccounts);
+    handleCloseModal();
   };
 
   const handleCloseModal = () => {
@@ -68,22 +148,7 @@ function ConfirmDepositModal({
 
   return (
     <div className="Modal">
-      <div className="Container">
-        <div className="ModalBody">
-          <span>Confirm Deposit Details</span>
-          <span>{`Account Name: ${selectedDepositAccount.name}`}</span>
-          <span>{`Account Number: ${selectedDepositAccount.accountNumber}`}</span>
-          <span>{`Deposit Amount: ${depositValue}`}</span>
-          <span>{`Balance: ${selectedDepositAccount.balance} to ${newBalance}`}</span>
-
-          <button className="ConfirmButton" onClick={handleDeposit}>
-            Confirm Deposit
-          </button>
-          <button className="CancelButton" onClick={handleCloseModal}>
-            Cancel
-          </button>
-        </div>
-      </div>
+      <div className="Container">{handleError()}</div>
     </div>
   );
 }

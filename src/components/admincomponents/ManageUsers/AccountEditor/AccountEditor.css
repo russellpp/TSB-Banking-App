@@ -5,6 +5,7 @@
 }
 
 .AccountEditForm {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 150px;
     display: grid;
     grid-template-areas: 
@@ -63,9 +64,23 @@
     grid-area: b3;
 }
 
+.AccountEditForm :nth-child(11):hover{
+    background-color: var(--iosBlue);
+}
+
 .AccountEditForm > button {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
     height: 50px;
     width: 150px;
-    border: 1px solid var(--darkBlue);
+    border-radius: 15px;
+    background-color: var(--darkRed);
+    box-shadow: 2px 4px 4px 2px var(--darkBlue);
     cursor: pointer;
+    align-self: flex-start
+}
+
+.AccountEditForm button :hover {
+    background-color: var(--iosBlue);
 }

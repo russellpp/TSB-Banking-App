@@ -56,7 +56,6 @@ function AccountEditor({
           setSelectedTransferAccount={setSelectedTransferAccount}
         />
       )}
-      <span>Transfer</span>
       <form className="AccountEditForm" ref={formRef}>
         <span>Account Name</span>
         <span>{selectedTransferAccount?.name || ""}</span>
@@ -65,7 +64,10 @@ function AccountEditor({
         <span>{selectedTransferAccount?.accountNumber || ""}</span>
 
         <span>Current Balance</span>
-        <span>{selectedTransferAccount?.balance || ""}</span>
+        <span>₱{" "}{parseFloat(selectedTransferAccount?.balance || "")
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
 
         <label htmlFor="accountNumber">Transfer amount: </label>
         <input
@@ -87,7 +89,7 @@ function AccountEditor({
           onChange={handleReceiver}
         />
 
-        <button onClick={handleTransfer}> Confirm Edit Details</button>
+        <button onClick={handleTransfer}> Confirm Transfer Details</button>
       </form>
     </div>
   );

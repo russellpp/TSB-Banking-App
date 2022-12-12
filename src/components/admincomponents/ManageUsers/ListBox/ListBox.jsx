@@ -18,12 +18,11 @@ function ListBox({
     formRef.current.reset();
   };
 
-  const [accountList, setAccountlist] = useState(accounts)
+  const [accountList, setAccountlist] = useState(accounts);
 
-  useEffect(()=> {
-    setAccountlist(accounts)
-  },[accounts])
-
+  useEffect(() => {
+    setAccountlist(accounts);
+  }, [accounts]);
 
   return (
     <ul className="ListBox">
@@ -37,9 +36,15 @@ function ListBox({
         >
           <span>{account.name}</span>
           <span>{account.accountNumber}</span>
-          <span>{account.email}</span>
-          <span>{account.password}</span>
-          <span>{account.balance}</span>
+          <span>email: {account.email}</span>
+          <span>password: {account.password}</span>
+          <span>
+            ₱{" "}
+            {parseFloat(account.balance)
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </span>
         </li>
       ))}
     </ul>

@@ -21,6 +21,7 @@ function Records({
 }) {
   const [recordList, setRecordList] = useState([]);
 
+
   const defaultOptions = [
     "Food & Drinks",
     "Shopping",

@@ -50,13 +50,13 @@ function RecordItemDeleteModal({
 
 
   return (
-    <div className="DeleteModal">
+    <div className="DeleteModal DeleteWalletModal">
       <div className="BudgetModalContent">
-        <div className="DeleteModalFooter">
+        <div className="DeleteModalExpFooter">
           <span>Are you sure you want to delete this item?</span>
           <span>{selectedItem.item.name}</span>
           <span>{selectedItem.item.category}</span>
-          <span>{selectedItem.item.value}</span>
+          <span>{Math.abs(selectedItem.item.value)}</span>
 
           <button className="NewBudgetAccountButton" onClick={handleDelete}>
             Delete

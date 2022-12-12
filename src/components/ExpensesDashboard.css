@@ -63,7 +63,7 @@
   font-size: 17px;
   margin: 0 auto;
   cursor: pointer;
-  z-index: 3;
+  z-index: 1;
 }
 
 .AddItemButton > img {
@@ -543,44 +543,54 @@
 .DeleteModal {
   position: absolute;
   transform: translateX(-50%);
-  width: 300px;
+  width: 350px;
   height: auto;
   box-sizing: border-box;
   top: 240px;
 }
+.DeleteWalletModal {
 
-.DeleteModalFooter {
+  top: 150px;
+}
+
+.DeleteModalExpFooter {
   position: relative;
   display: flex;
   flex-direction: column;
   height: auto;
-  bottom: 5px;
   padding-top: 10px;
   font-size: 14px;
 }
 
-.DeleteModalFooter span {
+.DeleteModalExpFooter span {
+  font-size: 15px;
+  font-weight: 700;
+
   text-align: center;
 }
 
-.DeleteModalFooter > .NewBudgetAccountButton {
+.DeleteModalExpFooter button {
+  height: 30px;
+}
+
+.DeleteModalExpFooter > .NewBudgetAccountButton {
   background-color: var(--darkRed);
   font-size: 14px;
   font-weight: bolder;
 }
 
-.DeleteModalFooter :nth-child(2) {
+.DeleteModalExpFooter :nth-child(2) {
   font-weight: bold;
   text-transform: uppercase;
   margin-top: 5px;
 }
 
-.DeleteModalFooter :nth-child(3) {
+.DeleteModalExpFooter :nth-child(3) {
   font-size: 14px;
   text-transform: uppercase;
 }
 
-.DeleteModalFooter :nth-child(4) {
+.DeleteModalExpFooter :nth-child(4) {
   font-size: 15px;
   text-transform: uppercase;
   margin-bottom: 5px;

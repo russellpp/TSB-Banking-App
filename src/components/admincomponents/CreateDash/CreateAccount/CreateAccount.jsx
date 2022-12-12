@@ -2,9 +2,12 @@ import React from "react";
 import { useState } from "react";
 import "./CreateAccount.css";
 import ConfirmCreateModal from "./ConfirmCreateModal/ConfirmCreateModal";
+import { useEffect } from "react";
 
-function CreateAccount({ accounts, setAccounts, formRef }) {
+function CreateAccount({ accounts, setAccounts, createRef }) {
   const [isConfirmCreateModal, setIsConfirmCreateModal] = useState(false);
+  
+
   const [newDetails, setNewDetails] = useState({
     name: "",
     accountNumber: "",
@@ -71,6 +74,10 @@ function CreateAccount({ accounts, setAccounts, formRef }) {
     setIsConfirmCreateModal(true);
   };
 
+  
+
+
+
   return (
     <div className="AccountEdit">
       {isConfirmCreateModal && (
@@ -80,10 +87,10 @@ function CreateAccount({ accounts, setAccounts, formRef }) {
           isConfirmCreateModal={isConfirmCreateModal}
           setIsConfirmCreateModal={setIsConfirmCreateModal}
           newDetails={newDetails}
-          formRef={formRef}
+          createRef={createRef}
         />
       )}
-      <form className="AccountEditForm" ref={formRef}>
+      <form className="AccountEditForm" ref={createRef}>
         <label htmlFor="accountName">Account Name: </label>
         <input
           type="text"

@@ -11,13 +11,19 @@ function AccountDeleteModal({
   isDeleteModalOpen,
   setIsDeleteModalOpen,
   setCurrentWallet,
+  isOptionsModalOpen,
+  setIsOptionsModalOpen
 }) {
   const handleDelete = () => {
     const updatedWallets = currentUser.wallets;
     const index = updatedWallets.findIndex((wallet) => wallet.isCurrentAccount);
 
-    updatedWallets.splice(index, 1);
-    updatedWallets[0].isCurrentAccount = true;
+    if (updatedWallets.length > 1){
+      updatedWallets.splice(index, 1);
+      updatedWallets[0].isCurrentAccount = true;
+    } else {
+      updatedWallets.splice(index, 1);
+    }
 
     const updatedAccount = {
       ...currentUser,
@@ -32,10 +38,11 @@ function AccountDeleteModal({
       }
     });
 
-    setCurrentWallet(currentWallet ? currentUser.wallets[0] : []);
-    setAccounts(updatedAccounts);
-    setRecordList(currentWallet.records)
     handleCloseModal();
+    setAccounts(updatedAccounts);
+    setRecordList(currentWallet?.records || [])
+    setIsOptionsModalOpen(false)
+
   };
 
   const handleCloseModal = () => {
@@ -43,9 +50,9 @@ function AccountDeleteModal({
   };
 
   return (
-    <div className="DeleteModal">
+    <div className="DeleteModal DeleteWalletModal">
       <div className="BudgetModalContent">
-        <div className="DeleteModalFooter">
+        <div className="DeleteModalExpFooter">
           <span>Are you sure you want to delete this account?</span>
 
           <button className="NewBudgetAccountButton" onClick={handleDelete}>

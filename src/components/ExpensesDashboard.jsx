@@ -8,12 +8,10 @@ import BackButton from "./expcomponents/BackButton";
 function ExpensesDashboard(props) {
   const [currentUser, setCurrentUser] = useState(null);
   const [accounts, setAccounts] = useState([]);
-  const [currentWallet, setCurrentWallet] = useState([])
-  const [walletBalance, setWalletBalance] = useState()
-  const [walletList, setWalletList] = useState([])
-  
-  
-  
+  const [currentWallet, setCurrentWallet] = useState([]);
+  const [walletBalance, setWalletBalance] = useState(0);
+  const [walletList, setWalletList] = useState([]);
+
   /* useEffect(() => {
     if (WalletsNow.length > 0){
       WalletsNow.map((wallet) => wallet.isCurrentAccount = false);
@@ -21,15 +19,13 @@ function ExpensesDashboard(props) {
     }
   }, [isExpensesOpen]) */
 
-  
-  
   useEffect(() => {
     const localAccounts = localStorage.getItem("accounts");
     if (localAccounts) {
       setAccounts(JSON.parse(localAccounts));
     }
   }, []);
-  
+
   useEffect(() => {
     if (accounts.length > 0) {
       const loggedInAccount = accounts.find((account) => account.isLoggedIn);
@@ -38,27 +34,9 @@ function ExpensesDashboard(props) {
     }
   }, [accounts, currentUser]);
 
-  
-
- 
-  
   return (
     <div className="BudgetAppContainer">
       <AccountContainer
-        setCurrentUser={setCurrentUser}
-        currentUser={currentUser}
-        accounts={accounts}
-        setAccounts={setAccounts}
-        currentWallet = {currentWallet}
-        setCurrentWallet = {setCurrentWallet}
-        walletBalance={walletBalance}
-        setWalletBalance={setWalletBalance}
-        walletList={walletList}
-        setWalletList={setWalletList}
-      />
-      <div className="SummaryContainer">
-        <BackButton />
-        <Records 
         setCurrentUser={setCurrentUser}
         currentUser={currentUser}
         accounts={accounts}
@@ -69,11 +47,24 @@ function ExpensesDashboard(props) {
         setWalletBalance={setWalletBalance}
         walletList={walletList}
         setWalletList={setWalletList}
-
+      />
+      <div className="SummaryContainer">
+        <BackButton />
+        <Records
+          setCurrentUser={setCurrentUser}
+          currentUser={currentUser}
+          accounts={accounts}
+          setAccounts={setAccounts}
+          currentWallet={currentWallet}
+          setCurrentWallet={setCurrentWallet}
+          walletBalance={walletBalance}
+          setWalletBalance={setWalletBalance}
+          walletList={walletList}
+          setWalletList={setWalletList}
         />
       </div>
     </div>
-  )
+  );
 }
 
 export default ExpensesDashboard;

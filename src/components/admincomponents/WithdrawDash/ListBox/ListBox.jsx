@@ -1,5 +1,5 @@
 import React from "react";
-import "./ListBox.css";
+import "../../ManageUsers/ListBox/ListBox.css";
 import { useState } from "react";
 
 function ListBox({
@@ -29,9 +29,15 @@ function ListBox({
         >
           <span>{account.name}</span>
           <span>{account.accountNumber}</span>
-          <span>{account.email}</span>
-          <span>{account.password}</span>
-          <span>{account.balance}</span>
+          <span>email: {account.email}</span>
+          <span>password: {account.password}</span>
+          <span>
+            ₱{" "}
+            {parseFloat(account.balance)
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </span>
         </li>
       ))}
     </ul>

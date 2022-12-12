@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import CreateAccount from "./CreateAccount/CreateAccount";
 
 function CreateDash({ accounts, setAccounts }) {
-    const {formRef} = useRef()
+    const createRef = useRef()
 
   return (
     <div className="AdminDashContainer">
@@ -15,7 +15,7 @@ function CreateDash({ accounts, setAccounts }) {
         <CreateAccount 
             accounts={accounts}
             setAccounts={setAccounts}
-            formRef={formRef}
+            createRef={createRef}
         />
         
       </div>
