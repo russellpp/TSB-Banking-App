@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ConfirmEditModal from "./CofirmEditModal/ConfirmEditModal";
 
+
 function AccountEditor({
   accounts,
   setAccounts,
@@ -45,6 +46,7 @@ function AccountEditor({
 
   const handleName = (e) => {
     e.preventDefault();
+
     setEditDetails((prevState) => {
       return {
         ...prevState,
@@ -73,15 +75,7 @@ function AccountEditor({
     });
   };
 
-  const handleBalance = (e) => {
-    e.preventDefault();
-    setEditDetails((prevState) => {
-      return {
-        ...prevState,
-        balance: e.target.value,
-      };
-    });
-  };
+
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -125,6 +119,9 @@ function AccountEditor({
           onChange={handleNumber}
         />
 
+        <span></span>
+        <span></span>
+
         <label htmlFor="email">Email: </label>
         <input
           type="text"
@@ -147,17 +144,7 @@ function AccountEditor({
           onChange={handlePassword}
         />
 
-        <label htmlFor="balance">Balance: </label>
-        <input
-          type="text"
-          name="balance"
-          id="accountName"
-          placeholder={selectedAccount?.balance || ""}
-          autoComplete="off"
-          autoFocus
-          onChange={handleBalance}
-        />
-
+        
         <button onClick={handleEdit}> Confirm Edit Details</button>
       </form>
     </div>

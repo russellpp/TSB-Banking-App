@@ -57,6 +57,7 @@ function AccountEditor({
           type="Number"
           name="accountNumber"
           id="accountName"
+          min={0}
           autoComplete="off"
           autoFocus
           onChange={handleNumber}

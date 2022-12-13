@@ -3,11 +3,15 @@ import ListBox from "./ListBox/ListBox";
 import "./ManageUsers.css";
 import { useState, useRef } from "react";
 import AccountEditor from "./AccountEditor/AccountEditor";
+import { useEffect } from "react";
 
-function ManageUsers({ accounts, setAccounts }) {
-  const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
+function ManageUsers({ accounts, setAccounts}) {
+  const [selectedAccount, setSelectedAccount] = useState(null);
   const formRef = useRef()
 
+  useEffect(()=> {
+    !selectedAccount && setSelectedAccount(accounts[0])
+  })
 
   return (
     <div className="AdminDashContainer">
