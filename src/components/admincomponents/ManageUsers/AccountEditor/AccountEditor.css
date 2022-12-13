@@ -1,6 +1,8 @@
 .AccountEdit {
     margin: 20px;
     min-height: 100px;
+    position: relative;
+    top: -10px;
 
 }
 
@@ -84,3 +86,19 @@
 .AccountEditForm button :hover {
     background-color: var(--iosBlue);
 }
+
+.EditTitle {
+    position: relative; 
+    top: -10px
+}
+.EditTitle span{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    color: var(--darkBlue);
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 50px;
+    padding: 10px;
+}
+

@@ -9,12 +9,11 @@ function ListBox({
   formRef,
   searchTerm,
   setSearchTerm,
-  searchRef
+  searchRef,
 }) {
-  
   const [filteredArray, setFilteredArray] = useState(accounts);
 
-  const handleSelect = (acctNumber) => {   
+  const handleSelect = (acctNumber) => {
     const foundAccount = accounts.find(
       (account) => account.accountNumber === acctNumber
     );
@@ -39,10 +38,10 @@ function ListBox({
       );
       setFilteredArray(searchArray);
     }
-  }, [searchTerm,accounts]);
+  }, [searchTerm, accounts]);
 
   return (
-    <ul className="ListBox">
+    <div>
       <div className="SearchBar">
         <input
           type="text"
@@ -53,28 +52,33 @@ function ListBox({
           onChange={handleSearch}
         ></input>
       </div>
-      {filteredArray.map((account, index) => (
-        <li
-          className={
-            account !== selectedDepositAccount ? "AccountItem" : "SelectedItem"
-          }
-          key={index}
-          onClick={() => handleSelect(account.accountNumber)}
-        >
-          <span>{account.name}</span>
-          <span>{account.accountNumber}</span>
-          <span>{account.email}</span>
-          <span></span>
-          <span>
-            ₱{" "}
-            {parseFloat(account.balance)
-              .toFixed(2)
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </span>
-        </li>
-      ))}
-    </ul>
+
+      <ul className="ListBox">
+        {filteredArray.map((account, index) => (
+          <li
+            className={
+              account !== selectedDepositAccount
+                ? "AccountItem"
+                : "SelectedItem"
+            }
+            key={index}
+            onClick={() => handleSelect(account.accountNumber)}
+          >
+            <span>{account.name}</span>
+            <span>{account.accountNumber}</span>
+            <span>{account.email}</span>
+            <span></span>
+            <span>
+              ₱{" "}
+              {parseFloat(account.balance)
+                .toFixed(2)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

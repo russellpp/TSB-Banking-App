@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ConfirmEditModal from "./CofirmEditModal/ConfirmEditModal";
 
-
 function AccountEditor({
   accounts,
   setAccounts,
@@ -12,7 +11,7 @@ function AccountEditor({
   setSelectedAccount,
   formRef,
   setSearchTerm,
-  searchRef
+  searchRef,
 }) {
   const [editDetails, setEditDetails] = useState({
     name: "",
@@ -77,8 +76,6 @@ function AccountEditor({
     });
   };
 
-
-
   const handleEdit = (e) => {
     e.preventDefault();
     setIsConfirmEditOpen(true);
@@ -86,6 +83,9 @@ function AccountEditor({
 
   return (
     <div className="AccountEdit">
+      <div className="EditTitle">
+        <span>Edit User Details</span>
+      </div>
       {isConfirmEditOpen && (
         <ConfirmEditModal
           accounts={accounts}
@@ -148,7 +148,6 @@ function AccountEditor({
           onChange={handlePassword}
         />
 
-        
         <button onClick={handleEdit}> Confirm Edit Details</button>
       </form>
     </div>
