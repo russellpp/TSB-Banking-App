@@ -75,6 +75,7 @@ function ConfirmCreateModal({
         isEmailInvalid: false,
         isBalanceInvalid: false,
         isNameInvalid: false,
+        isPasswordInvalid: false
       });
       setCreateSuccess(true);
     }

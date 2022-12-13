@@ -3,11 +3,16 @@ import ListBox from "./ListBox/ListBox";
 import "./ManageUsers.css";
 import { useState, useRef } from "react";
 import AccountEditor from "./AccountEditor/AccountEditor";
+import { useEffect } from "react";
 
 function ManageUsers({ accounts, setAccounts }) {
-  const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
-  const formRef = useRef()
+  const [searchTerm,setSearchTerm] = useState("")
+  const [selectedAccount, setSelectedAccount] = useState(null);
+  const formRef = useRef();
 
+  useEffect(() => {
+    !selectedAccount && setSelectedAccount(accounts[0]);
+  });
 
   return (
     <div className="AdminDashContainer">
@@ -16,7 +21,9 @@ function ManageUsers({ accounts, setAccounts }) {
       </div>
       <div className="AdminDashBody">
         <div className="AccountListWrapper">
-          <div className="SearchBarContainer"><span>manage user accounts</span></div>
+          <div className="SearchBarContainer">
+            <span>manage user accounts</span>
+          </div>
           <div className="ListBoxWrapper">
             <ListBox
               accounts={accounts}
@@ -24,18 +31,25 @@ function ManageUsers({ accounts, setAccounts }) {
               selectedAccount={selectedAccount}
               setSelectedAccount={setSelectedAccount}
               formRef={formRef}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
             />
           </div>
         </div>
+        
         <AccountEditor
           accounts={accounts}
           setAccounts={setAccounts}
           selectedAccount={selectedAccount}
           formRef={formRef}
           setSelectedAccount={setSelectedAccount}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
         />
       </div>
-      <div className="AdminDashFooter"><span>totally secure bank</span></div>
+      <div className="AdminDashFooter">
+        <span>totally secure bank</span>
+      </div>
     </div>
   );
 }

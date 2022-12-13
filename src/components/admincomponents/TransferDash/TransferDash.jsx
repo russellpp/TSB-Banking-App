@@ -5,9 +5,11 @@ import { useState, useRef } from "react";
 import AccountEditor from "./AccountEditor/AccountEditor";
 
 function TransferDash({ accounts, setAccounts }) {
-  const [selectedTransferAccount, setSelectedTransferAccount] = useState(accounts[0]);
-  const formRef = useRef()
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTransferAccount, setSelectedTransferAccount] = useState(
+    accounts[0]
+  );
+  const formRef = useRef();
 
   return (
     <div className="AdminDashContainer">
@@ -16,13 +18,17 @@ function TransferDash({ accounts, setAccounts }) {
       </div>
       <div className="AdminDashBody">
         <div className="AccountListWrapper">
-          <div className="SearchBarContainer"><span>user accounts</span></div>
+          <div className="SearchBarContainer">
+            <span>user accounts</span>
+          </div>
           <div className="ListBoxWrapper">
             <ListBox
               accounts={accounts}
               setAccounts={setAccounts}
               selectedTransferAccount={selectedTransferAccount}
               setSelectedTransferAccount={setSelectedTransferAccount}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
               formRef={formRef}
             />
           </div>
@@ -33,9 +39,13 @@ function TransferDash({ accounts, setAccounts }) {
           selectedTransferAccount={selectedTransferAccount}
           formRef={formRef}
           setSelectedTransferAccount={setSelectedTransferAccount}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
         />
       </div>
-      <div className="AdminDashFooter"><span>totally secure Bank</span></div>
+      <div className="AdminDashFooter">
+        <span>totally secure Bank</span>
+      </div>
     </div>
   );
 }

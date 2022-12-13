@@ -10,6 +10,9 @@ function AccountEditor({
   selectedDepositAccount,
   setSelectedDepositAccount,
   formRef,
+  searchTerm,
+  setSearchTerm,
+  searchRef
 }) {
   const [depositValue, setDepositValue] = useState()
   const [isConfirmDepositOpen, setIsConfirmDepositOpen] = useState(false);
@@ -37,6 +40,9 @@ function AccountEditor({
           setIsConfirmDepositOpen={setIsConfirmDepositOpen}
           depositValue={depositValue}
           setSelectedDepositAccount={setSelectedDepositAccount}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          searchRef={searchRef}
         />
       )}
       <form className="AccountEditForm" ref={formRef}>
@@ -57,6 +63,7 @@ function AccountEditor({
           type="Number"
           name="accountNumber"
           id="accountName"
+          min={0}
           autoComplete="off"
           autoFocus
           onChange={handleNumber}

@@ -32,6 +32,8 @@ function ConfirmWithdrawModal({
   setIsConfirmWithdrawOpen,
   withdrawValue,
   setSelectedWithdrawAccount,
+  searchTerm,
+  setSearchTerm,
 }) {
   const [errorWithdraw, setWithdrawError] = useState({
     negative: false,
@@ -98,6 +100,9 @@ function ConfirmWithdrawModal({
       }
     });
     setAccounts(updatedAccounts);
+    alert(`Withdrawal of ₱${withdrawValue} from ${selectedWithdrawAccount.name} (${selectedWithdrawAccount.accountNumber}) is successful!`)
+    setSelectedWithdrawAccount(accounts[0])
+    setSearchTerm("")
     handleCloseModal();
   };
 
@@ -114,8 +119,8 @@ function ConfirmWithdrawModal({
         <span>Confirm Withdraw Details</span>
         <span>{`Account Name: ${selectedWithdrawAccount.name}`}</span>
         <span>{`Account Number: ${selectedWithdrawAccount.accountNumber}`}</span>
-        <span>{`Withdraw Amount: ${withdrawValue}`}</span>
-        <span>{`Balance: ${selectedWithdrawAccount.balance} to ${newBalance}`}</span>
+        <span>{`Withdraw Amount: ₱${withdrawValue}`}</span>
+        <span>{`Balance: ₱${selectedWithdrawAccount.balance} to ₱${newBalance}`}</span>
 
         <button className="ConfirmButton" onClick={handleWithdraw}>
           Confirm Withdraw

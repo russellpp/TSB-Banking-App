@@ -10,6 +10,8 @@ function AccountEditor({
   selectedAccount,
   setSelectedAccount,
   formRef,
+  setSearchTerm,
+  searchRef,
 }) {
   const [editDetails, setEditDetails] = useState({
     name: "",
@@ -45,6 +47,7 @@ function AccountEditor({
 
   const handleName = (e) => {
     e.preventDefault();
+
     setEditDetails((prevState) => {
       return {
         ...prevState,
@@ -73,16 +76,6 @@ function AccountEditor({
     });
   };
 
-  const handleBalance = (e) => {
-    e.preventDefault();
-    setEditDetails((prevState) => {
-      return {
-        ...prevState,
-        balance: e.target.value,
-      };
-    });
-  };
-
   const handleEdit = (e) => {
     e.preventDefault();
     setIsConfirmEditOpen(true);
@@ -90,6 +83,9 @@ function AccountEditor({
 
   return (
     <div className="AccountEdit">
+      <div className="EditTitle">
+        <span>Edit User Details</span>
+      </div>
       {isConfirmEditOpen && (
         <ConfirmEditModal
           accounts={accounts}
@@ -100,6 +96,8 @@ function AccountEditor({
           setIsConfirmEditOpen={setIsConfirmEditOpen}
           editDetails={editDetails}
           setSelectedAccount={setSelectedAccount}
+          setSearchTerm={setSearchTerm}
+          searchRef={searchRef}
         />
       )}
       <form className="AccountEditForm" ref={formRef}>
@@ -125,6 +123,9 @@ function AccountEditor({
           onChange={handleNumber}
         />
 
+        <span></span>
+        <span></span>
+
         <label htmlFor="email">Email: </label>
         <input
           type="text"
@@ -145,17 +146,6 @@ function AccountEditor({
           autoComplete="off"
           autoFocus
           onChange={handlePassword}
-        />
-
-        <label htmlFor="balance">Balance: </label>
-        <input
-          type="text"
-          name="balance"
-          id="accountName"
-          placeholder={selectedAccount?.balance || ""}
-          autoComplete="off"
-          autoFocus
-          onChange={handleBalance}
         />
 
         <button onClick={handleEdit}> Confirm Edit Details</button>

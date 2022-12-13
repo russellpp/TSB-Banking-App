@@ -30,6 +30,9 @@ function ConfirmDepositModal({
   setIsConfirmDepositOpen,
   depositValue,
   setSelectedDepositAccount,
+  searchTerm,
+  setSearchTerm,
+  searchRef
 }) {
   const [errorDeposit, setDepositError] = useState({
     negative: false,
@@ -38,8 +41,7 @@ function ConfirmDepositModal({
   });
 
   useEffect(() => {
-    const newBalance =
-      Number(selectedDepositAccount.balance) - Number(depositValue);
+    
    if (
       depositValue <= 0 ||
       depositValue == "" ||
@@ -68,8 +70,8 @@ function ConfirmDepositModal({
         <span>Confirm Deposit Details</span>
         <span>{`Account Name: ${selectedDepositAccount.name}`}</span>
         <span>{`Account Number: ${selectedDepositAccount.accountNumber}`}</span>
-        <span>{`Deposit Amount: ${depositValue}`}</span>
-        <span>{`Balance: ${selectedDepositAccount.balance} to ${newBalance}`}</span>
+        <span>{`Deposit Amount: ₱${depositValue}`}</span>
+        <span>{`Balance: ₱${selectedDepositAccount.balance} to ₱${newBalance}`}</span>
 
         <button className="ConfirmButton" onClick={handleDeposit}>
           Confirm Deposit
@@ -138,8 +140,13 @@ function ConfirmDepositModal({
       }
     });
     setAccounts(updatedAccounts);
+    alert(`Deposit of ₱${depositValue} to ${selectedDepositAccount.name} (${selectedDepositAccount.accountNumber}) is successful!`)
+    setSelectedDepositAccount(accounts[0])
+    setSearchTerm("")
     handleCloseModal();
   };
+
+ 
 
   const handleCloseModal = () => {
     setIsConfirmDepositOpen(false);

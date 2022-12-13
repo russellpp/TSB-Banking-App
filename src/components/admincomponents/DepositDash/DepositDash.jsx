@@ -3,11 +3,15 @@ import ListBox from "./ListBox/ListBox";
 import "./DepositDash.css";
 import { useState, useRef } from "react";
 import AccountEditor from "./AccountEditor/AccountEditor";
+import { useEffect } from "react";
 
 function DepositDash({ accounts, setAccounts }) {
-  const [selectedDepositAccount, setSelectedDepositAccount] = useState(accounts[0]);
-  const formRef = useRef()
-
+  const [selectedDepositAccount, setSelectedDepositAccount] = useState(
+    accounts[0]
+  );
+  const formRef = useRef();
+  const searchRef = useRef();
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <div className="AdminDashContainer">
@@ -26,6 +30,9 @@ function DepositDash({ accounts, setAccounts }) {
               selectedDepositAccount={selectedDepositAccount}
               setSelectedDepositAccount={setSelectedDepositAccount}
               formRef={formRef}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              searchRef={searchRef}
             />
           </div>
         </div>
@@ -35,9 +42,14 @@ function DepositDash({ accounts, setAccounts }) {
           selectedDepositAccount={selectedDepositAccount}
           formRef={formRef}
           setSelectedDepositAccount={setSelectedDepositAccount}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          searchRef={searchRef}
         />
       </div>
-      <div className="AdminDashFooter"><span>totally secure bank</span></div>
+      <div className="AdminDashFooter">
+        <span>totally secure bank</span>
+      </div>
     </div>
   );
 }
