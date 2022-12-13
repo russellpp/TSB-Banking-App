@@ -30,6 +30,8 @@ function ConfirmEditModal({
   setIsConfirmEditOpen,
   editDetails,
   setSelectedAccount,
+  setSearchTerm,
+  searchRef
 }) {
   const handleEdit = () => {
     const newBalance =
@@ -59,6 +61,9 @@ function ConfirmEditModal({
       }
     });
     setAccounts(updatedAccounts);
+    alert(`Edit successful`)
+    setSelectedAccount(accounts[0])
+    setSearchTerm("")
     handleCloseModal();
   };
   const handleCloseModal = () => {

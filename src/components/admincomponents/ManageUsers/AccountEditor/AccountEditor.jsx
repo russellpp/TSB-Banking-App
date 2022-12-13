@@ -11,6 +11,8 @@ function AccountEditor({
   selectedAccount,
   setSelectedAccount,
   formRef,
+  setSearchTerm,
+  searchRef
 }) {
   const [editDetails, setEditDetails] = useState({
     name: "",
@@ -94,6 +96,8 @@ function AccountEditor({
           setIsConfirmEditOpen={setIsConfirmEditOpen}
           editDetails={editDetails}
           setSelectedAccount={setSelectedAccount}
+          setSearchTerm={setSearchTerm}
+          searchRef={searchRef}
         />
       )}
       <form className="AccountEditForm" ref={formRef}>

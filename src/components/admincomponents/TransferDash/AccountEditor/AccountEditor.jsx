@@ -9,6 +9,8 @@ function AccountEditor({
   setAccounts,
   selectedTransferAccount,
   setSelectedTransferAccount,
+  searchTerm,
+  setSearchTerm,
   formRef,
 }) {
   const [transferDetails, setTransferDetails] = useState({
@@ -54,6 +56,8 @@ function AccountEditor({
           setIsConfirmTransferOpen={setIsConfirmTransferOpen}
           transferDetails={transferDetails}
           setSelectedTransferAccount={setSelectedTransferAccount}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
         />
       )}
       <form className="AccountEditForm" ref={formRef}>
@@ -74,6 +78,7 @@ function AccountEditor({
           type="Number"
           name="accountNumber"
           id="accountName"
+          min={0}
           autoComplete="off"
           autoFocus
           onChange={handleNumber}

@@ -8,8 +8,9 @@ function ListBox({
   selectedWithdrawAccount,
   setSelectedWithdrawAccount,
   formRef,
+  searchTerm,
+  setSearchTerm
 }) {
-  const [searchTerm, setSearchTerm] = useState("");
   const [filteredArray, setFilteredArray] = useState(accounts);
   
   useEffect(() => {
@@ -45,6 +46,7 @@ function ListBox({
         <input
           type="text"
           name="searchBar"
+          value={searchTerm}
           placeholder="Search"
           onChange={handleSearch}
         ></input>

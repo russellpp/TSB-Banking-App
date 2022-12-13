@@ -32,6 +32,8 @@ function ConfirmTransferModal({
   setIsConfirmTransferOpen,
   transferDetails,
   setSelectedTransferAccount,
+  searchTerm,
+  setSearchTerm,
 }) {
   const [errorTransfer, setTransferError] = useState({
     negative: false,
@@ -128,6 +130,9 @@ function ConfirmTransferModal({
       }
     });
     setAccounts(updatedAccounts);
+    alert(`Transfer of ₱${transferDetails.amount} from ${selectedTransferAccount.name} (${selectedTransferAccount.accountNumber}) to ${transferDetails.receiver} is successful!`)
+    setSelectedTransferAccount(accounts[0])
+    setSearchTerm("")
     handleCloseModal();
   };
 
@@ -145,9 +150,9 @@ function ConfirmTransferModal({
         <span>Confirm Transfer Details</span>
         <span>{`Account Name: ${selectedTransferAccount.name}`}</span>
         <span>{`Account Number: ${selectedTransferAccount.accountNumber}`}</span>
-        <span>{`Transfer Amount: ${transferDetails.amount}`}</span>
+        <span>{`Transfer Amount: ₱${transferDetails.amount}`}</span>
         <span>{`Receiver Account: ${transferDetails.receiver}`}</span>
-        <span>{`Balance: ${selectedTransferAccount.balance} to ${newBalance}`}</span>
+        <span>{`Balance: ₱${selectedTransferAccount.balance} to ₱${newBalance}`}</span>
 
         <button className="ConfirmButton" onClick={handleTransfer}>
           Confirm Transfer

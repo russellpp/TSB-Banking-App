@@ -1,7 +1,7 @@
 
 .ListBox {
     height: auto;
-    max-height: 250px;
+    max-height: 208px;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior-y: contain;
@@ -16,10 +16,11 @@
     overflow: hidden;
     grid-template-areas: 
     "a1 a2 a3"
-    "b1 b2 b3";
+    "b1 b2 a3";
     grid-template-rows: 30px 30px;
     grid-template-columns: 300px 250px 200px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -34,23 +35,27 @@
     font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
+    align-self: flex-end;
 }
 
 .AccountItem :nth-child(2) {
     grid-area: b1;
     font-size: 15px;
     position: relative;
+    align-self: flex-start;
     left: 10px;
 }
 
 .AccountItem :nth-child(3) {
     grid-area: a2;
     font-size: 13px;
+    align-self: flex-end;
 }
 
 .AccountItem :nth-child(4) {
     grid-area: b2;
     font-size: 13px;
+    align-self: flex-start;
 }
 
 .AccountItem :nth-child(5) {
@@ -69,14 +74,15 @@
     overflow: hidden;
     grid-template-areas: 
     "a1 a2 a3"
-    "b1 b2 b3";
+    "b1 b2 a3";
     grid-template-rows: 30px 30px;
     grid-template-columns: 300px 250px 200px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     cursor: pointer;
     color: white;
     background-color: var(--darkBlue);
     overflow-x: hidden;
+    align-items: center;
 }
 
 .SelectedItem:hover {
@@ -90,6 +96,7 @@
     font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
+    align-self: flex-end;
 }
 
 .SelectedItem :nth-child(2) {
@@ -97,19 +104,32 @@
     font-size: 15px;
     position: relative;
     left: 10px;
+    align-self: flex-start;
 }
 
 .SelectedItem :nth-child(3) {
     grid-area: a2;
     font-size: 13px;
+    align-self: flex-end;
 }
 
 .SelectedItem :nth-child(4) {
     grid-area: b2;
     font-size: 13px;
+    align-self: flex-start;
 }
 
 .SelectedItem :nth-child(5) {
     grid-area: a3;
     font-size: 20px;
+}
+
+.SearchBar {
+    height: 30px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.SearchBar input {
+    font-size: 18px;
 }

@@ -7,8 +7,11 @@ function ListBox({
   selectedDepositAccount,
   setSelectedDepositAccount,
   formRef,
+  searchTerm,
+  setSearchTerm,
+  searchRef
 }) {
-  const [searchTerm, setSearchTerm] = useState("");
+  
   const [filteredArray, setFilteredArray] = useState(accounts);
 
   const handleSelect = (acctNumber) => {   
@@ -36,15 +39,17 @@ function ListBox({
       );
       setFilteredArray(searchArray);
     }
-  }, [searchTerm, accounts]);
+  }, [searchTerm,accounts]);
 
   return (
     <ul className="ListBox">
       <div className="SearchBar">
         <input
           type="text"
+          value={searchTerm}
           name="searchBar"
           placeholder="Search"
+          ref={searchRef}
           onChange={handleSearch}
         ></input>
       </div>

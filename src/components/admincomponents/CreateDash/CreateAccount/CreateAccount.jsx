@@ -140,6 +140,7 @@ function CreateAccount({ accounts, setAccounts, createRef }) {
         <input
           type="Number"
           name="balance"
+          min={0}
           id="accountName"
           placeholder="Initial Deposit Value"
           autoComplete="off"

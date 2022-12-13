@@ -10,6 +10,8 @@ function AccountEditor({
   selectedWithdrawAccount,
   setSelectedWithdrawAccount,
   formRef,
+  searchTerm,
+  setSearchTerm,
 }) {
   const [withdrawValue, setWithdrawValue] = useState()
   const [isConfirmWithdrawOpen, setIsConfirmWithdrawOpen] = useState(false);
@@ -56,6 +58,7 @@ function AccountEditor({
         <input
           type="Number"
           name="accountNumber"
+          min={0}
           id="accountName"
           autoComplete="off"
           autoFocus
