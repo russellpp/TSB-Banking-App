@@ -52,25 +52,45 @@ function RecordSummary({
   }, [accounts, recordList]);
 
   const total = () => {
-    if (isNaN(walletBalance) || !walletBalance) {
-      return 0;
+    if (isNaN(currentWallet.budget) || !currentWallet) {
+      return `₱ 0.00`;
     } else {
-      return walletBalance;
+      const sum = Number(budget) + Number(income) + Number(expense);
+      const num = parseFloat(Math.abs(sum))
+        .toFixed(2)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      const str = `₱ ${num}`;
+      return str;
     }
-  };
-
-  const handleClick = () => {
-    console.log(walletBalance);
   };
 
   return (
     <div className="RecordSummary">
       <span>budget</span>
-      <span className="TotalExpenses">{budget}</span>
+      <span className="TotalExpenses">
+        ₱{" "}
+        {parseFloat(Math.abs(budget))
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+      </span>
       <span>total expenses</span>
-      <span className="TotalExpenses">{expense}</span>
-      <span onClick={handleClick}>total income</span>
-      <span className="TotalIncome">{income}</span>
+      <span className="TotalExpenses">
+        ₱{" "}
+        {parseFloat(Math.abs(expense))
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+      </span>
+      <span>total income</span>
+      <span className="TotalIncome">
+        ₱{" "}
+        {parseFloat(Math.abs(income))
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+      </span>
       <span
         className={Number(walletBalance) <= 0 ? "NetValueNeg" : "NetValuePos"}
       >

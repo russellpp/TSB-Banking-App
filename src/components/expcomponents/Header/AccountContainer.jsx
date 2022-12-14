@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import imgAdd from "../../assets/add-icon.svg";
 import BudgetModal from "../Modals/BudgetModal";
 import WalletList from "./WalletList";
 
 function AccountContainer(props) {
-  const [isBudgetOpen, setIsBudgetOpen] = useState(false);
   const {
     currentUser,
     setCurrentUser,
@@ -19,14 +19,16 @@ function AccountContainer(props) {
     walletList,
     setWalletList
   } = props;
-  
+  const [isBudgetOpen, setIsBudgetOpen] = useState(false);
+  const walletRef = useRef();
+
   // finding current wallet
-  
+
   const listWallets = currentUser?.wallets || [];
 
-  useEffect(()=> {
-    setWalletList(listWallets)
-  },[listWallets])
+  useEffect(() => {
+    setWalletList(listWallets);
+  }, [listWallets]);
 
   useEffect(() => {
     if (listWallets.length > 0) {
@@ -45,7 +47,7 @@ function AccountContainer(props) {
     <div className="AccountContainer">
       <button className="AddAccountButton" onClick={OpenBudgetModal}>
         <img src={imgAdd} />
-        Account
+        Wallet
       </button>
       {isBudgetOpen && (
         <BudgetModal
@@ -59,9 +61,11 @@ function AccountContainer(props) {
           setCurrentWallet={setCurrentWallet}
           walletBalance={walletBalance}
           setWalletBalance={setWalletBalance}
+          walletRef={walletRef}
         />
       )}
       <WalletList
+        walletRef={walletRef}
         currentUser={currentUser}
         listWallets={listWallets}
         currentWallet={currentWallet}
@@ -70,7 +74,7 @@ function AccountContainer(props) {
         setAccounts={setAccounts}
       />
     </div>
-  )
+  );
 }
 
 export default AccountContainer;

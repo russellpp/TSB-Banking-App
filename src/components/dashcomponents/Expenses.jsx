@@ -18,7 +18,7 @@ function Expenses(props) {
     <div>
       <div className="expensesBox" onClick={ExpensesDashboard}>
         <img src={expenses} alt="expenses logo" className="expensesLogo"></img>
-        <h2>Expenses</h2>
+        <h2>Wallet</h2>
       </div>
     </div>
   );

@@ -28,10 +28,10 @@ if(!currentUser){
             </div>
             <div className ="cardNumberContainer">
               <div className="cardNumber">
-                {currentUser.accountNumber}
+                {currentUser.accountNumber} 
               </div>
               <div className ="cardExpiration">
-                {currentUser.expiration}
+                {currentUser.expiration}{` · `}{currentUser.name}
               </div>
             </div>
              <div className="cardLogo">

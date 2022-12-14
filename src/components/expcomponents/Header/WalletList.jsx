@@ -1,7 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
 
 function WalletList(props) {
+ 
+
   const {
     listWallets,
     currentUser,
@@ -9,9 +10,10 @@ function WalletList(props) {
     setCurrentWallet,
     accounts,
     setAccounts,
+    walletRef
   } = props;
 
-  function handleSelectWallet(indexTarget) {
+  const handleSelectWallet = (indexTarget) =>  {
     //make target iscurrentaccount true
     listWallets.map((wallet, index) => {
       if (index == indexTarget) {
@@ -42,7 +44,7 @@ function WalletList(props) {
   }
 
   return (
-    <ul className="AccountList">
+    <ul className="AccountList" ref={walletRef}>
       {listWallets.map((list, index) => (
         <li
           onClick={() => handleSelectWallet(index)}
@@ -52,7 +54,11 @@ function WalletList(props) {
           }
         >
           <span>{list.name}</span>
-          <span>{list.budget}</span>
+          <span>₱{" "}
+        {parseFloat(Math.abs(list.budget))
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
         </li>
       ))}
     </ul>

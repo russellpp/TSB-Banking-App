@@ -4,7 +4,7 @@ import imgDelete from "../../assets/delete-icon.svg";
 import imgEdit from "../../assets/edit-icon.svg";
 import RecordItemDeleteModal from "../Modals/RecordItemDeleteModal";
 import RecordItemEditModal from "../Modals/RecordItemEditModal";
-import RecordsOptionButton from "../Buttons/RecordsOptionButton"
+import RecordsOptionButton from "../Buttons/RecordsOptionButton";
 
 function RecordList({
   recordList,
@@ -39,7 +39,17 @@ function RecordList({
             <div className="RecordContainer">
               <span className="RecordCategory">{item.category}</span>
               <span className="RecordId">{item.id}</span>
-              <span className={Number(item.value) <= 0 ? "RecordValue" : "RecordValueIncome"}>{item.value}</span>
+              <span
+                className={
+                  Number(item.value) <= 0 ? "RecordValue" : "RecordValueIncome"
+                }
+              >
+                ₱
+                {parseFloat(Math.abs(item.value))
+                  .toFixed(2)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
               <span className="RecordName">{item.name}</span>
               <button onClick={() => handleEditModal({ item })}>
                 <img src={imgEdit} />
@@ -83,7 +93,6 @@ function RecordList({
           setDataOptions={setDataOptions}
         />
       )}
-      
     </div>
   );
 }

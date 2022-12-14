@@ -1,6 +1,6 @@
 import React from "react";
 import Account from "./dashcomponents/Account";
-import logo from "./assets/logo.png";
+import logo from "./assets/empire1.png";
 import logout from "./assets/logout.png";
 /* import Transactions from './dashcomponents/Transactions' */
 import Deposit from "./dashcomponents/Deposit";
@@ -23,17 +23,6 @@ function Dashboard() {
     if (localAccounts) {
       setAccounts(JSON.parse(localAccounts));
     }
-
-    /* const onIdle = () =>{
-      console.log('User Inactive')
-    }
-    const onActive =()=>{
-      console.log('User Active')
-    }
-
-    const{isIdle} = useIdleTimer({
-      onIdle,onActive,timeout:5*1000
-    }) */
   }, []);
 
   useEffect(() => {
@@ -65,7 +54,7 @@ function Dashboard() {
     <div className="dashboardBox" /* onIdle={isIdle} */>
       <nav className="dashboardNav">
         <img src={logo} alt="logo" className="logo" />
-        <h1>Bank</h1>
+        <h1>totally secure bank</h1>
         <div className="logoutButton">
           <img src={logout} alt="logout" onClick={logOut} />
         </div>
@@ -97,7 +86,7 @@ function Dashboard() {
           <Expenses />
         </div>
         <div className="transaction">
-          <Transactions currentUser={currentUser} />
+          <Transactions currentUser={currentUser} accounts={accounts} />
         </div>
       </div>
     </div>

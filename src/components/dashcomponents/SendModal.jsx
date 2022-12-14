@@ -18,7 +18,23 @@ const timeNow = () => {
     "Nov",
     "Dec",
   ];
-  const currentTime = thisTime.getDate() + "-" + month[thisTime.getMonth()];
+  let hrs = thisTime.getHours();
+  if (hrs < 10) {
+    hrs = "0" + hrs;
+  }
+  let min = thisTime.getMinutes();
+  if (min < 10) {
+    min = "0" + min;
+  }
+
+  const currentTime =
+    thisTime.getDate() +
+    "-" +
+    month[thisTime.getMonth()] +
+    " " +
+    hrs +
+    ":" +
+    min;
   return currentTime;
 };
 
@@ -39,10 +55,6 @@ function SendModal({
     receiver: "",
     sender: currentUser?.accountNumber || "",
   });
-  const [userTransactions, setUserTransactions] = useState(
-    currentUser.transactions
-  );
-
   //handle send
 
   const handleGetReceiver = (e) => {
