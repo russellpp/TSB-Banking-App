@@ -19,7 +19,23 @@ const timeNow = () => {
     "Nov",
     "Dec",
   ];
-  const currentTime = thisTime.getDate() + "-" + month[thisTime.getMonth()];
+  let hrs = thisTime.getHours();
+  if (hrs < 10) {
+    hrs = "0" + hrs;
+  }
+  let min = thisTime.getMinutes();
+  if (min < 10) {
+    min = "0" + min;
+  }
+
+  const currentTime =
+    thisTime.getDate() +
+    "-" +
+    month[thisTime.getMonth()] +
+    " " +
+    hrs +
+    ":" +
+    min;
   return currentTime;
 };
 
@@ -87,7 +103,7 @@ function ConfirmWithdrawModal({
     const updatedAccounts = accounts.map((account) => {
       if (selectedWithdrawAccount.email === account.email) {
         const newTransactions = account.transactions;
-        newTransactions.unshift(transactionDetails);
+        newTransactions.push(transactionDetails);
         const updatedDetails = {
           ...account,
           balance: newBalance,
@@ -101,8 +117,7 @@ function ConfirmWithdrawModal({
     });
     setAccounts(updatedAccounts);
     alert(`Withdrawal of ₱${withdrawValue} from ${selectedWithdrawAccount.name} (${selectedWithdrawAccount.accountNumber}) is successful!`)
-    setSelectedWithdrawAccount(accounts[0])
-    setSearchTerm("")
+    setSelectedWithdrawAccount(accounts[0]);
     handleCloseModal();
   };
 

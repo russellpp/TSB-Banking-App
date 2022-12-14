@@ -103,6 +103,7 @@ function RecordsOpttionsModal({
           <label htmlFor="amount">Change Initial Budget: </label>
           <input
             type="number"
+            min={0}
             name="amount"
             id="amount"
             placeholder={currentWallet.budget}

@@ -54,7 +54,6 @@ function NewItemModal({
   const [itemName, setItemName] = useState();
   const [itemValue, setItemValue] = useState();
   const [itemCategory, setItemCategory] = useState();
-  const [itemId, setItemId] = useState();
   const [addedCategory, setAddedCategory] = useState("");
   const [isAddCategoryOpen, setIsAddCategoryOpen] = useState(false);
   const [buttontext, setButtonText] = useState("Edit Categories");
@@ -248,6 +247,7 @@ function NewItemModal({
           <label htmlFor="amount">Enter value: </label>
           <input
             type="number"
+            min={0}
             name="amount"
             id="amount"
             autoComplete="off"

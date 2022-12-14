@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import TransactionsModal from "./TransactionsModal";
 
 function Transactions(props) {
-  const { setCurrentUser, currentUser } = props;
+  const { setCurrentUser, currentUser, accounts } = props;
   const [isTransactionsOpen, setIsTransactionsOpen] = useState(false);
   const [listSpliced, setListSpliced] = useState([]);
 
@@ -14,15 +14,22 @@ function Transactions(props) {
   }
 
   const listTransactions = currentUser?.transactions || [];
-
-  useEffect(() => {
+  const filteredList = () => {
+    if (!listTransactions || listTransactions.length <= 3){
+      return listTransactions
+    } else {
+      const filterArr = listTransactions.filter((list,  index)=> index >= listTransactions.length - 3)
+      return filterArr;
+    }
+  } 
+  
+  /* useEffect(() => {
     if (listTransactions.length > 3) {
       setListSpliced(listTransactions.splice(-3));
     } else {
       setListSpliced(listTransactions);
     }
-
-  },[listTransactions])
+  }, [accounts]); */
 
   return (
     <div>
@@ -31,7 +38,7 @@ function Transactions(props) {
           <h2>Transactions</h2>
         </nav>
         <ul className="transactionsBody">
-          {listSpliced.map((list, index) => (
+          {filteredList().map((list, index) => (
             <li key={index}>
               <div className="transactionsContainer">
                 <div className="transactionsBodyLeft">
@@ -40,9 +47,19 @@ function Transactions(props) {
                 </div>
                 <div className="transactionsBodyRight">
                   <div className="transactionsBalance">
-                    Balance: {list.balance}
+                    Balance: ₱{" "}
+                    {Number(list.balance)
+                      .toFixed(2)
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </div>
-                  <div className="transactionsAmount">₱ {list.amount}</div>
+                  <div className="transactionsAmount">
+                  ₱{" "}
+                    {Number(list.amount)
+                      .toFixed(2)
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </div>
                 </div>
               </div>
             </li>
