@@ -133,17 +133,13 @@ function RecordsOpttionsModal({
       </div>
       {isDeleteModalopen && (
         <AccountDeleteModal
-          setCurrentUser={setCurrentUser}
           currentUser={currentUser}
           accounts={accounts}
           setAccounts={setAccounts}
           currentWallet={currentWallet}
-          recordList={recordList}
           setRecordList={setRecordList}
-          isDeleteModalOpen={isDeleteModalopen}
           setIsDeleteModalOpen={setIsDeleteModalOpen}
           setCurrentWallet={setCurrentWallet}
-          isOptionsModalOpen={isOptionsModalOpen}
           setIsOptionsModalOpen={setIsOptionsModalOpen}
         />
       )}

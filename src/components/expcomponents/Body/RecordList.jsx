@@ -44,8 +44,8 @@ function RecordList({
                   Number(item.value) <= 0 ? "RecordValue" : "RecordValueIncome"
                 }
               >
-                ₱
-                {parseFloat(Math.abs(item.value))
+                ₱{" "}
+                {parseFloat(item.value)
                   .toFixed(2)
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

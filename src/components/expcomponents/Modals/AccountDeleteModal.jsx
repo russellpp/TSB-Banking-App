@@ -1,28 +1,25 @@
 import React from "react";
 
 function AccountDeleteModal({
-  recordList,
   setRecordList,
   accounts,
   setAccounts,
   currentUser,
-  setCurrentUser,
   currentWallet,
-  isDeleteModalOpen,
   setIsDeleteModalOpen,
   setCurrentWallet,
-  isOptionsModalOpen,
-  setIsOptionsModalOpen
+  setIsOptionsModalOpen,
 }) {
   const handleDelete = () => {
     const updatedWallets = currentUser.wallets;
     const index = updatedWallets.findIndex((wallet) => wallet.isCurrentAccount);
 
-    if (updatedWallets.length > 1){
+    if (updatedWallets.length > 1) {
       updatedWallets.splice(index, 1);
       updatedWallets[0].isCurrentAccount = true;
     } else {
       updatedWallets.splice(index, 1);
+      setCurrentWallet({});
     }
 
     const updatedAccount = {
@@ -39,10 +36,9 @@ function AccountDeleteModal({
     });
 
     handleCloseModal();
+    setRecordList(currentWallet?.records || []);
     setAccounts(updatedAccounts);
-    setRecordList(currentWallet?.records || [])
-    setIsOptionsModalOpen(false)
-
+    setIsOptionsModalOpen(false);
   };
 
   const handleCloseModal = () => {
@@ -64,7 +60,7 @@ function AccountDeleteModal({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default AccountDeleteModal;
