@@ -117,7 +117,9 @@ function NewItemModal({
   };
 
   const handleAddItem = () => {
-    if (itemName == "" || !itemName || !itemCategory || !itemValue) {
+    if (!currentWallet || currentWallet == {}){
+      alert('No wallet selected! Create a new wallet.')
+    } else if (itemName == "" || !itemName || !itemCategory || !itemValue) {
       alert("Empty input!");
     } else if (Math.abs(itemValue) <= 0) {
       alert("Invalid amount!");

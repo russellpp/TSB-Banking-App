@@ -17,7 +17,7 @@ function AddItemButton({
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
 
   function OpenModal() {
-    if (!currentWallet || currentWallet.length < 1) {
+    if (!currentWallet || currentWallet=={}) {
       alert('Create or select wallet first!')
     } else {
       setIsAddItemModalOpen(true);
