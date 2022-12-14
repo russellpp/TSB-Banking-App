@@ -152,6 +152,7 @@ function RecordItemEditModal({
           <label htmlFor="amount">Enter value: </label>
           <input
             type="number"
+            min={0}
             name="amount"
             id="amount"
             placeholder={Math.abs(selectedItem.item.value)}

@@ -1,5 +1,40 @@
 import React from "react";
 import { useState } from "react";
+const timeNow = () => {
+  const thisTime = new Date();
+  const month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let hrs = thisTime.getHours();
+  if (hrs < 10) {
+    hrs = "0" + hrs;
+  }
+  let min = thisTime.getMinutes();
+  if (min < 10) {
+    min = "0" + min;
+  }
+
+  const currentTime =
+    thisTime.getDate() +
+    "-" +
+    month[thisTime.getMonth()] +
+    " " +
+    hrs +
+    ":" +
+    min;
+  return currentTime;
+};
 
 function WithdrawModal({
   setIsOpen,
@@ -20,29 +55,7 @@ function WithdrawModal({
 
   function getValue(withdraw) {
     setValue(withdraw.target.value);
-    withdrawValue = withdraw.target.value;
-    console.log(withdrawValue);
   }
-
-  const thisTime = new Date();
-  const month = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const currentTime =
-    /* thisTime.getFullYear() */ thisTime.getDate() +
-    "-" +
-    month[thisTime.getMonth()];
 
   function WithdrawMoney() {
     const result = Number(balance) - Number(withdrawValue);
@@ -54,26 +67,26 @@ function WithdrawModal({
     } else if (withdrawValue < 0) {
       alert("Withdraw value should be greater than 0");
     } else {
-      currentUser.transactions.unshift({
+      const transDetails = {
         type: "Withdraw",
-        date: currentTime,
+        date: timeNow(),
         amount: `-${withdrawValue}`,
         balance: result,
         id: Date.now(),
-      });
-      const updatedAccount = {
-        ...currentUser,
-        balance: result,
-        transactions: currentUser.transactions,
       };
-      const updatedAccounts = accounts.map((account) => {
+
+      setAccounts(prevState => prevState.map((account) => {
         if (account.email === currentUser.email) {
-          return updatedAccount;
+          const updatedDetails = {
+            ...account,
+            balance: result,
+            transactions: [...account.transactions, transDetails],
+          };
+          return updatedDetails;
         } else {
           return account;
         }
-      });
-      setAccounts(updatedAccounts);
+      }));
 
       CloseModal();
     }

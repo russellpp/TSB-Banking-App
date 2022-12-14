@@ -4,11 +4,12 @@
   --grey: white;
   --lightBlue: #0b8ae6;
   --navyBlue: #09559c;
-  --darkerBlue: #06121E;
+  --darkerBlue: #06121e;
   --iosBlue: #007aff;
-  --pink: #F16273;
+  --pink: #f16273;
   --iosRed: #ff3b30;
   --iosGreen: #4cd964;
+  --yellow: #efbd5a;
 }
 
 .BudgetAppContainer {
@@ -64,6 +65,11 @@
   margin: 0 auto;
   cursor: pointer;
   z-index: 1;
+  transition: 0.3s ease;
+}
+
+.AddItemButton:hover {
+  background-color: var(--darkRed);
 }
 
 .AddItemButton > img {
@@ -107,6 +113,11 @@
   font-weight: bold;
   padding: 0 10px;
   margin: 0 auto 10px;
+  transition: 0.3s ease;
+}
+
+.AddAccountButton:hover {
+  background-color: var(--darkRed);
 }
 
 .AddAccountButton > img {
@@ -118,8 +129,8 @@
 .SelectedAccountRecord {
   padding: 0;
   list-style: none;
-  width: auto ;
-  border: 2px solid var(--pink);
+  width: auto;
+  border: 2px solid var(--darkRed);
   border-radius: 20px;
   padding: 10px;
   box-sizing: border-box;
@@ -130,8 +141,8 @@
   font-size: 12px;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 2px 4px 4px 2px black;;
-  background-color: var(--pink);
+  box-shadow: 2px 4px 4px 2px black;
+  background-color: var(--darkRed);
   cursor: pointer;
 }
 
@@ -168,6 +179,12 @@
   background-color: var(--grey);
   box-shadow: 2px 4px 4px 2px black;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+.AccountRecord:hover {
+  background-color: var(--yellow);
+  color: var(--darkBlue);
+  border: 2px solid var(--yellow);
 }
 
 .AccountRecord > span {
@@ -259,7 +276,6 @@
   width: 430px;
   box-sizing: border-box;
   margin-bottom: 8px;
-  
 }
 
 .RecordItem:hover {
@@ -312,13 +328,12 @@
   align-self: flex-start;
 }
 
-
-
 .RecordName {
   font-size: 15px;
   grid-area: area1;
   justify-self: left;
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .RecordContainer > button > img {
@@ -328,10 +343,8 @@
 }
 
 .RecordContainer > button:hover > img {
-  
   filter: invert(20%);
 }
-
 
 .RecordContainer > button {
   padding: 0;
@@ -346,7 +359,7 @@
 
 .RecordContainer :nth-child(5) {
   grid-area: area6;
-  
+
   margin-right: 20px;
 }
 
@@ -408,7 +421,6 @@
   grid-area: i2;
   justify-self: right;
 }
-
 
 .NetValueNeg {
   grid-area: n2;
@@ -549,7 +561,6 @@
   top: 240px;
 }
 .DeleteWalletModal {
-
   top: 150px;
 }
 
@@ -596,7 +607,7 @@
   margin-bottom: 5px;
 }
 
-/* edit modal */ 
+/* edit modal */
 
 .EditItemModal {
   position: absolute;
@@ -626,6 +637,7 @@
   cursor: pointer;
   top: -35px;
   left: 190px;
+  transition: 0.3s ease;
 }
 
 .AccountOptionButton > img {
@@ -633,30 +645,30 @@
   margin-top: 4px;
   margin-right: 25px;
   filter: invert(70%);
+  transition: 0.3s ease;
 }
 
 .AccountOptionButton:hover > img {
-
   filter: invert(40%);
 }
 
-.OptionDeleteButton{
+.OptionDeleteButton {
   width: 276px;
   background-color: var(--darkRed);
-  color:white;
+  color: white;
   font-weight: 700;
   cursor: pointer;
 }
 
-.OptionDeleteButton:nth-of-type(2){
+.OptionDeleteButton:nth-of-type(2) {
   margin-bottom: 10px;
 }
 
-.OptionDeleteButton:hover{
-  transition:0.2s;
-  background:linear-gradient(to left, white 50%, var(--darkRed) 50%)right;
+.OptionDeleteButton:hover {
+  transition: 0.2s;
+  background: linear-gradient(to left, white 50%, var(--darkRed) 50%) right;
   background-size: 200% 100%;
-  color:var(--darkRed);
+  color: var(--darkRed);
   font-weight: 700;
   cursor: pointer;
 }
@@ -668,22 +680,19 @@
   height: 0;
 }
 
-.BackButton img{
+.BackButton img {
   position: relative;
   height: 25px;
   top: -185px;
   right: 200px;
   filter: invert(30%);
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.BackButton:hover img{
-  
+.BackButton:hover img {
   filter: invert(50%);
 }
-
-
-
 
 /* toggle button */
 
@@ -701,7 +710,7 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -716,7 +725,8 @@
   width: 1px;
 }
 
-.wrg-toggle-check, .wrg-toggle-uncheck {
+.wrg-toggle-check,
+.wrg-toggle-uncheck {
   position: absolute;
   width: 10px;
   height: 10px;
@@ -726,7 +736,7 @@
   margin-bottom: auto;
   line-height: 0;
   opacity: 0.3;
-  transition: opacity .25s ease;
+  transition: opacity 0.25s ease;
   left: -50px;
 }
 
@@ -738,7 +748,7 @@
   left: 90px;
 }
 
-.wrg-toggle-uncheck span, 
+.wrg-toggle-uncheck span,
 .wrg-toggle-check span {
   align-items: center;
   display: flex;
@@ -749,17 +759,17 @@
   font-weight: 600;
 }
 
-.wrg-toggle-container{
+.wrg-toggle-container {
   width: 50px;
   height: 24px;
   padding: 0;
   border-radius: 30px;
   background-color: var(--darkBlue);
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
-.wrg-toggle-circle{
-  transition: all .5s cubic-bezier(.23,1,.32,1) 0ms;
+.wrg-toggle-circle {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
   top: 1px;
   left: 1px;
@@ -769,10 +779,10 @@
   border-radius: 50%;
   background-color: #fafafa;
   box-sizing: border-box;
-  transition: all .25s ease;
+  transition: all 0.25s ease;
 }
 
-.wrg-toggle--checked .wrg-toggle-check{
+.wrg-toggle--checked .wrg-toggle-check {
   opacity: 1;
 }
 .wrg-toggle--checked .wrg-toggle-uncheck {

@@ -2,26 +2,7 @@ import React from "react";
 import { useState } from "react";
 /* import {useEffect} from 'react'
  */
-function DepositModal({
-  setIsDepositOpen,
-  currentUser,
-  setCurrentUser,
-  accounts,
-  setAccounts,
-}) {
-  //close Modal function
-  function CloseDepositModal() {
-    setIsDepositOpen(false);
-  }
-
-  //setting useState for data capture
-  let [depositValue, setValue] = useState();
-
-  function getValue(deposit) {
-    setValue(deposit.target.value);
-    depositValue = deposit.target.value;
-  }
-
+const timeNow = () => {
   const thisTime = new Date();
   const month = [
     "Jan",
@@ -37,10 +18,47 @@ function DepositModal({
     "Nov",
     "Dec",
   ];
-  const currentTime = thisTime.getDate() + "-" + month[thisTime.getMonth()];
+  let hrs = thisTime.getHours();
+  if (hrs < 10) {
+    hrs = "0" + hrs;
+  }
+  let min = thisTime.getMinutes();
+  if (min < 10) {
+    min = "0" + min;
+  }
+
+  const currentTime =
+    thisTime.getDate() +
+    "-" +
+    month[thisTime.getMonth()] +
+    " " +
+    hrs +
+    ":" +
+    min;
+  return currentTime;
+};
+
+function DepositModal({
+  setIsDepositOpen,
+  currentUser,
+  setCurrentUser,
+  accounts,
+  setAccounts,
+}) {
+  //close Modal function
+  function CloseDepositModal() {
+    setIsDepositOpen(false);
+  }
+
+  //setting useState for data capture
+  const [depositValue, setValue] = useState();
+
+  function getValue(deposit) {
+    setValue(deposit.target.value);
+  }
 
   function DepositMoney() {
-    let balance = currentUser.balance;
+    const balance = currentUser.balance;
 
     const result = Number(balance) + Number(depositValue);
 
@@ -49,23 +67,24 @@ function DepositModal({
     } else if (depositValue < 0) {
       alert("Deposit value should be greater than 0");
     } else {
-      currentUser.transactions.unshift({
+      const transDetails = {
         type: "Deposit",
-        date: currentTime,
+        date: timeNow(),
         amount: `${depositValue}`,
         balance: result,
         id: Date.now(),
-      });
-
-      const updatedAccount = {
-        ...currentUser,
-        balance: result,
-        transactions: currentUser.transactions,
       };
-      
+
       const updatedAccounts = accounts.map((account) => {
         if (account.email === currentUser.email) {
-          return updatedAccount;
+          const newTransactions = account.transactions;
+          newTransactions.push(transDetails);
+          const updatedDetails = {
+            ...account,
+            balance: result,
+            transactions: newTransactions,
+          };
+          return updatedDetails;
         } else {
           return account;
         }

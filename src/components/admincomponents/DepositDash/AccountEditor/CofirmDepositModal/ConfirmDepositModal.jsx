@@ -17,10 +17,25 @@ const timeNow = () => {
     "Nov",
     "Dec",
   ];
-  const currentTime = thisTime.getDate() + "-" + month[thisTime.getMonth()];
+  let hrs = thisTime.getHours();
+  if (hrs < 10) {
+    hrs = "0" + hrs;
+  }
+  let min = thisTime.getMinutes();
+  if (min < 10) {
+    min = "0" + min;
+  }
+
+  const currentTime =
+    thisTime.getDate() +
+    "-" +
+    month[thisTime.getMonth()] +
+    " " +
+    hrs +
+    ":" +
+    min;
   return currentTime;
 };
-
 function ConfirmDepositModal({
   accounts,
   setAccounts,
@@ -116,6 +131,7 @@ function ConfirmDepositModal({
     Number(selectedDepositAccount.balance) + Number(depositValue);
 
   const handleDeposit = () => {
+    console.log(accounts)
     const transactionDetails = {
       type: "Deposit",
       date: timeNow(),
@@ -127,7 +143,7 @@ function ConfirmDepositModal({
     const updatedAccounts = accounts.map((account) => {
       if (selectedDepositAccount.email === account.email) {
         const newTransactions = account.transactions;
-        newTransactions.unshift(transactionDetails);
+        newTransactions.push(transactionDetails);
         const updatedDetails = {
           ...account,
           balance: newBalance,

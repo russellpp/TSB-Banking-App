@@ -190,28 +190,38 @@ form .form-inner input[type="submit"]:hover {
 
 .dashboardNav{
   height: 55px;
-  width:100%;
+  width: 90%;;
+  border-radius: 15px;
   display:flex;
   box-sizing: border-box;
   margin-left: 10px;
   margin-top: 10px;
   align-items: center;
+  background-color: none;
+  padding-left: 5px;
 }
 
 .dashboardNav h1{
-  font-size: 40px;
-  color:white;
-  padding-left: 10px;
+  font-size: 20px;
+  color: var(--grey);
+  font-style: italic;
+  text-transform: uppercase;
+  position: relative;
+  left: -12px
 }
 
 .dashboardNav .logo{
-  width:45px;
-  height:55px; 
+  height:55px;
+  border-radius: 10px; 
+  position: relative;
+  left:-10px;
+  filter: invert();
+
 }
 
 .dashboardNav .logoutButton{
 position: relative;
-left:230px
+left:105px
 }
 .dashboardNav .logoutButton:hover{
   cursor: pointer;
@@ -301,6 +311,7 @@ left:230px
 .cardExpiration{
   display:block;
   font-size:20px;
+  text-transform: uppercase;
 }
 .cardLogo{
   display: block;
@@ -397,10 +408,12 @@ left:230px
   border-bottom: 2px solid var(--darkBlue);
 }
 .transactionsBody{
-  display: block;
+  display: flex;
   box-sizing: border-box;
   height: 200px;
   overflow: hidden;
+  flex-direction: column;
+  
 }
 .transactionsFooter{
   display: flex;
@@ -561,6 +574,7 @@ padding-right:7px;
   margin-top:-7px;
   font-size:20px;
   font-weight:700px;
+  text-align: end;
 }
 
 

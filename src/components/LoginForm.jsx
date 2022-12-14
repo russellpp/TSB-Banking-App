@@ -40,10 +40,7 @@ function LoginForm() {
       if (localAccounts) {
         setAccounts(JSON.parse(localAccounts));
       } else {
-        localStorage.setItem(
-          "accounts",
-          JSON.stringify(accounts)
-        );
+        localStorage.setItem("accounts", JSON.stringify(accounts));
       }
     }
   }, []);
@@ -51,6 +48,14 @@ function LoginForm() {
   const handleLogin = () => {
     let hasLoggedIn = false;
     let isAdmin = false;
+
+    if (accounts.some((acct) => acct.isLoggedIn)) {
+      setAccounts((prevState) => {
+        prevState.map((acct) => {
+          return { ...acct, isLoggedIn: false };
+        });
+      });
+    }
 
     const updatedAccounts = accounts.map((account) => {
       if (
@@ -73,8 +78,8 @@ function LoginForm() {
 
     if (hasLoggedIn) {
       localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
-      if (isAdmin){
-        navigate("/Admin")
+      if (isAdmin) {
+        navigate("/Admin");
       } else {
         navigate("/Dashboard");
       }

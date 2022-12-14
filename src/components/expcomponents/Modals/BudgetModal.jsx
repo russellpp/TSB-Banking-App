@@ -13,6 +13,7 @@ function BudgetModal({
   setCurrentWallet,
   walletBalance,
   setWalletBalance,
+  walletRef
 }) {
   const [budgetValue, setBudgetValue] = useState();
   const [budgetAccount, setBudgetAccount] = useState();
@@ -20,6 +21,10 @@ function BudgetModal({
     isEmpty: false,
     isInvalidAmount: false,
   });
+
+  const handleResetErrorModal = (value) => {
+    setErorCreate({ isEmpty: value, isInvalidAmount: value });
+  };
 
   const handleCloseModal = () => {
     setIsBudgetOpen(false);
@@ -54,10 +59,8 @@ function BudgetModal({
         };
       });
     } else {
-      setErorCreate({
-        isEmpty: false,
-        isInvalidAmount: false,
-      });
+      handleResetErrorModal(false)
+      
     }
   }, [budgetValue, budgetAccount]);
 
@@ -95,6 +98,7 @@ function BudgetModal({
       console.log(selectedWallet);
       setCurrentWallet(selectedWallet);
       setAccounts(updatedAccounts);
+      walletRef.current.scrollTo(0,0);  
       handleCloseModal();
     }
   };
@@ -119,6 +123,7 @@ function BudgetModal({
           <label htmlFor="amount">Enter initial budget: </label>
           <input
             type="number"
+            min={0}
             name="amount"
             id="amount"
             autoComplete="off"
