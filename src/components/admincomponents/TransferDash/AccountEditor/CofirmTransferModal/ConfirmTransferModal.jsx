@@ -50,6 +50,7 @@ function ConfirmTransferModal({
   setSelectedTransferAccount,
   searchTerm,
   setSearchTerm,
+  setTransferDetails
 }) {
   const [errorTransfer, setTransferError] = useState({
     negative: false,
@@ -149,6 +150,10 @@ function ConfirmTransferModal({
     alert(`Transfer of ₱${transferDetails.amount} from ${selectedTransferAccount.name} (${selectedTransferAccount.accountNumber}) to ${transferDetails.receiver} is successful!`)
     setIsConfirmTransferOpen(false);
     setSelectedTransferAccount(accounts[0])
+    setTransferDetails({
+      amount:"",
+      receiver: ""
+    })
     setSearchTerm("");
   };
 

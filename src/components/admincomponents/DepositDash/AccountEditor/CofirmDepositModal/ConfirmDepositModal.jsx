@@ -44,6 +44,7 @@ function ConfirmDepositModal({
   isConfirmDepositOpen,
   setIsConfirmDepositOpen,
   depositValue,
+  setDepositValue,
   setSelectedDepositAccount,
   searchTerm,
   setSearchTerm,
@@ -159,6 +160,7 @@ function ConfirmDepositModal({
     alert(`Deposit of ₱${depositValue} to ${selectedDepositAccount.name} (${selectedDepositAccount.accountNumber}) is successful!`)
     setSelectedDepositAccount(accounts[0])
     setSearchTerm("")
+    setDepositValue(0)
     handleCloseModal();
   };
 

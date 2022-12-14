@@ -43,6 +43,7 @@ function AccountEditor({
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           searchRef={searchRef}
+          setDepositValue={setDepositValue}
         />
       )}
       <form className="AccountEditForm" ref={formRef}>

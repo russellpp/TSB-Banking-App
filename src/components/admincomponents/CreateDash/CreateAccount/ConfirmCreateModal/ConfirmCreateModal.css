@@ -41,6 +41,11 @@
     text-align: center;
     padding: 5px;
 
+
+}
+
+.CreateModal > .Modal > .Container > .ModalBody span{
+  margin: 2px;
 }
 
 .ModalBody :first-child {

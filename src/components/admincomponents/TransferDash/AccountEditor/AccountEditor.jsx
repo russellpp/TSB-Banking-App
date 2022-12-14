@@ -58,6 +58,7 @@ function AccountEditor({
           setSelectedTransferAccount={setSelectedTransferAccount}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          setTransferDetails={setTransferDetails}
         />
       )}
       <form className="AccountEditForm" ref={formRef}>

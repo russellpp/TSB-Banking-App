@@ -38,6 +38,7 @@ function AccountEditor({
           isConfirmWithdrawOpen={isConfirmWithdrawOpen}
           setIsConfirmWithdrawOpen={setIsConfirmWithdrawOpen}
           withdrawValue={withdrawValue}
+          setWithdrawValue={setWithdrawValue}
           setSelectedWithdrawAccount={setSelectedWithdrawAccount}
         />
       )}

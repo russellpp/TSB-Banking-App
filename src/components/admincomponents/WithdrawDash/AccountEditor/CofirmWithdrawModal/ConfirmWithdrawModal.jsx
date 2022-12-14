@@ -50,6 +50,7 @@ function ConfirmWithdrawModal({
   setSelectedWithdrawAccount,
   searchTerm,
   setSearchTerm,
+  setWithdrawValue
 }) {
   const [errorWithdraw, setWithdrawError] = useState({
     negative: false,
@@ -118,6 +119,7 @@ function ConfirmWithdrawModal({
     setAccounts(updatedAccounts);
     alert(`Withdrawal of ₱${withdrawValue} from ${selectedWithdrawAccount.name} (${selectedWithdrawAccount.accountNumber}) is successful!`)
     setSelectedWithdrawAccount(accounts[0]);
+    setWithdrawValue(0)
     handleCloseModal();
   };
 
