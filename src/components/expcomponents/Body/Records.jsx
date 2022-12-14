@@ -38,12 +38,12 @@ function Records({
   const [dataOptions, setDataOptions] = useState(defaultOptions);
 
   useEffect(() => {
-    if (currentUser === null) {
+    if (!currentUser) {
       setRecordList([]);
-    } else if (currentWallet === null || currentWallet === undefined || currentWallet.length == 0) {
+    } /* else if (currentWallet === null || currentWallet === undefined || currentWallet.length == 0) {
       setRecordList([]);
-    } else {
-      setRecordList(currentWallet.records);
+    } */ else {
+      setRecordList(currentWallet?.records || []);
     }
   }, [accounts, currentWallet]);
 

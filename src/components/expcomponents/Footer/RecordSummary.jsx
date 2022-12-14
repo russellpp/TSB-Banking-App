@@ -48,7 +48,7 @@ function RecordSummary({
   }, [accounts, recordList]);
 
   useEffect(() => {
-    setBudget(currentWallet.budget);
+    setBudget(currentWallet?.budget || 0);
   }, [accounts, recordList]);
 
   const total = () => {
@@ -56,7 +56,7 @@ function RecordSummary({
       return `₱ 0.00`;
     } else {
       const sum = Number(budget) + Number(income) + Number(expense);
-      const num = parseFloat(Math.abs(sum))
+      const num = parseFloat((sum))
         .toFixed(2)
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -78,7 +78,7 @@ function RecordSummary({
       <span>total expenses</span>
       <span className="TotalExpenses">
         ₱{" "}
-        {parseFloat(Math.abs(expense))
+        {parseFloat((expense))
           .toFixed(2)
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
